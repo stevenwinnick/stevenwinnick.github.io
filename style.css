@@ -185,4 +185,18 @@ body{
 
 .bio-par{
     font-weight: normal;
+    text-align: justify;
+}
+
+.proj-par{
+    text-align: justify;
+}
+
+.par-link{
+    color: #000000;
+}
+
+.subhead-link{
+    text-decoration: none;
+    color: #000000;
 }

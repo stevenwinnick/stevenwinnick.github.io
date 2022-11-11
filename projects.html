@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Steven Winnick - Computer Science Major at Columbia University</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <!--Navigation Bar-->
+    <div class="container-fluid contains-navbar">
+        <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+            <div class="container-fluid d-flex align-items-stretch contains-navbar-insides">
+                <div class="container-fluid d-flex flex-nowrap no-pad"> <!--Prevents wrapping for everything but navmenu-->
+                    <div class="container-fluid d-flex align-items-center inner-nav top-left-name">
+                        <a href="index.html" class="navbar-brand"><span class="mb-0 ms-3 h2">Steven Winnick</span></a>
+                    </div>
+    
+                    <div class="container-fluid d-flex align-items-center navbar-text inner-nav social-icons">
+                        <a href="https://linkedin.com/in/stevenwinnick" class="ms-auto social-link linkedin-img" target="_blank" rel="noopener noreferrer"><img src="/img/LinkedInLogo.png" class="float-end social-icon-image" style="width: 20px; padding: 0;"></img></a>
+                        <a href="https://github.com/stevenwinnick" class="ms-1 me-2 social-link github-img" target="_blank" rel="noopener noreferrer"><img src="/img/GitHubLogo.png" class="float-end social-icon-image" style="width: 20px; padding: 0;"></img></a>
+                    </div>
+    
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navmenu"
+                        style="border-bottom: 2px solid black; border-radius: 0px"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                
+                <div class="collapse navbar-collapse align-items-stretch no-pad inner-nav nav-pages" id="navmenu">
+                    <div class="navbar-nav">
+                        <a href="home.html" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-home">HOME</a>
+                        <a href="about.html" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-about">ABOUT</a>
+                        <a href="projects.html" class="container-fluid d-flex justify-content-center align-items-center text-wrap nav-link nav-link-active nl-projects">SOME RECENT PROJECTS I'M PROUD OF</a>
+                        <a href="https://drive.google.com/file/d/10NqFcghj0aQU6-oIb8kX8bEzXKGWYmis/view?usp=sharing" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-resume" target="_blank" rel="noopener noreferrer">RESUME</a>
+                        <a href="contact.html" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-contact">CONTACT</a>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    
+    <!--Main Body Content-->
+    <div class="container-fluid p-0 m-0">
+        <!--Walking Robot-->
+        <div class="container-fluid d-flex flex-row flex-wrap align-items-start p-0 m-0 pt-5">
+            <div class="container-fluid" style="height: 50px"></div>
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto me-lg-5 me-auto mt-lg-0 mt-3 mb-lg-0 mb-3">
+                    <div class="container-fluid d-flex flex-column align-content-center">
+                        <img src="img/WalkingRobot.jpg" style="width: 550px"></img>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto ms-lg-5 me-auto">
+                    <div class="container-fluid d-flex flex-column align-content-center" style="width: 550px; padding-top: 15px;">
+                        <h3 class="align-self-center">Walking Robot</h3>
+                        <p class="align-self-center lh-sm proj-par">As part of Columbia's Robotics Studio this semester, I've built a walking robot. Nicknamed the "Trice-Robot," this triceratops-fossil-shaped robot started as a hand-sketched design, which Rex Li and I then modeled in its entirety in SolidWorks, down to every last screw and insert. After 3D-printing and assembling the robot, we cut up and soldered some cables to wire the electronics and installed an onboard computer. We configured the computer to send us an email with it's IP Address upon startup, allowing us to control our robot remotely with an SSH connection. I did some math to figure out how to rotate the servo motors to give us a smooth walking path, then wrote some error-handling code to control all 8 servos simultaneously and let our robot walk. In the coming weeks, I'll be using PyBullet's Machine Learning software to optimize our robot's walking speed, as well as installing a camera to implement object detection using Computer Vision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Neural Network-->
+        <div class="container-fluid d-flex flex-row-reverse flex-wrap align-items-start p-0 m-0 pt-5">
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto ms-lg-5 me-auto mt-lg-0 mt-3 mb-lg-0 mb-3">
+                    <div class="container-fluid d-flex flex-column align-content-center">
+                        <img src="img/NeuralNetwork.jpg" style="width: 550px"></img>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto me-lg-5 me-auto">
+                    <div class="container-fluid d-flex flex-column align-content-center" style="width: 550px; padding-top: 15px;">
+                        <a class="subhead-link align-self-center" href="https://github.com/stevenwinnick/DeepLearningNeuralNetworkFromScratch" target="_blank" rel="noopener noreferrer"><h3 class="align-self-center">Neural Network From Scratch</h3></a>
+                        <p class="align-self-center lh-sm proj-par"> After my internship ended this summer, I wanted to get a deeper understanding of deep learning, specifically neural networks and how they work, so I built one from scratch using Python. My neural net uses a sigmoid activation function for an added computational challenge and manually calculates and applies partial derivatives for backpropagation. It can also scale to contain any number of hidden layers, each of any size, that it is initialized with, and accepts both batches and individual inputs. You can find the code for this project <a class="par-link align-self-center" href="https://github.com/stevenwinnick/DeepLearningNeuralNetworkFromScratch" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Paramount-->
+        <div class="container-fluid d-flex flex-row flex-wrap align-items-start p-0 m-0 pt-5">
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto me-lg-5 me-auto mt-lg-0 mt-3 mb-lg-0 mb-3">
+                    <div class="container-fluid d-flex flex-column align-content-center">
+                        <img src="img/ParamountLogo.jpg" style="width: 550px"></img>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto ms-lg-5 me-auto">
+                    <div class="container-fluid d-flex flex-column align-content-center" style="width: 550px; padding-top: 15px;">
+                        <h3 class="align-self-center">Paramount Tech Strategy Internship</h3>
+                        <p class="align-self-center lh-sm proj-par">Over the summer, I had the very cool opportunity to intern at <a class="par-link align-self-center" href="https://www.paramount.com" target="_blank" rel="noopener noreferrer">Paramount</a> as part of the Tech Strategy team. As the team's Innovation Intern, my work primarily revolved around defining the innovation strategy for the Paramount+ and PlutoTV streaming apps. Using thorough research, I was able to assist with evaluating potential R&D initiatives and craft recommendations for tech innovation schemes. Later in the summer, I got to see some of my proposals through by joining a cross-functional team that worked to streamline the process for receiving executive buy-in for experimental projects. I was even asked to present some of my recommendations to the Paramount Streaming CTO, which was a great experience.</p>
+                        <!--Add something about what I learned from the experience-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Sonar-->
+        <div class="container-fluid d-flex flex-row-reverse flex-wrap align-items-start p-0 m-0 pt-5">
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto ms-lg-5 me-auto mt-lg-0 mt-3 mb-lg-0 mb-3">
+                    <div class="container-fluid d-flex flex-column align-content-center">
+                        <img src="img/SonarPhoto.jpg" style="width: 550px"></img>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto me-lg-5 me-auto">
+                    <div class="container-fluid d-flex flex-column align-content-center" style="width: 550px; padding-top: 15px;">
+                        <h3 class="align-self-center">Sonar Health SWE + PM Internship</h3>
+                        <p class="align-self-center lh-sm proj-par">As a Product Manager intern at <a class="par-link align-self-center" href="https://www.sonarhealth.co" target="_blank" rel="noopener noreferrer">Sonar</a>, I worked under the guidance of a team of medical experts from Columbia's Medical School to create specifications for some of the app's core features, which provide users with detailed information about specific aspects of their health. I then worked cross-functionally to guide design and engineering teams in building out these features and others. As a backend software engineer, I was able to build out some of the features I defined while learning about the software development process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--This Website-->
+        <div class="container-fluid d-flex flex-row flex-wrap align-items-start p-0 m-0 pt-5">
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto me-lg-5 me-auto mt-lg-0 mt-3 mb-lg-0 mb-3">
+                    <div class="container-fluid d-flex flex-column align-content-center">
+                        <img src="img/WebsiteScreenshot.png" style="width: 550px; border: 1px solid #000000;"></img>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
+                <div class="ms-auto ms-lg-5 me-auto">
+                    <div class="container-fluid d-flex flex-column align-content-center" style="width: 550px; padding-top: 15px;">
+                        <h3 class="align-self-center">This Website!</h3>
+                        <p class="align-self-center lh-sm proj-par">Rather than using a template to build my website, I decided to learn how to do it myself and use it as an opportunity to showcase my design ability. This site is built with <a class="par-link align-self-center" href="https://getbootstrap.com/docs/5.2/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap 5</a> and fully responsive, so it should display nicely on all screen sizes and types (but if something is broken, I'd really appreciate it if you could let me know via the <a class="par-link align-self-center" href="contact.html" target="_blank" rel="noopener noreferrer">contact</a> page). I think it turned out pretty well, don't you? :)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="height: 50px"></div>
+    </div>
+
+
+  </body>
+</html>

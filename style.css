@@ -1,0 +1,188 @@
+body{
+    font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;
+}
+
+.no-pad{
+    padding: 0 !important;
+}
+
+.custom-navbar{
+    padding: 0 !important;
+    margin-bottom: 1000px !important;
+    background-color: white;
+}
+
+.contains-navbar-insides{
+    padding: 0 !important;
+}
+
+.inner-nav{
+    padding: 0 !important;
+}
+
+.top-left-name{
+    border-bottom: 2px solid black;
+}
+
+.social-icons{
+    border-bottom: 2px solid black;
+}
+
+.social-link{
+    transition: .2s;
+}
+
+.social-link:hover{
+    transform: scale(1.5);
+}
+
+.linkedin-img:hover{
+    margin-right: 5px !important;
+}
+
+.github-img:hover{
+    margin-left: 10px !important;
+}
+
+.nav-pages{
+    float: right !important;
+}
+
+.nav-link{
+    --initialTextColor: #000000;
+    --slideTextColor: #FFFFFF;
+
+    --initialBgColor: #FFFFFF;
+
+    color: var(--initialTextColor);
+
+    background-image: linear-gradient(180deg,
+        var(--initialBgColor) 0%,
+        var(--initialBgColor) 48%,
+        var(--slideBgColor) 48%,
+        var(--slideBgColor) 100%);
+    background-size: 200%;
+    transition: background-position .25s cubic-bezier(.9, 0, .5, 1), color .2s linear;
+    transition-delay: 0s, 0.1s;
+}
+
+.nav-link-active{
+    --initialTextColor: #FFFFFF;
+    --slideTextColor: #000000;
+    background-image: none;
+    background-color: var(--slideBgColor);
+    color: var(--initialTextColor);
+    transition: color .2s linear;
+    transition-delay: 0s, 0.1s;
+
+    text-decoration: none;
+}
+
+.nav-link:hover{
+    color: var(--slideTextColor);
+    cursor: pointer;
+    background-position: 0% 100%;
+}
+
+.nav-link-active:hover{
+    color: var(--slideTextColor);
+    cursor: pointer;
+    background-position: 0% 100%;
+}
+
+.nl-home{
+    --slideBgColor: #8AC926;
+}
+
+.nl-about{
+    --slideBgColor: #1982C4;
+}
+
+.nl-projects{
+    --slideBgColor: #FF595E;
+
+    min-width: 15rem;
+    text-align: center;
+    line-height: 125%;
+}
+
+.nl-resume{
+    --slideBgColor: #FFD252;
+}
+
+.nl-contact{
+    --slideBgColor: #6A4C93;
+}
+
+.top-left-name{
+    font-family: default;
+}
+
+.fill{
+    min-height: 100vh;
+}
+
+.diagonal-bg{
+    background: linear-gradient(-70deg, #EEEEEE 0%, #EEEEEE 30%, transparent 30%);
+    background-size: 100%;
+}
+
+.btn-link{
+    text-decoration: none;
+}
+
+.link-btn{
+    background-color: #FFFFFF;
+    padding: 7px;
+    padding-top: 0px;
+    padding-bottom: 4px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+
+    --initialTextColor: #000000;
+    --slideTextColor: #FFFFFF;
+
+    --initialBgColor: #FFFFFF;
+
+    color: var(--initialTextColor);
+
+    background-image: linear-gradient(180deg,
+        var(--initialBgColor) 0%,
+        var(--initialBgColor) 50%,
+        var(--slideBgColor) 50%,
+        var(--slideBgColor) 100%);
+    background-size: 200%;
+    transition: background-position .25s cubic-bezier(.9, 0, .5, 1), color .2s linear;
+    transition-delay: 0s, 0.1s;
+}
+
+.link-btn:hover{
+    color: var(--slideTextColor);
+    cursor: pointer;
+    background-position: 0% 100%;
+}
+
+.res-btn{
+    border-color: #FFD252;
+    --slideBgColor: #FFD252;
+}
+
+.abt-btn{
+    border-color: #1982C4;
+    --slideBgColor: #1982C4;
+}
+
+.proj-btn{
+    border-color: #FF595E;
+    --slideBgColor: #FF595E;
+}
+
+.fun-btn{
+    border-color: #8AC926;
+    --slideBgColor: #8AC926;
+}
+
+.bio-par{
+    font-weight: normal;
+}

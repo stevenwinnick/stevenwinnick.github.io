@@ -183,6 +183,12 @@ body{
     --slideBgColor: #8AC926;
 }
 
+.contact-btn{
+    border-color: #6A4C93;
+    --slideBgColor: #6A4C93;
+    padding-bottom: 0;
+}
+
 .bio-par{
     font-weight: normal;
     text-align: justify;

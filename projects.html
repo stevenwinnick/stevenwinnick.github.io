@@ -29,7 +29,7 @@
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navmenu"
-                        style="border-bottom: 2px solid black; border-radius: 0px"
+                        style="border: none; border-bottom: 2px solid black; border-radius: 0px"
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -51,9 +51,13 @@
     
     <!--Main Body Content-->
     <div class="container-fluid p-0 m-0">
-        <!--Walking Robot-->
-        <div class="container-fluid d-flex flex-row flex-wrap align-items-start p-0 m-0 pt-5">
+        <!--Recent Projects-->
+        <div class="container-fluid d-flex flex-row flex-wrap justify-content-center p-0 m-0 pt-5">
             <div class="container-fluid" style="height: 50px"></div>
+            <h2 class="text-center">Recent Projects</h2>
+        </div>
+        <!--Walking Robot-->
+        <div class="container-fluid d-flex flex-row flex-wrap align-items-start p-0 m-0 pt-lg-5">
             <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
                 <div class="ms-auto me-lg-5 me-auto mt-lg-0 mt-3 mb-lg-0 mb-3">
                     <div class="container-fluid d-flex flex-column align-content-center">
@@ -65,7 +69,7 @@
                 <div class="ms-auto ms-lg-5 me-auto">
                     <div class="container-fluid d-flex flex-column align-content-center" style="width: 550px; padding-top: 15px;">
                         <h3 class="align-self-center">Walking Robot</h3>
-                        <p class="align-self-center lh-sm proj-par">As part of Columbia's Robotics Studio this semester, I've built a walking robot. Nicknamed the "Trice-Robot," this triceratops-fossil-shaped robot started as a hand-sketched design, which Rex Li and I then modeled in its entirety in SolidWorks, down to every last screw and insert. After 3D-printing and assembling the robot, we cut up and soldered some cables to wire the electronics and installed an onboard computer. We configured the computer to send us an email with it's IP Address upon startup, allowing us to control our robot remotely with an SSH connection. I did some math to figure out how to rotate the servo motors to give us a smooth walking path, then wrote some error-handling code to control all 8 servos simultaneously and let our robot walk. In the coming weeks, I'll be using PyBullet's Machine Learning software to optimize our robot's walking speed, as well as installing a camera to implement object detection using Computer Vision.</p>
+                        <p class="align-self-center lh-sm proj-par">As part of Columbia's Robotics Studio this semester, I've built a walking robot. Nicknamed the "Trice-Robot," this triceratops-fossil-shaped robot started as a hand-sketched design, which Rex Li and I then modeled in its entirety in SolidWorks, down to every last screw and insert. After 3D-printing and assembling the robot, we cut up and soldered some cables to wire the electronics and installed an onboard computer. We configured the computer to send us an email with it's IP Address upon startup, allowing us to control our robot remotely with an SSH connection. I did some <a class="par-link align-self-center" href="https://en.wikipedia.org/wiki/Inverse_kinematics#Numerical_solutions_to_IK_problems" target="_blank" rel="noopener noreferrer">math</a> to figure out how to rotate the servo motors to give us a smooth walking path, then wrote some error-handling code to control all 8 servos simultaneously and let our robot walk. In the coming weeks, I'll be using PyBullet's Machine Learning software to optimize our robot's walking speed, as well as installing a camera to implement object detection using Computer Vision.</p>
                     </div>
                 </div>
             </div>
@@ -138,7 +142,7 @@
                 <div class="ms-auto ms-lg-5 me-auto">
                     <div class="container-fluid d-flex flex-column align-content-center" style="width: 550px; padding-top: 15px;">
                         <h3 class="align-self-center">This Website!</h3>
-                        <p class="align-self-center lh-sm proj-par">Rather than using a template to build my website, I decided to learn how to do it myself and use it as an opportunity to showcase my design ability. This site is built with <a class="par-link align-self-center" href="https://getbootstrap.com/docs/5.2/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap 5</a> and fully responsive, so it should display nicely on all screen sizes and types (but if something is broken, I'd really appreciate it if you could let me know via the <a class="par-link align-self-center" href="contact.html" target="_blank" rel="noopener noreferrer">contact</a> page). I think it turned out pretty well, don't you? :)</p>
+                        <p class="align-self-center lh-sm proj-par">Rather than using a template to build my website, I decided to learn how to do it myself and use it as an opportunity to showcase my design ability. This site is built with <a class="par-link align-self-center" href="https://getbootstrap.com/docs/5.2/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap 5</a> and fully responsive, so it should display nicely on all screen sizes and types (but if something is broken, I'd really appreciate it if you could let me know via the <a class="par-link align-self-center" href="contact.html">contact</a> page). I think it turned out pretty well, don't you? :)</p>
                     </div>
                 </div>
             </div>

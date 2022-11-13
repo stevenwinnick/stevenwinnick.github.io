@@ -61,7 +61,7 @@ body{
         var(--initialBgColor) 48%,
         var(--slideBgColor) 48%,
         var(--slideBgColor) 100%);
-    background-size: 200%;
+    background-size: 100% 200%;
     transition: background-position .25s cubic-bezier(.9, 0, .5, 1), color .2s linear;
     transition-delay: 0s, 0.1s;
 }
@@ -152,7 +152,7 @@ body{
         var(--initialBgColor) 50%,
         var(--slideBgColor) 50%,
         var(--slideBgColor) 100%);
-    background-size: 200%;
+    background-size: 100% 200%;
     transition: background-position .25s cubic-bezier(.9, 0, .5, 1), color .2s linear;
     transition-delay: 0s, 0.1s;
 }

@@ -50,28 +50,39 @@
     </nav>
     
     <!--Main Body Content-->
-    <div class="container-fluid p-0 m-0">
-        <div class="container-fluid d-flex flex-wrap align-items-start fill p-0 m-0 pt-5">
-            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
-                <div class="ms-auto me-xl-5 me-lg-2 me-auto mt-lg-0 mt-3 mb-lg-0 mb-3 p-2">
-                    <div class="container-fluid d-flex flex-column align-content-center">
-                        <img src="img/photoOfMe.jpg" style="height: 80vh; max-height: 80vw"></img>
+    <div class="container-fluid">
+        <div class="container-fluid d-flex flex-column fill-screen p-0">
+            <div class="container-fluid" style="height: 65px"></div>
+            <div class="container-fluid flex-grow-1 p-0 d-flex justify-items-center align-items-center"> <!--Grows to fill the rest of the landing page-->
+                <div class="col-12"> <!--Centers the remaining main body content on page-->
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-center intro-hey" style="text-transform: uppercase">My Bio</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">
-                <div class="ms-xl-5 ms-lg-2 ms-auto me-lg-auto me-auto p-2">
-                    <div class="container-fluid d-flex flex-column align-content-center" style="max-width: 65vh; font-size: 2.1vh; padding-top: 15px;">
-                        <h2 class="align-self-center">About Me</h2>
-                        <p class="align-self-center lh-sm bio-par">I'm a innovator and engineer excited about building the next generation of tech products. Last summer, I worked as a Technology Strategy Intern at <a class="par-link"  href="https://www.paramount.com" target="_blank" rel="noopener noreferrer">Paramount</a>, helping define the Paramount+/PlutoTV innovation strategy to compete in the escalating "Streaming Wars." The summer before, I was a Software Engineer and Product Manager intern at <a class="par-link"  href="https://www.sonarhealth.co" target="_blank" rel="noopener noreferrer">Sonar Health</a>, where I designed and built core features of a platform that gives users information about their health with industry-leading precision. I'm originally from a smaller town outside St. Paul, MN, and throughout middle and high school, I took my math classes at the University of Minnesota as part of the U's <a class="par-link"  href="https://cse.umn.edu/mathcep/about-umtymp" target="_blank" rel="noopener noreferrer">Talented Youth Mathematics Program</a></p>
-                        <p class="align-self-center lh-sm bio-par">Right now, I'm a Junior at Columbia University, where I'm a <a class="par-link"  href="https://www.college.columbia.edu/alumni/jj-scholars-program" target="_blank" rel="noopener noreferrer">John Jay Scholar</a> in the Undergraduate Scholars Program. I'm majoring in Computer Science with an Intelligent Systems specialization, which allows me to pursue my interests in Artificial Intelligence and Machine Learning with graduate-level coursework exploring both the theoretical and applied sides of these fields. I'm especially interested in the application of Machine Learning to the field of Robotics, and I'm an active participant in Columbia's Robotics Studio, where I'm building a walking robot capable of object detection.</p>
-                        <p class="align-self-center lh-sm bio-par">When not working on my more academic interests, I can often be found making music with my MIDI keyboard or exploring New York City with my friends. I also love to cook elaborate meals and ski when I'm home in the winter.</p>
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-lg-6">
+                            <div class="p-2 pt-0 pe-lg-0 m-lg-4 me-lg-2">
+                                <img src="img/photoOfMe.jpg" class="d-block p-2 mt-2 mb-2 ms-auto me-auto" style="max-width: 100%; background-color: var(--secondary-bg-color);"></img>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="p-2 p-lg-0 pe-lg-2 m-lg-4 ms-lg-2 pb-lg-1">
+                                <p class="align-self-center lh-sm p-0 ms-auto me-auto bio-par">I'm a innovator and engineer excited about building the next generation of tech products. Currently, I'm a Software Engineer Intern at <span class="par-link"></span><a class="par-link"  href="https://www.paramount.com" target="_blank" rel="noopener noreferrer">Paramount</a>, which I'm thrilled to be back for my second internship at. Last summer, I was a Technology Strategy Intern, helping define the Paramount+/PlutoTV innovation strategy to compete in the escalating "Streaming Wars." The summer before, I was a Software Engineer and Product Manager intern at <a class="par-link"  href="https://www.sonarhealth.co" target="_blank" rel="noopener noreferrer">Sonar Health</a>, where I designed and built core features of a platform to bring users information about their health from a wide range of sources with industry-leading precision. I'm originally from a smaller town outside St. Paul, MN, and throughout middle and high school, I took my math classes at the University of Minnesota as part of the U's <a class="par-link"  href="https://cse.umn.edu/mathcep/about-umtymp" target="_blank" rel="noopener noreferrer">Talented Youth Mathematics Program</a>.</p>
+                                <p class="align-self-center lh-sm p-0 ms-auto me-auto bio-par">Right now, I'm an incoming Senior at Columbia University, where I'm a <a class="par-link"  href="https://www.college.columbia.edu/alumni/jj-scholars-program" target="_blank" rel="noopener noreferrer">John Jay Scholar</a> in the Undergraduate Scholars Program. I'm majoring in Computer Science with an Intelligent Systems specialization, which allows me to pursue my interests in AI and Machine Learning with graduate-level coursework exploring both the theoretical and applied sides of these fields. I'm especially interested in the application of Machine Learning to the world of music, and am currently working on projects applying Natural Language Processing techniques to song lyric analysis, and Signal Processing techniques to music emotion recognition. I'm also working on a research project relating to Self-Driving Cars in <a class="par-link"  href="https://sharondi-columbia.wixsite.com/ditectlab" target="_blank" rel="noopener noreferrer">Columbia's DitecT Lab</a>.</p>
+                                <p class="align-self-center lh-sm p-0 ms-auto me-auto bio-par">When not working on my more academic interests, I can often be found making music with my MIDI keyboard or exploring New York City with my friends. I also love to cook elaborate meals and ski when I'm home in the winter.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row d-flex align-content-center footer">
+            <div class="col-12">
+                <p class="text-center m-0">&copy 2023 Steven Winnick &#128526</p>
+            </div>
+        </div>
     </div>
-
 
   </body>
 </html>

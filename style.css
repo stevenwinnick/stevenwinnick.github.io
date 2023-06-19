@@ -23,12 +23,14 @@
     --secondary-bg-color: var(--secondary-color);
     --intro-text-size: 2.8vw;
     --headshot-width: 70vw;
+    --bio-par-size: 2.5vw;
 }
 
 @media only screen and (min-width: 992px) {
     :root {
       --intro-text-size: 1.8vw;
       --headshot-width: 400px;
+      --bio-par-size: 1.59vw;
     }
 }
     
@@ -47,6 +49,7 @@ body{
 
 .contains-navbar-insides{
     padding: 0 !important;
+    border-bottom: 4px solid var(--primary-color);
 }
 
 .minimized-navbar-insides{
@@ -264,6 +267,8 @@ body{
 
 .bio-par{
     text-align: justify;
+    padding: 2;
+    font-size: var(--bio-par-size);
 }
 
 .proj-par{
@@ -271,14 +276,41 @@ body{
 }
 
 .par-link{
-    color: #000000;
+    color: var(--default-text-color);
+    text-decoration: underline;
+}
+
+.par-link-inv{
+    color: var(--secondary-text-color);
+    text-decoration: underline;
+}
+
+.par-link:hover{
+    color: var(--blue);
+}
+
+.par-link-inv:hover{
+    color: var(--blue);
 }
 
 .subhead-link{
     text-decoration: none;
-    color: #000000;
+    color: var(--default-text-color);
 }
 
 .bottom-div{
     flex-grow: 1;
+}
+
+.bio-header{
+    font-family: 'soehne-dreiviertelfett';
+    font-size: 11vw;
+}
+
+.footer{
+    background-color: var(--secondary-bg-color); 
+    height: 30px;
+    border-top: 4px solid var(--default-bg-color);
+    font-size: 14px;
+    color: var(--secondary-text-color);
 }

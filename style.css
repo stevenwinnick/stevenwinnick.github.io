@@ -25,6 +25,7 @@
     --headshot-width: 70vw;
     --bio-par-size: 2.5vw;
     --project-title-size: 8vw;
+    --smaller-project-title-size: 6vw;
     --project-subhead-size: 5vw;
     --project-body-size: 3vw;
     --project-body-line-height: 4vw;
@@ -36,7 +37,8 @@
       --headshot-width: 400px;
       --bio-par-size: 1.59vw;
       --project-title-size: 80px;
-      --project-subhead-size: 50px;
+      --smaller-project-title-size: 60px;
+      --project-subhead-size: 45px;
       --project-body-size: 20px;
       --project-body-line-height: 27px;
     }
@@ -254,7 +256,7 @@ body{
 
 .intro-hey{
     font-family: 'soehne-dreiviertelfett';
-    font-size: 11vw;
+    font-size: 10vw;
     margin-bottom: 0;
 }
 
@@ -327,6 +329,14 @@ body{
 .project-title{
     font-family: 'soehne-dreiviertelfett';
     font-size: var(--project-title-size);
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.smaller-project-title{
+    font-family: 'soehne-dreiviertelfett';
+    font-size: var(--smaller-project-title-size);
+    margin-top: 0px;
     margin-bottom: 0px;
 }
 
@@ -340,6 +350,16 @@ body{
     font-size: var(--project-body-size);
     line-height: var(--project-body-line-height);
     margin-top: 0px;
+}
+
+.projects-inverted .project-img{
+    width: 100%;
+    background-color: var(--default-bg-color);
+}
+
+.project-img{
+    width: 100%;
+    background-color: var(--secondary-bg-color);
 }
 
 .footer{

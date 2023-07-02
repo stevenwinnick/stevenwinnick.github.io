@@ -50,12 +50,152 @@
     </nav>
     
     <!--Main Body Content-->
-    <div class="container-fluid p-0 m-0">
-        <!--Recent Projects-->
-        <div class="container-fluid d-flex flex-row flex-wrap justify-content-center p-0 m-0 pt-5">
-            <div class="container-fluid" style="height: 50px"></div>
-            <h2 class="text-center">Recent Projects</h2>
+    <div class="container-fluid">
+        <div class="row projects-inverted" style="height: 65px"></div>
+        <div class="row projects-inverted">
+            <div class="col-12">
+                <p class="text-center intro-hey" style="text-transform: uppercase">Projects</p>
+            </div>
         </div>
+        <!--Foghorn API-->
+        <div class="row d-flex justify-content-center pt-1 projects-inverted">
+            <div class="col-12 projects-col">
+                <p class="project-title">FOGHORN API</p>
+                <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/foghorn.jpg" style="max-width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)</li>
+                    <li>Creating an access management system</li>
+                    <li>Deploying Infrastructure as Code with the Serverless Framework</li>
+                    <li>External API integration (Slack API)</li>
+                    <li>Javascript</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating a highly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools followed a nautical theme, we named this Foghorn. Because Foghorn now had access to the Paramount Slack workspace, to make it more secure, I created an access management system using AWS API Gateway API keys, which users would be able to interact with via the Foghorn Slackbot. Keys automatically disable upon overuse to prevent accidental spam, but can be re-enabled (or created, deleted, and distributed) using the bot. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without interacting with the AWS console.</p>
+            </div>
+        </div>
+        <!--Walking Robot-->
+        <div class="row d-flex justify-content-center pt-1">
+            <div class="col-12 projects-col">
+                <p class="project-title">WALKING ROBOT</p>
+                <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/foghorn.jpg" style="max-width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Robotic Movement</li>
+                    <li>Solidworks</li>
+                    <li>Combining 3D printing with purchased hardware</li>
+                    <li>Electronics and Soldering</li>
+                    <li>Ubuntu and Bash scripting</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="project-body">As part of Columbia's Robotics Studio, I built a walking robot. Nicknamed the "Trice-Robot," this triceratops-fossil-shaped robot started as a hand-sketched design, which <a class="par-link align-self-center" href="https://www.linkedin.com/in/yuting-li-3a0244220" target="_blank" rel="noopener noreferrer">Rex Li</a> and I then modeled in its entirety in SolidWorks, down to every last screw and insert. After 3D-printing and assembling the robot, we cut up and soldered cables to wire the electronics and installed an onboard computer. We used Bash scripts to configure the computer to send us an email with it's IP Address upon startup, allowing us to control our robot remotely with an SSH connection. I did some <a class="par-link align-self-center" href="https://en.wikipedia.org/wiki/Inverse_kinematics#Numerical_solutions_to_IK_problems" target="_blank" rel="noopener noreferrer">math</a> to figure out how to rotate the servo motors to give us a smooth walking path, then wrote some error-handling code to control all 8 servos simultaneously and let our robot walk.</p>
+            </div>
+        </div>
+        <!--Foghorn API-->
+        <div class="row d-flex justify-content-center pt-1 projects-inverted">
+            <div class="col-12 projects-col">
+                <p class="project-title">FOGHORN API</p>
+                <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/foghorn.jpg" style="max-width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)</li>
+                    <li>Creating an access management system</li>
+                    <li>Deploying Infrastructure as Code with the Serverless Framework</li>
+                    <li>External API integration (Slack API)</li>
+                    <li>Javascript</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating a highly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools followed a nautical theme, we named this Foghorn. Because Foghorn now had access to the Paramount Slack workspace, to make it more secure, I created an access management system using AWS API Gateway API keys, which users would be able to interact with via the Foghorn Slackbot. Keys automatically disable upon overuse to prevent accidental spam, but can be re-enabled (or created, deleted, and distributed) using the bot. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without interacting with the AWS console.</p>
+            </div>
+        </div>
+        <!--Walking Robot-->
+        <div class="row d-flex justify-content-center pt-1">
+            <div class="col-12 projects-col">
+                <p class="project-title">WALKING ROBOT</p>
+                <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/foghorn.jpg" style="max-width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Robotic Movement</li>
+                    <li>Solidworks</li>
+                    <li>Combining 3D printing with purchased hardware</li>
+                    <li>Electronics and Soldering</li>
+                    <li>Ubuntu and Bash scripting</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="project-body">As part of Columbia's Robotics Studio, I built a walking robot. Nicknamed the "Trice-Robot," this triceratops-fossil-shaped robot started as a hand-sketched design, which <a class="par-link align-self-center" href="https://www.linkedin.com/in/yuting-li-3a0244220" target="_blank" rel="noopener noreferrer">Rex Li</a> and I then modeled in its entirety in SolidWorks, down to every last screw and insert. After 3D-printing and assembling the robot, we cut up and soldered cables to wire the electronics and installed an onboard computer. We used Bash scripts to configure the computer to send us an email with it's IP Address upon startup, allowing us to control our robot remotely with an SSH connection. I did some <a class="par-link align-self-center" href="https://en.wikipedia.org/wiki/Inverse_kinematics#Numerical_solutions_to_IK_problems" target="_blank" rel="noopener noreferrer">math</a> to figure out how to rotate the servo motors to give us a smooth walking path, then wrote some error-handling code to control all 8 servos simultaneously and let our robot walk.</p>
+            </div>
+        </div>
+        <!--Foghorn API-->
+        <div class="row d-flex justify-content-center pt-1 projects-inverted">
+            <div class="col-12 projects-col">
+                <p class="project-title">FOGHORN API</p>
+                <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/foghorn.jpg" style="max-width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)</li>
+                    <li>Creating an access management system</li>
+                    <li>Deploying Infrastructure as Code with the Serverless Framework</li>
+                    <li>External API integration (Slack API)</li>
+                    <li>Javascript</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating a highly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools followed a nautical theme, we named this Foghorn. Because Foghorn now had access to the Paramount Slack workspace, to make it more secure, I created an access management system using AWS API Gateway API keys, which users would be able to interact with via the Foghorn Slackbot. Keys automatically disable upon overuse to prevent accidental spam, but can be re-enabled (or created, deleted, and distributed) using the bot. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without interacting with the AWS console.</p>
+            </div>
+        </div>
+        <!--Walking Robot-->
+        <div class="row d-flex justify-content-center pt-1">
+            <div class="col-12 projects-col">
+                <p class="project-title">WALKING ROBOT</p>
+                <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/foghorn.jpg" style="max-width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Robotic Movement</li>
+                    <li>Solidworks</li>
+                    <li>Combining 3D printing with purchased hardware</li>
+                    <li>Electronics and Soldering</li>
+                    <li>Ubuntu and Bash scripting</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="project-body">As part of Columbia's Robotics Studio, I built a walking robot. Nicknamed the "Trice-Robot," this triceratops-fossil-shaped robot started as a hand-sketched design, which <a class="par-link align-self-center" href="https://www.linkedin.com/in/yuting-li-3a0244220" target="_blank" rel="noopener noreferrer">Rex Li</a> and I then modeled in its entirety in SolidWorks, down to every last screw and insert. After 3D-printing and assembling the robot, we cut up and soldered cables to wire the electronics and installed an onboard computer. We used Bash scripts to configure the computer to send us an email with it's IP Address upon startup, allowing us to control our robot remotely with an SSH connection. I did some <a class="par-link align-self-center" href="https://en.wikipedia.org/wiki/Inverse_kinematics#Numerical_solutions_to_IK_problems" target="_blank" rel="noopener noreferrer">math</a> to figure out how to rotate the servo motors to give us a smooth walking path, then wrote some error-handling code to control all 8 servos simultaneously and let our robot walk.</p>
+            </div>
+        </div>
+        <div class="row" style="height: 2000px"></div>
         <!--Walking Robot-->
         <div class="container-fluid d-flex flex-row flex-wrap align-items-start p-0 m-0 pt-lg-5">
             <div class="col-lg-6 col-12 d-flex align-self-stretch align-items-center">

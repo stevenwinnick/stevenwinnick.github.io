@@ -24,6 +24,10 @@
     --intro-text-size: 2.8vw;
     --headshot-width: 70vw;
     --bio-par-size: 2.5vw;
+    --project-title-size: 8vw;
+    --project-subhead-size: 5vw;
+    --project-body-size: 3vw;
+    --project-body-line-height: 4vw;
 }
 
 @media only screen and (min-width: 992px) {
@@ -31,6 +35,10 @@
       --intro-text-size: 1.8vw;
       --headshot-width: 400px;
       --bio-par-size: 1.59vw;
+      --project-title-size: 80px;
+      --project-subhead-size: 50px;
+      --project-body-size: 20px;
+      --project-body-line-height: 27px;
     }
 }
     
@@ -307,6 +315,33 @@ body{
     font-size: 11vw;
 }
 
+.projects-inverted{
+    background-color: var(--secondary-bg-color);
+    color: var(--secondary-text-color);
+}
+
+.projects-col{
+    max-width: 992px;
+}
+
+.project-title{
+    font-family: 'soehne-dreiviertelfett';
+    font-size: var(--project-title-size);
+    margin-bottom: 0px;
+}
+
+.project-subhead{
+    font-family: 'soehne-dreiviertelfett';
+    font-size: var(--project-subhead-size);
+    margin-bottom: 0px;
+}
+
+.project-body{
+    font-size: var(--project-body-size);
+    line-height: var(--project-body-line-height);
+    margin-top: 0px;
+}
+
 .footer{
     background-color: var(--secondary-bg-color); 
     height: 30px;
@@ -314,3 +349,7 @@ body{
     font-size: 14px;
     color: var(--secondary-text-color);
 }
+
+none {
+    outline: 1px solid #f00 !important;
+  }

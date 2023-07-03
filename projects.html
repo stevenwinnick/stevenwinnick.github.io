@@ -72,12 +72,99 @@
                     <li>A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)</li>
                     <li>Creating an access management system</li>
                     <li>Deploying Infrastructure as Code with the Serverless Framework</li>
+                    <li>GitHub Workflows</li>
                     <li>External API integration (Slack API)</li>
                     <li>Javascript</li>
                     <li>Python</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
                 <p class="pb-3 project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating a highly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools followed a nautical theme, we named this Foghorn. Because Foghorn now had access to the Paramount Slack workspace, to make it more secure, I created an access management system using AWS API Gateway API keys, which users would be able to interact with via the Foghorn Slackbot. Keys automatically disable upon overuse to prevent accidental spam, but can be re-enabled (or created, deleted, and distributed) using the bot. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without interacting with the AWS console.</p>
+            </div>
+        </div>
+        <!--RhymeNet-->
+        <div class="row d-flex justify-content-center pt-3">
+            <div class="col-12 projects-col">
+                <p class="project-title">RhymeNet</p>
+                <p class="project-body">An English language database containing information about both words' phoenetic and written syllable divisions</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/RhymesHighlighted.jpg" class="p-1 project-img" style="width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Database creation</li>
+                    <li>Linguistic theory (phonemes, syllabization, consonant clustering)</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="pb-3 project-body">As part of my music analysis work, I had the idea to analyze song lyrics through the lens of word sounds, as opposed to something like lyrical content. When starting this project, I realized that no dataset existed parsing lyrics by sound and decided to create one for myself. I also thought that a network connecting words by their shared sounds would be useful both for this project and potentially other related ones, which ended up becoming RhymeNet. To create this database, I started with the <a class="par-link align-self-center" href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank" rel="noopener noreferrer">CMU Pronouncing Dictionary</a>, which contains the sounds used to pronounce over 134,000 words. Because syllable divisions are so important in song lyrics, I created an algorithm to automatically parse these phoenetic pronunciations of words into syllables based on the linguistic theory of <a class="par-link align-self-center" href="https://www.tandfonline.com/doi/abs/10.1080/00437956.1978.11435661" target="_blank" rel="noopener noreferrer">"greedy onset clustering"</a> and added sections of the network connecting words by their shared syllables, vowel sounds, and rhyming endings. You can download RhymeNet <a class="par-link align-self-center" href="https://github.com/stevenwinnick/RhymeNet" target="_blank" rel="noopener noreferrer">here</a>.</p>
+            </div>
+        </div>
+        <!--Sheepshead AI-->
+        <div class="row d-flex justify-content-center pt-3 projects-inverted">
+            <div class="col-12 projects-col">
+                <p class="project-title">SHEEPSHEAD AI</p>
+                <p class="project-body">During our Spring Break, my friend <a class="par-link-inv align-self-center" href="https://www.linkedin.com/in/adam-strupp-51b82319a/" target="_blank" rel="noopener noreferrer">Adam</a> and I built a simulator of our favorite card game, Sheepshead, then trained an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/RoyalFlush.jpg" class="p-1 project-img" style="width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>AI game playing</li>
+                    <li>Deep Reinforcement Learning</li>
+                    <li>Monte Carlo Simulation</li>
+                    <li>TensorFlow</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="pb-3 project-body">Whenever I'm home from college, my friends and I get together to play <a class="par-link-inv align-self-center" href="https://en.wikipedia.org/wiki/Sheepshead_(card_game)" target="_blank" rel="noopener noreferrer">Sheepshead,</a> a strategy- and memory-based card game. On one of these nights, someone brought up the idea of building a website where we would be able to play together while living at colleges over 1,000 miles apart, which spawned the idea of trying to build a bot that could beat us. During Spring Break 2023, my friend <a class="par-link-inv align-self-center" href="https://www.linkedin.com/in/adam-strupp-51b82319a/" target="_blank" rel="noopener noreferrer">Adam</a> and I decided to tackle the challenge. We started by mapping out on paper how we would model the game, then built that model in Python. The model included a player class, who would be able to take their turn by selecting from a list of allowed plays. Then, we were able to train the AI to play by simulating millions of games with other bot players. It works by evalutating all allowed moves and deciding after which one it has the highest chance of winning, based on it's training data. Using deep reinforcement learning, it is even able to generalize and make predictions in situations that it hasn't seen before. After a certain number of training episodes, we update the other bots the AI is simulated against to match the AI's current decision-making, increasing the strength of it's competition and forcing the bot to make smarter plays. You can find our code <a class="par-link-inv align-self-center" href="https://github.com/stevenwinnick/Sheepshead" target="_blank" rel="noopener noreferrer">here</a>.</p>
+            </div>
+        </div>
+        <!--MIDI Interpreter-->
+        <div class="row d-flex justify-content-center pt-3">
+            <div class="col-12 projects-col">
+                <p class="project-title">MIDI INTERPRETER</p>
+                <p class="project-body">A program allowing me to customize the inputs programs interpret from my MIDI keyboard so I can use it for keyboard shortcuts</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/MidiKeyboard.jpg" class="p-1 project-img" style="width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Linux Kernel</li>
+                    <li>Operating Systems</li>
+                    <li>Low-level electronic hardware</li>
+                    <li>AppleScript</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="pb-3 project-body">In my free time, I love to make music with my MIDI keyboard. I always found it strange, though, that my keyboard had buttons that weren't used by the music creation software it came bundled with, and that the same software had QWERTY keyboard shortcuts that weren't playable with my MIDI one. To rectify this, I found software that would let me see the exact inputs my laptop was registering when I pressed different buttons on my keyboard, then created scripts so that my computer would reinterpret those buttons as QWERTY keys before they were registered by the music software. The code will work for anyone with the same keyboard, and can be found <a class="par-link align-self-center" href="https://github.com/stevenwinnick/SessionViewMIDI" target="_blank" rel="noopener noreferrer">here</a> along with instructions for using it.</p>
+            </div>
+        </div>
+        <!--Image Captioner-->
+        <div class="row d-flex justify-content-center pt-3 projects-inverted">
+            <div class="col-12 projects-col">
+                <p class="project-title">IMAGE CAPTIONER</p>
+                <p class="project-body">For the final project for my Natural Language Processing class, I built an image caption generator</p>
+            </div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/TowerOfBabel.jpg" class="p-1 project-img" style="width: 100%;"></img>
+            </div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Computer Vision with CNNs</li>
+                    <li>Stacked/Deep Bidirectional Recurrent Neural Networks</li>
+                    <li>Generative Language Models (GPT, Transformers)</li>
+                    <li>GCP Deep Learning VM</li>
+                    <li>PyTorch</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="pb-3 project-body">For the final project for my Natural Language Processing class, I built an image caption generator. This project combined many of the concepts we'd learned about in the class with ideas from Computer Vision. It began with a pre-trained CNN that constructed a vector encoding representation of images. These were then fed as inputs into a generative language model of stacked BiRNNs, which at each step output the probabilities of each word in the training dictionary being the next word in the caption. I then implemented a Beam Search algorithm to output the most likely caption.</p>
             </div>
         </div>
         <!--Walking Robot-->
@@ -158,11 +245,11 @@
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
-                    <li>A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)</li>
-                    <li>Creating an access management system</li>
-                    <li>Deploying Infrastructure as Code with the Serverless Framework</li>
-                    <li>External API integration (Slack API)</li>
-                    <li>Javascript</li>
+                    <li>Product Management</li>
+                    <li>Competitive analysis</li>
+                    <li>Web scraping</li>
+                    <li>Figma</li>
+                    <li>Numpy, Pandas, Django</li>
                     <li>Python</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
@@ -176,7 +263,7 @@
                 <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
             </div>
             <div class="col-12 pb-2 projects-col">
-                <img src="img/foghorn.jpg" class="p-1 project-img" style="width: 100%;"></img>
+                <img src="img/WebsiteScreenshot.png" class="p-1 project-img" style="width: 100%;"></img>
             </div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>

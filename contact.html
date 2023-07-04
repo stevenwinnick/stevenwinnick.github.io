@@ -50,11 +50,16 @@
     </nav>
     
     <!--Main Body Content-->
-    <div class="container-fluid p-0 m-0">
-        <div class="container-fluid d-flex flex-wrap align-items-stretch justify-content-center fill p-0 m-0 pt-5">
+    <div class="container-fluid">
+        <div class="row" style="height: 65px"></div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 projects-col">
+                <p class="text-center intro-hey">CONTACT</p>
+                <p class="text-center pt-4">Want to sell me something?<br>Want me to apply for something?<br>Want to show me something funny?<br>Fill out this form to send me a message!</p>
+            </div>
+        </div>
+        <div class="container-fluid d-flex flex-wrap align-items-stretch justify-content-center p-0 m-0 pt-5 pb-5">
             <div class="col-12 d-flex flex-column justify-content-center">
-                    <h2 class="text-center lh-sm">Contact Me</h2>
-                    <p class="text-center lh-sm m-0 p-0 ps-2 pe-2 pb-5 align-self-center"  style="max-width: 48em;">Want to sell me something? Want me to apply for something? Want to show me something funny? Fill out this form to send me a message, and I'll reply as soon as I can!</p>
                     <div class="container-fluid d-flex justify-content-center">
                         <form action="https://formspree.io/f/mdojyrgj" method="post">
                             <div class="form-group pb-3">
@@ -75,7 +80,7 @@
                                 <label for="message">Message</label>
                                 <textarea class="form-control" id="message" name="message" rows="3" placeholder="Your message" required></textarea>
                             </div>
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center pt-2 pb-3">
                                 <button type="submit" class="link-btn contact-btn" value="Send" style="font-size: 24px">Submit</button>
                             </div>
                         </form>

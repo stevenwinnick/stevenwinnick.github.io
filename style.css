@@ -403,6 +403,10 @@ body{
     background-color: var(--secondary-bg-color);
 }
 
+.form-control {
+    background-color: var(--secondary-bg-color);
+}
+
 .footer{
     background-color: var(--secondary-bg-color); 
     height: 30px;

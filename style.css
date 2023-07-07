@@ -217,7 +217,7 @@ body{
         var(--initialBgColor) 50%,
         var(--slideBgColor) 50%,
         var(--slideBgColor) 100%);
-    background-size: 100% 250%;
+    background-size: 100% 230%;
     transition: background-position .25s cubic-bezier(.9, 0, .5, 1), color .2s linear;
     transition-delay: 0s, 0.1s;
 }
@@ -225,7 +225,7 @@ body{
 .link-btn:hover{
     color: var(--slideTextColor);
     cursor: pointer;
-    background-position: 0% 100%;
+    background-position: 0% 90%;
 }
 
 .link-btn-inv{
@@ -249,7 +249,7 @@ body{
         var(--initialBgColor) 50%,
         var(--slideBgColor) 50%,
         var(--slideBgColor) 100%);
-    background-size: 100% 250%;
+    background-size: 100% 230%;
     transition: background-position .25s cubic-bezier(.9, 0, .5, 1), color .2s linear;
     transition-delay: 0s, 0.1s;
 }
@@ -257,7 +257,7 @@ body{
 .link-btn-inv:hover{
     color: var(--slideTextColor);
     cursor: pointer;
-    background-position: 0% 100%;
+    background-position: 0% 90%;
 }
 
 .home-btn{

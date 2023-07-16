@@ -63,22 +63,24 @@
                 <p class="project-title">FOGHORN API</p>
                 <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/foghorn.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
                     <li>A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)</li>
-                    <li>Creating an access management system</li>
+                    <li>Designing and creating a secure access management system</li>
                     <li>Deploying Infrastructure as Code with the Serverless Framework</li>
-                    <li>GitHub Workflows</li>
+                    <li>GitHub Workflows for automatic deployment to development, quality assurance, and production environments</li>
                     <li>External API integration (Slack API)</li>
-                    <li>Javascript</li>
+                    <li>JavaScript</li>
                     <li>Python</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
-                <p class="pb-3 project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating a highly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools followed a nautical theme, we named this Foghorn. Because Foghorn now had access to the Paramount Slack workspace, to make it more secure, I created an access management system using AWS API Gateway API keys, which users would be able to interact with via the Foghorn Slackbot. Keys automatically disable upon overuse to prevent accidental spam, but can be re-enabled (or created, deleted, and distributed) using the bot. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without interacting with the AWS console.</p>
+                <p class="pb-3 project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating an eagerly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools were named to followed a nautical theme, we named this Foghorn. Because Foghorn now had access to the Paramount Slack workspace, to make it more secure, I created an access management system using AWS API Gateway API keys, which users would be able to create, read, update, and delete using the Foghorn Slackbot. The keys also automatically disable upon overuse to prevent accidental spam, but can be re-enabled using the bot. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without interacting with the AWS console.</p>
             </div>
         </div>
         <!--RhymeNet-->
@@ -87,18 +89,21 @@
                 <p class="project-title">RhymeNet</p>
                 <p class="project-body">An English language database containing information about both words' phoenetic and written syllable divisions</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/RhymesHighlighted.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
-                    <li>Database creation</li>
+                    <li>Database design and creation</li>
                     <li>Linguistic theory (phonemes, syllabization, consonant clustering)</li>
+                    <li>Data intake, cleaning, and preprocessing</li>
                     <li>Python</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
-                <p class="pb-3 project-body">As part of my music analysis work, I had the idea to analyze song lyrics through the lens of word sounds, as opposed to something like lyrical content. When starting this project, I realized that no dataset existed parsing lyrics by sound and decided to create one for myself. I also thought that a network connecting words by their shared sounds would be useful both for this project and potentially other related ones, which ended up becoming RhymeNet. To create this database, I started with the <a class="par-link align-self-center" href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank" rel="noopener noreferrer">CMU Pronouncing Dictionary</a>, which contains the sounds used to pronounce over 134,000 words. Because syllable divisions are so important in song lyrics, I created an algorithm to automatically parse these phoenetic pronunciations of words into syllables based on the linguistic theory of <a class="par-link align-self-center" href="https://www.tandfonline.com/doi/abs/10.1080/00437956.1978.11435661" target="_blank" rel="noopener noreferrer">"greedy onset clustering"</a> and added sections of the network connecting words by their shared syllables, vowel sounds, and rhyming endings. You can download RhymeNet <a class="par-link align-self-center" href="https://github.com/stevenwinnick/RhymeNet" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                <p class="pb-3 project-body">As part of my music analysis work, I had the idea to analyze song lyrics through the lens of word sounds, as opposed to something like lyrical content. When starting this project, I realized that no dataset existed parsing lyrics by sound and decided to create one for myself. I also thought that a network connecting words by their shared sounds would be useful both for this project and potentially other related ones, which ended up becoming RhymeNet. To create this database, I started with the <a class="par-link align-self-center" href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" target="_blank" rel="noopener noreferrer">CMU Pronouncing Dictionary</a>, which contains the sounds/phonemes used to pronounce over 134,000 words. Because syllable divisions are so important in song lyrics, I created an algorithm to automatically parse these phoenetic pronunciations of words into syllables based on the linguistic theory of <a class="par-link align-self-center" href="https://www.tandfonline.com/doi/abs/10.1080/00437956.1978.11435661" target="_blank" rel="noopener noreferrer">"greedy onset clustering"</a> and added sections of the network connecting words by their shared syllables, vowel sounds, and rhyming endings. You can download RhymeNet <a class="par-link align-self-center" href="https://github.com/stevenwinnick/RhymeNet" target="_blank" rel="noopener noreferrer">here</a>.</p>
             </div>
         </div>
         <!--Sheepshead AI-->
@@ -107,9 +112,11 @@
                 <p class="project-title">SHEEPSHEAD AI</p>
                 <p class="project-body">During our Spring Break, my friend <a class="par-link-inv align-self-center" href="https://www.linkedin.com/in/adam-strupp-51b82319a/" target="_blank" rel="noopener noreferrer">Adam</a> and I built a simulator of our favorite card game, Sheepshead, then trained an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/RoyalFlush.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
@@ -129,9 +136,11 @@
                 <p class="project-title">MIDI INTERPRETER</p>
                 <p class="project-body">A program allowing me to customize the inputs programs interpret from my MIDI keyboard so I can use it for keyboard shortcuts</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/MidiKeyboard.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
@@ -150,9 +159,11 @@
                 <p class="project-title">IMAGE CAPTIONER</p>
                 <p class="project-body">For the final project for my Natural Language Processing class, I built an image caption generator</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/TowerOfBabel.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
@@ -173,9 +184,11 @@
                 <p class="project-title">WALKING ROBOT</p>
                 <p class="project-body">A built-from-scratch robot made as part of Columbia's Robotics Studio</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/WalkingRobotRender.jpg" class="p-1 project-img"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
@@ -196,9 +209,11 @@
                 <p class="project-title">NEURAL NETWORK</p>
                 <p class="project-body">To gain a better understanding of deep learning, I built a neural network from scratch</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/NeuralNetwork.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
@@ -217,20 +232,22 @@
                 <p class="smaller-project-title">TECH STRATEGY INTERNSHIP</p>
                 <p class="project-body">During the summer of 2022, I was an intern at Paramount on the Technology Strategy team</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/ParamountLogo.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
-                    <li>Promoting innovation</li>
+                    <li>Innovation strategy</li>
                     <li>SAFe Agile</li>
                     <li>Presentations</li>
                     <li>Effective office communication</li>
                     <li>Research and information synthesis</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
-                <p class="pb-3 project-body">Over the summer, I had the very cool opportunity to intern at <a class="par-link align-self-center" href="https://www.paramount.com" target="_blank" rel="noopener noreferrer">Paramount</a> as part of the Tech Strategy team. As the team's Innovation Intern, my work primarily revolved around defining the innovation strategy for the Paramount+ and PlutoTV streaming apps. Using thorough research, I was able to assist with evaluating potential R&D initiatives and craft recommendations for tech innovation schemes. Later in the summer, I got to see some of my proposals through by joining a cross-functional team that worked to streamline the process for receiving executive buy-in for experimental projects. I was even asked to present some of my recommendations to the Paramount Streaming CTO, which was a great experience.</p>
+                <p class="pb-3 project-body">Over the summer, I had the very cool opportunity to intern at <a class="par-link align-self-center" href="https://www.paramount.com" target="_blank" rel="noopener noreferrer">Paramount</a> as part of the Tech Strategy team. As the team's Innovation Intern, my work primarily revolved around defining the innovation strategy for the Paramount+ and PlutoTV streaming apps. Using thorough research, I was able to assist with evaluating potential R&D initiatives and craft recommendations for tech innovation schemes. Later in the summer, I got to see some of my proposals through by joining a cross-functional team that worked to streamline the process for receiving executive buy-in for experimental projects. I was even asked to present some of my recommendations to the Paramount Streaming CTO, which was a great experience. After my internship ended, work continued on this project by my team at Paramount continuing to build processes based on information we had researched together. I was super excited to hear about the company hackathon that happened when I was back in school, which had over 400 participants, and especially that several of the ideas from the hackathon had continued to receive support and be built out into new Paramount streaming features.</p>
             </div>
         </div>
         <!--Sonar Internship-->
@@ -239,9 +256,11 @@
                 <p class="project-title">SONAR INTERNSHIP</p>
                 <p class="project-body">After my first year of college, I was a Product Manager and Software Engineer intern at Sonar, a digital health startup</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/SonarPhoto.jpg" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
@@ -253,23 +272,24 @@
                     <li>Python</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
-                <p class="pb-3 project-body">As a Product Manager intern at <a class="par-link-inv align-self-center" href="https://www.sonarhealth.co" target="_blank" rel="noopener noreferrer">Sonar</a>, I worked under the guidance of a team of medical experts from Columbia's Medical School to create specifications for some of the app's core features, which provide users with detailed information about specific aspects of their health. I then worked cross-functionally to guide design and engineering teams in building out these features and others. As a backend software engineer, I was able to build out some of the features I defined while learning about the software development process.</p>
+                <p class="pb-3 project-body">As a Product Manager intern at <a class="par-link-inv align-self-center" href="https://www.sonarhealth.co" target="_blank" rel="noopener noreferrer">Sonar</a>, I worked under the guidance of a team of medical experts from Columbia's Medical School to create specifications for some of the app's core features, which provide users with detailed information about specific aspects of their health. I then worked cross-functionally to guide design and engineering teams in building out these features and others. As a backend software engineer, I was able to build out some of the features I defined while learning about the software development process. Since Sonar's launch on the app store, it's been great to see that features of the app I helped build are now adding value to people's lives, especially as a user of the app myself. </p>
             </div>
         </div>
         <!--This Website-->
         <div class="row d-flex justify-content-center pt-3">
             <div class="col-12 projects-col">
                 <p class="project-title">THIS WEBSITE</p>
-                <p class="project-body">A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed</p>
             </div>
+            <div class="row"></div>
             <div class="col-12 pb-2 projects-col">
                 <img src="img/WebsiteScreenshot.png" class="p-1 project-img" style="width: 100%;"></img>
             </div>
+            <div class="row"></div>
             <div class="col-12 projects-col">
                 <p class="project-subhead">SKILLS</p>
                 <ul class="ps-3 project-body">
                     <li>HTML and CSS</li>
-                    <li>Javascript</li>
+                    <li>JavaScript</li>
                     <li>Bootstrap</li>
                     <li>Design with Figma</li>
                 </ul>

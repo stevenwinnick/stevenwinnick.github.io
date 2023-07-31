@@ -349,6 +349,11 @@ body{
     margin-bottom: 0px;
 }
 
+.project-home-link, .project-home-link:hover{
+    text-decoration: inherit;
+    color: inherit;
+}
+
 .bottom-div{
     flex-grow: 1;
 }

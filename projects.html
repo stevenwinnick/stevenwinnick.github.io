@@ -57,6 +57,66 @@
                 <p class="text-center intro-hey" style="text-transform: uppercase; margin-bottom: 0px">Projects</p>
             </div>
         </div>
+        <!--Spyglass-->
+        <div class="row d-flex justify-content-center pt-3 projects-inverted">
+            <div class="col-12 projects-col">
+                <a id="spyglass" class="pt-5"></a>
+                <p class="project-title">SPYGLASS</p>
+                <p class="project-body">An application for monitoring and validating SCTE-35 cues in MPEG-DASH and HLS video streams to ensure proper advertisement placement</p>
+            </div>
+            <div class="row"></div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/spyglass.webp" class="p-1 project-img" style="width: 100%;"></img>
+            </div>
+            <div class="row"></div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Digital video</li>
+                        <ul>
+                            <li>OTT video streaming</li>
+                            <li>ABR streaming (HLS and MPEG-DASH protocols)</li>
+                            <li>Low-level video encoding and compression (YCbCr and chroma subsampling, motion estimation, DCT, video codecs, etc.)</li>
+                            <li>AWS Media Content Distribution Suite (MediaLive, MediaStore, MediaConnect, etc.)</li>
+                        </ul>   
+                    <li>SCTE-35 protocol</li>
+                    <li>Dynamic Ad Insertion</li>
+                    <li>AWS DynamoDB SDK and database design</li>
+                    <li>Docker and Kubernetes</li>
+                    <li>GraphQL</li>
+                    <li>JavaScript and React</li>
+                    <li>Python and Flask</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="pb-3 project-body">For my second big project as a Software Engineer Intern at Paramount, I was tasked with creating an application for ensuring that SCTE-35 cue messages are properly inserted into HLS and MPEG-DASH video streams. All of my team's apps have a nautical-themed title, so we decided to call this Spyglass, since that's what a pirate uses to look ahead see what's approaching before they reach it. The application started as a stripped-down version of another app that my team had built with a similar architecture, containing only the bare essentials to deploy with Docker and our CI/CD framework. I began by creating a Python/Flask backend to take in and parse encoded SCTE messages. To determine which sections of cue messages were necessary to consider given the project's goal of improving advertisement placement, I read (skimmed) through the 100+ page <a class="par-link-inv align-self-center" href="https://www.scte.org/standards/library/catalog/scte-35-digital-program-insertion-cueing-message/" target="_blank" rel="noopener noreferrer">SCTE-35 standard</a>. I then wrote code to verify and log the validity of incoming cues in an AWS DynamoDB, which required some thinking about how to design the data structure containing this information to allow for efficient lookup, and unit tests to make the application easier for my team to maintain after my internship ends. Because I was able to finish this project a couple weeks before my internship ended, I had the opportunity to integrate it with my team's main frontend monitoring system, a Next.js app using GraphQL. To do so, I created GraphQL queries to retrieve networks' logged cues, then displayed them in a React table, and added the ability for users to filter by date, time, and substring match.</p>
+                <p class="pb-3 project-body">This project offered a ton of learning opportunities, both relating to the tools used to create it, and to digital video in general. For example, while debugging, I learned all about Docker and Kubernetes, which my team used to deploy all of our interconnected apps. I also wanted to take advantage of my time being on a team that focused on video distribution and delivery for the summer and learn all that I could about digital video. My great mentors shared lots of resources with me, and I spent a lot of time reading about and discussing all aspects of digital video, from how cameras work to encoding and compression to distribution to digital displays.</p>
+            </div>
+        </div>
+        <!--SyllableGPT-->
+        <div class="row d-flex justify-content-center pt-3">
+            <div class="col-12 projects-col">
+                <a id="syllablegpt" class="pt-5"></a>
+                <p class="project-title">SyllableGPT</p>
+                <p class="project-body">A generative large language model based on GPT, modified so that it tends to generate words with matching vowel sounds and rhyming syllables for better performance in writing poetry and song lyrics</p>
+            </div>
+            <div class="row"></div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/syllablegpt.jpg" class="p-1 project-img" style="width: 100%;"></img>
+            </div>
+            <div class="row"></div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Large Language Models</li>
+                    <li>HuggingFace Transformers</li>
+                    <li>PyTorch</li>
+                    <li>Python</li>
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="pb-3 project-body">When I first got access to ChatGPT, what impressed me the most about it were its responses to prompts asking it to generate poems or song lyrics about a certain topic because of how it was able to rhyme line endings while maintaining a coherent message. However, it soon became apparent that there were some major limitations in ChatGPT's songwriting ability, and I had some ideas about how to improve it that I wanted to test out. For one, ChatGPT really likes to start verses with the words "listen up," which leads to some repetitive lyric generation across themes. More importantly, however, is that ChatGPT typically only rhymes words at the end of consecutive lines. While this is still very impressive at first, it doesn't really reflect how song lyrics typically rhyme, where throughout multiple lines words are connected by rhymes and matching vowel sounds that can stretch across multiple consecutive syllables. My first idea for a way to improve upon this was to fine-tune a GPT model by training it on a dataset of song lyrics. The GPT model that I used as a starting point was OpenAI's GPT-2, a predecessor to ChatGPT, which I chose because HuggingFace has a version of it's language modeling head available that is well-documented and something I could run on my own laptop.</p>
+                <p class="pb-3 project-body">I then decided to try adding logic to the decoder that further boosts the number of internal rhymes generated by rescoring words during generation to boost the score of words that rhyme with what has already been generated. When a GPT model does language modeling to generate text, it generates new words one at a time by (essentially) assigning each word a probability that it gets generated next. SyllableGPT adds to the pre-probability scores of the most likely words for each of the internal rhymes and matching syllables they share with what has already been generated. To do this, it uses <a class="par-link align-self-center" href="#rhymenet" target="_blank" rel="noopener noreferrer">RhymeNet</a>, a previous project of mine. It also generates a "likely vocabulary" of what it expects to be generated in the future based on what it has already, and rescores words to a lower degree based on matches with the likely future vocabulary. In the future, I'd like to try implementing similar logic on a larger and more advanced language model in the hope of achieving more coherent results. I'd also like to figure out a way to work similar rhyme-generating functionality directly into the decoder logic in a way that can be trained directly with backpropagation. You can find the code for this project and try out SyllableGPT for yourself <a class="par-link align-self-center" href="https://github.com/stevenwinnick/SyllableGPT" target="_blank" rel="noopener noreferrer">here</a>.</p>
+            </div>
+        </div>
         <!--Foghorn API-->
         <div class="row d-flex justify-content-center pt-3 projects-inverted">
             <div class="col-12 projects-col">
@@ -75,13 +135,13 @@
                     <li>A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)</li>
                     <li>Designing and creating a secure access management system</li>
                     <li>Deploying Infrastructure as Code with the Serverless Framework</li>
-                    <li>GitHub Workflows for automatic deployment to development, quality assurance, and production environments</li>
+                    <li>GitHub Workflows for automatic deployment to development, QA, and production environments</li>
                     <li>External API integration (Slack API)</li>
                     <li>JavaScript</li>
                     <li>Python</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
-                <p class="pb-3 project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating an eagerly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools were named to followed a nautical theme, we named this Foghorn. Because Foghorn now had access to the Paramount Slack workspace, to make it more secure, I created an access management system using AWS API Gateway API keys, which users would be able to create, read, update, and delete using the Foghorn Slackbot. The keys also automatically disable upon overuse to prevent accidental spam, but can be re-enabled using the bot. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without interacting with the AWS console.</p>
+                <p class="pb-3 project-body">For my first project as a Software Engineer Intern at Paramount, I was tasked with creating an eagerly-requested API that would allow developers to easily log messages to a unified location when sections of their code were run. To do this, I created an API using AWS Lambda functions that would interact with CloudWatch to log messages. I then added functionality allowing engineers to send these messages to Slack by integrating with Slack's API. Because the rest of my team's tools were named to followed a nautical theme and this can be used for sending alerting notifications, we named this Foghorn. To deploy Foghorn, I learned how to use the Serverless Framework, which made it simple to deploy development and production versions without directly interacting with the AWS console.</p>
             </div>
         </div>
         <!--RhymeNet-->

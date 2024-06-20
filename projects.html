@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Steven Winnick - Computer Science Major at Columbia University</title>
+    <title>Steven Winnick's Website</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
@@ -41,7 +41,7 @@
                     <a href="home.html" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-home">HOME</a>
                     <a href="about.html" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-about">ABOUT</a>
                     <a href="projects.html" class="container-fluid d-flex justify-content-center align-items-center text-nowrap nav-link nav-link-active nl-projects">SOME PROJECTS I'M<br>PROUD TO SHARE</a>
-                    <a href="https://drive.google.com/file/d/1pw9Q-dH2g3hGLI_i-m7B0isb3rGYya74/view" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-resume" target="_blank" rel="noopener noreferrer">RESUME</a>
+                    <a href="https://drive.google.com/file/d/1HukjoVAUd0-4Dn--rE1BkvgPLnjPPKgx/view" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-resume" target="_blank" rel="noopener noreferrer">RESUME</a>
                     <a href="contact.html" class="container-fluid d-flex justify-content-center align-items-center nav-link nl-contact">CONTACT</a>
                 </div>
             </div>
@@ -55,6 +55,48 @@
         <div class="row projects-inverted">
             <div class="col-12">
                 <p class="text-center intro-hey" style="text-transform: uppercase; margin-bottom: 0px">Projects</p>
+                <p class="text-center project-body">A bit about my favorite projects I've worked on and what I learned from each</p>
+            </div>
+        </div>
+        <!--Pitch Perfect-->
+        <div class="row d-flex justify-content-center pt-3 projects-inverted">
+            <div class="col-12 projects-col">
+                <a id="pitch" class="pt-5"></a>
+                <p class="project-title">PITCH PERFECT</p>
+                <p class="project-body">A hardware-accelerated real-time
+                    phase vocoder for pitch scaling, built on the Intel/Altera Cyclone V DE1-SOC FPGA</p>
+            </div>
+            <div class="row"></div>
+            <div class="col-12 pb-2 projects-col">
+                <img src="img/greenboard.png" class="p-1 project-img" style="width: 100%;"></img>
+            </div>
+            <div class="row"></div>
+            <div class="col-12 projects-col">
+                <p class="project-subhead">SKILLS</p>
+                <ul class="ps-3 project-body">
+                    <li>Embedded System Design</li>
+                        <ul>
+                            <li>Designing hardware circuitry to perform complex, multi-step mathematical algorithms</li>
+                            <li>SystemVerilog hardware description</li>
+                            <li>Intel Quartus and QSys Platform Designer</li>
+                            <li>Interfacing with prebuilt hardware components</li>
+                            <li>Circuitry timing</li>
+                            <li>Fixed-point mathematical operations in hardware</li>
+                        </ul>   
+                    <li>C Programming</li>
+                    <ul>
+                        <li>Linux Kernel hacking to allow software to interface with hardware</li>
+                        <li>Embedded system simulation in C</li>
+                    </ul>
+                    <li>Digital Signal Processing</li>
+                        <ul>
+                            <li>Fast Fourier Transform</li>
+                            <li>Phase Vocoder Algorithm</li>
+                        </ul> 
+                </ul>
+                <p class="project-subhead">DESCRIPTION</p>
+                <p class="pb-3 project-body">In my last semester of college, I decided to take an Electrical Engineering capstone class, <a class="par-link-inv align-self-center" href="http://www.cs.columbia.edu/~sedwards/classes/2024/4840-spring/index.html" target="_blank" rel="noopener noreferrer">Embedded Systems</a>, despite not actually being an Electrical Engineering major. I had really enjoyed an EE class that I'd taken in which we'd built up a working CPU able to execute assembled machine code from basic logic gates, and I was curious about how other hardware systems worked. I had also taken Operating Systems the semester before and was curious about the physical connections between hardware peripherals and software. I hadn't taken the recommended prerequisite classes for Embedded Systems, but I was curious enough about its content that I figured I'd be able to catch up where I needed. The class ended up being a great experience. I learned all about the most important components of modern embedded systems (memory, networking, USB, video, etc.), including their histories and how they're commonly implemented now.</p>
+                <p class="pb-3 project-body">The course also included a semester-long group project in which we got to work closely with our professor to design and then implement a project with both hardware and software components on an FPGA. My group of 3 decided to build a pitch shifter/scaler that would take in audio from our FPGA's 3.5mm audio input line and scale it's pitch entirely in hardware using a custom circuit we designed, then play back the audio to the board's output line, with the level of pitch scaling being controlled via software. To do so, we first started by researching different pitch scaling algorithms and implementing them in Python to gain a thorough understanding of the workings of each and decide which sounded the best for our use case. We landed on a version of the <a class="par-link-inv align-self-center" href="https://en.wikipedia.org/wiki/Phase_vocoder" target="_blank" rel="noopener noreferrer">Phase Vocoder</a> algorithm with transient detection for improved vertical coherence. We then implemented the algorithm in C, simulating intended hardware implementation by using fixed-size memory buffers, polar coordinate conversion of transformed frequency-domain signals to remove the need for trigonometric hardware calculations, and a real-time streaming interface, among others features. Once we were satisfied with the sound of our C implementation, we got to work designing circuits for our board, which was able to reconfigure itself to test our specified circuitry. You can find the code for Pitch Perfect <a class="par-link-inv align-self-center" href="https://github.com/sanjayrajasekharan/pitch-perfect">here</a> and our final presentation slides <a class="par-link-inv align-self-center" href="http://www.cs.columbia.edu/~sedwards/classes/2024/4840-spring/reports/Harmony-Hand-presentation.pdf">here</a>.</p>
             </div>
         </div>
         <!--Sonic Canvas-->
@@ -81,7 +123,7 @@
                     <li>JavaScript</li>
                 </ul>
                 <p class="project-subhead">DESCRIPTION</p>
-                <p class="pb-3 project-body">This past semester, I took a computer science elective class called Computational Sound. In it, I got to learn all about how computers are used to make sounds and music, from audio recording to digital signal processing, to acoustic effects, to algorithmic composition, to live coding and more. In a homework assignment for the class, we were asked to do physical modeling of a sound: thinking about the physical motion which emits the pressure wave of a real-world sound (like a babbling brook or a snapping branch) and recreating said sound using digital audio synthesis. During this assignment, I thought it would've been really convenient to have a tool where I could quickly draw a sound wave and hear what it would sound like, rather than doing all the work of programming one, only to have it sound different than I expected. I was also curious what different wave shapes - like a half-sine-wave, half-square-wave - would sound like, and such a tool would make it easy to find out. Since I couldn't find anything online that did what I was looking for, I decided to make it myself.</p>
+                <p class="pb-3 project-body">In the fall semester of 2023, I took a computer science elective class called Computational Sound. In it, I got to learn all about how computers are used to make sounds and music, from audio recording to digital signal processing, to acoustic effects, to algorithmic composition, to live coding and more. In a homework assignment for the class, we were asked to do physical modeling of a sound: thinking about the physical motion which emits the pressure wave of a real-world sound (like a babbling brook or a snapping branch) and recreating said sound using digital audio synthesis. During this assignment, I thought it would've been really convenient to have a tool where I could quickly draw a sound wave and hear what it would sound like, rather than doing all the work of programming one, only to have it sound different than I expected. I was also curious what different wave shapes - like a half-sine-wave, half-square-wave - would sound like, and such a tool would make it easy to find out. Since I couldn't find anything online that did what I was looking for, I decided to make it myself.</p>
                 <p class="pb-3 project-body">Sonic Canvas is pretty fun to use - you should try it <a class="par-link align-self-center" href="waves.html" target="_blank" rel="noopener noreferrer">here</a>. It starts by taking the pixel-based points plotted by the user's drawing and converting them to an audio wave. To ensure a smooth transition between repetitions of the wave, whatever the user draws is virtually rotated (using the standard two-dimensional rotation matrix without scaling) to treat the start an end as both having a signal of 0, with the shape of the wave remaining unchanged. To convert this set of points in two dimensions into a one-dimensional WebAudio audio buffer source, I linearly interpolate between points whose x-values differ by more than 1. If the x-values double back and start decreasing, they're ignored until new x-values are seen. Conveniently, a typical modern screen's pixel density is such that sound waves formed this way from a drawing in a browser played back at a sample rate of 44.1 kHz typically have an audible and pleasant pitch (even if the timbre is a bit abrasive). The drawing is then animated to show the new sound wave, the audio is played, and then the audio fades out as the drawing leaves the screen. To allow multiple sounds to play at once, the audio buffers, sources, and their associated gain nodes are placed in a circular array, with the non-reusable buffer sources re-instantiated on their array index's reuse.</p>
                 <p class="pb-3 project-body">While working on this project, I though that another interesting direction it could go in would be as a tool giving fine control over shaping the wave, really allowing users to dial in a particular shape and sound, then download it to use as a sample. While I think that would be super cool functionality built into a synthesizer (maybe even a way to draw an entire wavetable...), after hearing the types of sounds that came out of my drawings, I decided that I wanted to keep the feel of this project a little more creative and less serious. I really liked how approachable and low-stakes it felt to have the waves dance off the screen and erase the text in the center, and it was fun to see my friends who knew nothing about the sounds of different wave shapes try things like drawing their signatures or self-portraits to see how they would sound.</p>
             </div>

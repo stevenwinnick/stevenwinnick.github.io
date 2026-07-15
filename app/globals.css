@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/*
+ * Self-hosted display + body typefaces. The original site shipped these as
+ * "redacted" woff2 files; the family names are kept so the design reads the same.
+ */
+@font-face {
+  font-family: "soehne-dreiviertelfett";
+  src: url("/fonts/redacted-title.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "soehne-buch";
+  src: url("/fonts/redacted-body.woff2") format("woff2");
+  font-display: swap;
+}
+
+/*
+ * Design tokens. Tailwind v4 turns each of these into utilities
+ * (e.g. `--color-blue` -> `bg-blue`/`text-blue`, `--font-title` -> `font-title`).
+ */
+@theme {
+  --color-cream: #fffde9;
+  --color-ink: #181818;
+  --color-yellow: #ffd252;
+  --color-red: #ff595e;
+  --color-green: #8ac926;
+  --color-blue: #1982c4;
+  --color-purple: #6a4c93;
+
+  --font-title: "soehne-dreiviertelfett", sans-serif;
+  --font-body: "soehne-buch", sans-serif;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+}
+
+@layer components {
+  /*
+   * Navigation links fill upward with their accent color on hover. Each link
+   * sets its own accent via an inline `--accent` custom property.
+   */
+  .nav-link {
+    font-family: var(--font-title);
+    color: var(--color-cream);
+    background-image: linear-gradient(
+      180deg,
+      var(--color-ink) 0%,
+      var(--color-ink) 48%,
+      var(--accent) 48%,
+      var(--accent) 100%
+    );
+    background-size: 100% 200%;
+    background-position: 0% 0%;
+    transition:
+      background-position 0.25s cubic-bezier(0.9, 0, 0.5, 1),
+      color 0.2s linear;
+  }
+
+  .nav-link:hover {
+    color: var(--color-ink);
+    background-position: 0% 100%;
+    cursor: pointer;
+  }
+
+  .nav-link-active {
+    color: var(--color-ink);
+    background-image: none;
+    background-color: var(--accent);
+  }
+
+  .nav-link-active:hover {
+    color: var(--color-cream);
+  }
+
+  /*
+   * Pill buttons used inline in body copy. They carry an accent-colored border
+   * and fill with that accent on hover. `--accent` is set per instance; the
+   * `data-inverted` variant flips the base colors for light-background sections.
+   */
+  .pill {
+    display: inline-block;
+    border: 2px solid var(--accent);
+    border-radius: 5px;
+    padding: 0 7px 4px;
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+    background-image: linear-gradient(
+      180deg,
+      var(--color-ink) 0%,
+      var(--color-ink) 50%,
+      var(--accent) 50%,
+      var(--accent) 100%
+    );
+    background-size: 100% 230%;
+    background-position: 0% 0%;
+    transition:
+      background-position 0.25s cubic-bezier(0.9, 0, 0.5, 1),
+      color 0.2s linear;
+  }
+
+  .pill:hover {
+    color: var(--color-ink);
+    background-position: 0% 90%;
+    cursor: pointer;
+  }
+
+  .pill[data-inverted="true"] {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    background-image: linear-gradient(
+      180deg,
+      var(--color-cream) 0%,
+      var(--color-cream) 50%,
+      var(--accent) 50%,
+      var(--accent) 100%
+    );
+  }
+
+  .pill[data-inverted="true"]:hover {
+    color: var(--color-cream);
+  }
+
+  /* Underlined prose links that turn blue on hover. */
+  .prose-link {
+    text-decoration: underline;
+    color: inherit;
+    transition: color 0.2s linear;
+  }
+
+  .prose-link:hover {
+    color: var(--color-blue);
+  }
+}

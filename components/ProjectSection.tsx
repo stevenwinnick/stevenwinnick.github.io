@@ -1,7 +1,5 @@
+import Image from "next/image";
 import type { Project, SkillItem } from "@/data/projects";
-
-const BODY_TEXT = "text-[3vw] leading-[4vw] lg:text-[20px] lg:leading-[27px]";
-const SUBHEAD_TEXT = "font-title text-[5vw] lg:text-[45px]";
 
 function SkillListItem({ skill }: { skill: SkillItem }) {
   if (typeof skill === "string") {
@@ -31,29 +29,28 @@ export default function ProjectSection({
   project: Project;
   inverted: boolean;
 }) {
-  const titleSize = project.smallTitle
-    ? "text-[6vw] lg:text-[60px]"
-    : "text-[8vw] lg:text-[80px]";
-
   return (
     <section
       id={project.id}
       // `scroll-mt` keeps anchored jumps clear of the fixed navbar.
-      className={`scroll-mt-20 px-4 py-3 ${inverted ? "bg-cream text-ink" : "bg-ink text-cream"}`}
+      className={`scroll-mt-20 px-sm py-3 ${inverted ? "bg-cream text-ink" : "bg-ink text-cream"}`}
     >
-      <div className="mx-auto max-w-[992px]">
-        <h2 className={`font-title ${titleSize}`}>{project.title}</h2>
-        {project.subtitle && <p className={BODY_TEXT}>{project.subtitle}</p>}
+      <div className="mx-auto max-w-5xl">
+        <h2 className={`font-title ${project.smallTitle ? "text-md" : "text-lg"}`}>
+          {project.title}
+        </h2>
+        {project.subtitle && <p className="text-sm">{project.subtitle}</p>}
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={project.image}
+        <Image
+          src={project.image.src}
           alt={project.title}
-          className={`my-2 w-full p-1 ${inverted ? "bg-ink" : "bg-cream"}`}
+          width={project.image.width}
+          height={project.image.height}
+          className={`my-2 h-auto w-full p-1 ${inverted ? "bg-ink" : "bg-cream"}`}
         />
 
-        <h3 className={SUBHEAD_TEXT}>SKILLS</h3>
-        <ul className={`list-disc pl-6 ${BODY_TEXT}`}>
+        <h3 className="font-title text-md">SKILLS</h3>
+        <ul className="list-disc pl-6 text-sm">
           {project.skills.map((skill) => (
             <SkillListItem
               key={typeof skill === "string" ? skill : skill.label}
@@ -62,8 +59,8 @@ export default function ProjectSection({
           ))}
         </ul>
 
-        <h3 className={SUBHEAD_TEXT}>DESCRIPTION</h3>
-        <div className={`space-y-3 pb-3 ${BODY_TEXT}`}>{project.description}</div>
+        <h3 className="mt-lg font-title text-md">DESCRIPTION</h3>
+        <div className="space-y-3 pb-3 text-sm">{project.description}</div>
       </div>
     </section>
   );

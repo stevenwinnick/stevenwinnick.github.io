@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHeading from "@/components/PageHeading";
 
 export const metadata: Metadata = {
   title: "Contact | Steven Winnick",
@@ -9,9 +10,10 @@ const INPUT_CLASSES =
 
 export default function ContactPage() {
   return (
-    <section className="px-4">
-      <h1 className="text-center font-title text-[10vw]">CONTACT</h1>
-      <p className="pt-4 text-center text-lg">
+    <section className="px-sm">
+      <PageHeading>CONTACT</PageHeading>
+
+      <p className="pt-4 text-center text-sm">
         Want to sell me something?
         <br />
         Want me to apply for something?
@@ -21,7 +23,7 @@ export default function ContactPage() {
         Fill out this form to send me a message!
       </p>
 
-      <div className="flex justify-center py-12">
+      <div className="flex justify-center py-xl">
         <form
           action="https://formspree.io/f/mdojyrgj"
           method="post"
@@ -48,7 +50,7 @@ export default function ContactPage() {
               aria-describedby="emailHelp"
               placeholder="email@gmail.com"
             />
-            <small id="emailHelp" className="text-cream/60">
+            <small id="emailHelp" className="text-xs text-cream/60">
               Optional. I promise I won&apos;t sign you up for any spam email
               lists.
             </small>
@@ -63,7 +65,7 @@ export default function ContactPage() {
               name="phone"
               placeholder="(555) 555-5555"
             />
-            <small className="text-cream/60">
+            <small className="text-xs text-cream/60">
               Optional. I might sell your number to spam call lists.
             </small>
           </div>

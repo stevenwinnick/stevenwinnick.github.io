@@ -17,8 +17,11 @@
 }
 
 /*
- * Design tokens. Tailwind v4 turns each of these into utilities
- * (e.g. `--color-blue` -> `bg-blue`/`text-blue`, `--font-title` -> `font-title`).
+ * Design tokens. Tailwind v4 exposes each of these as utilities:
+ *   --color-... becomes bg-, text-, and border- utilities (e.g. text-blue)
+ *   --font-...  becomes font- utilities (e.g. font-title)
+ *   --text-...  becomes text- font-size utilities (e.g. text-lg)
+ *   --spacing-... becomes p-, m-, and gap- utilities (e.g. gap-md)
  */
 @theme {
   --color-cream: #fffde9;
@@ -31,6 +34,28 @@
 
   --font-title: "soehne-dreiviertelfett", sans-serif;
   --font-body: "soehne-buch", sans-serif;
+
+  /*
+   * Fluid type scale (xs–xl). Each size uses clamp() so a single utility scales
+   * smoothly across breakpoints without needing responsive variants.
+   */
+  --text-xs: clamp(0.85rem, 1.6vw, 1rem);
+  --text-xs--line-height: 1.4;
+  --text-sm: clamp(1.05rem, 2.4vw, 1.3rem);
+  --text-sm--line-height: 1.45;
+  --text-md: clamp(1.9rem, 5vw, 2.9rem);
+  --text-md--line-height: 1.1;
+  --text-lg: clamp(2.75rem, 8vw, 5rem);
+  --text-lg--line-height: 1;
+  --text-xl: clamp(3.25rem, 10vw, 7.5rem);
+  --text-xl--line-height: 1;
+
+  /* Spacing scale (xs–xl) for section padding and gaps. */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 4rem;
 }
 
 body {

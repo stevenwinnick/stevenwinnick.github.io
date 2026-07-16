@@ -26,10 +26,10 @@ npm run serve   # serves the built `out/` directory locally
 
 ## Project structure
 
-- `app/` — routes (App Router). `app/(site)/` groups the pages that share the footer
-- `components/` — shared UI (`Navbar`, `Footer`, `Pill`, `ProjectSection`, `WavesCanvas`)
+- `app/` — routes (App Router); the navbar and footer live in `app/layout.tsx`
+- `components/` — shared UI (`Navbar`, `Footer`, `Pill`, `ProseLink`, `PageHeading`, `ProjectSection`, `WavesCanvas`)
 - `data/projects.tsx` — the project list rendered on the projects page
-- `app/globals.css` — Tailwind import, design tokens (`@theme`), fonts, and component styles
+- `app/globals.css` — Tailwind import, design tokens (`@theme`: colors, fonts, `xs`–`xl` type and spacing scales), fonts, and component styles
 - `public/` — static assets (images, fonts, `CNAME`, `.nojekyll`)
 
 ## Deployment

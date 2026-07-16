@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type CSSProperties, type ReactNode } from "react";
@@ -60,15 +61,15 @@ export default function Navbar() {
     <nav className="fixed inset-x-0 top-0 z-50 bg-ink font-title">
       <div className="flex flex-col lg:h-16 lg:flex-row lg:items-stretch">
         {/* Brand, socials, and mobile menu toggle */}
-        <div className="flex h-16 items-center border-b-[3px] border-cream lg:flex-1 lg:border-b-0">
+        <div className="flex h-16 items-center border-b-[3px] border-cream lg:flex-1">
           <Link
             href="/"
-            className="px-3 text-2xl font-semibold text-cream no-underline"
+            className="px-3 text-3xl font-semibold text-cream no-underline"
           >
             STEVEN WINNICK
           </Link>
 
-          <div className="ml-auto flex items-center gap-3 pr-3">
+          <div className="ml-auto flex items-center gap-1 pr-3">
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.href}
@@ -77,8 +78,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="transition-transform duration-200 hover:scale-150"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={social.src} alt={social.alt} width={20} height={20} />
+                <Image src={social.src} alt={social.alt} width={20} height={20} />
               </a>
             ))}
           </div>
@@ -91,8 +91,7 @@ export default function Navbar() {
             onClick={() => setOpen((prev) => !prev)}
             className="mr-2 p-2 lg:hidden"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/img/hamburger-cream.png"
               alt=""
               width={24}
@@ -102,43 +101,45 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Navigation links */}
+        {/* Navigation links: slide open on mobile, always shown on desktop */}
         <div
           id="nav-menu"
-          className={`${open ? "flex" : "hidden"} flex-col lg:flex lg:flex-row lg:items-stretch`}
+          className={`overflow-hidden transition-[max-height] duration-500 ease-in-out lg:!max-h-none lg:overflow-visible ${open ? "max-h-96" : "max-h-0"}`}
         >
-          {NAV_LINKS.map((link) => {
-            const isActive = !link.external && pathname === link.href;
-            const className = `nav-link flex items-center justify-center text-nowrap px-6 py-4 text-center leading-tight lg:py-0 ${isActive ? "nav-link-active" : ""}`;
-            const style = { "--accent": link.accent } as CSSProperties;
+          <div className="flex flex-col lg:h-16 lg:flex-row lg:items-stretch">
+            {NAV_LINKS.map((link) => {
+              const isActive = !link.external && pathname === link.href;
+              const className = `nav-link flex items-center justify-center text-nowrap px-6 py-4 text-center leading-tight lg:py-0 ${isActive ? "nav-link-active" : ""}`;
+              const style = { "--accent": link.accent } as CSSProperties;
 
-            if (link.external) {
+              if (link.external) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                    style={style}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className={className}
                   style={style}
+                  onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               );
-            }
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={className}
-                style={style}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+            })}
+          </div>
         </div>
       </div>
     </nav>

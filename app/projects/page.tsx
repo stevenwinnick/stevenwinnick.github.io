@@ -1,17 +1,16 @@
+import PageHeading from "@/components/PageHeading";
 import ProjectSection from "@/components/ProjectSection";
 import { PROJECTS } from "@/data/projects";
 
 export default function ProjectsPage() {
   return (
     <>
-      <section className="bg-cream px-4 py-3 text-ink">
-        <div className="mx-auto max-w-[992px]">
-          <h1 className="text-center font-title text-[10vw] uppercase">
-            Projects
-          </h1>
-          <p className="text-center text-[3vw] leading-[4vw] lg:text-[20px] lg:leading-[27px]">
-            A bit about my favorite projects I've worked on and what I learned
-            from each
+      <section className="bg-cream px-sm py-3 text-ink">
+        <div className="mx-auto max-w-5xl">
+          <PageHeading className="uppercase">Projects</PageHeading>
+          <p className="text-center text-sm">
+            A bit about my favorite projects I&apos;ve worked on and what I
+            learned from each
           </p>
         </div>
       </section>

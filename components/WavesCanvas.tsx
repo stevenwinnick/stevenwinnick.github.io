@@ -347,7 +347,8 @@ export default function WavesCanvas() {
   return (
     <div
       ref={containerRef}
-      className="h-[calc(100vh-4rem)] w-full overflow-hidden"
+      // Fill the space between the fixed navbar (4rem) and the footer (30px).
+      className="h-[calc(100vh-4rem-30px)] w-full overflow-hidden"
     >
       <canvas ref={canvasRef} className="block touch-none">
         Draw on this canvas to hear your sound waves!

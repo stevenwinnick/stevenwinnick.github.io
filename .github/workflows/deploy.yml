@@ -1,17 +1,18 @@
 name: Deploy to GitHub Pages
 
+# Build and publish on every push to main, or on demand.
 on:
   push:
     branches: ["main"]
   workflow_dispatch:
 
-# Allow the workflow to publish to GitHub Pages.
+# Grant the tokens the Pages deployment needs:
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read # read the repository source
+  pages: write # publish to GitHub Pages
+  id-token: write # authenticate the deployment via OIDC
 
-# Allow one concurrent deployment, without cancelling in-progress runs.
+# Run one deployment at a time; don't cancel an in-progress publish.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -20,25 +21,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Check out the repository so later steps can read the source and lockfile.
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
+      # Install Node and cache npm downloads keyed off package-lock.json.
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "npm"
 
+      # Prepare the GitHub Pages environment for this deployment.
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Install exactly what the lockfile specifies.
       - name: Install dependencies
         run: npm ci
 
+      # `output: "export"` writes the static site to `out/`.
       - name: Build static export
         run: npm run build
 
+      # Package `out/` as the artifact the deploy job will publish.
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
-          # `output: "export"` writes the static site to `out/`.
           path: ./out
 
   deploy:
@@ -48,6 +57,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Publish the uploaded artifact to GitHub Pages.
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

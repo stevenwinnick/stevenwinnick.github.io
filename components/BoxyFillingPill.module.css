@@ -1,0 +1,48 @@
+/*
+ * Boxy pill: an accent-colored border that fills with the accent on hover
+ * (an animated gradient driven by background-position). `--accent` is set per
+ * instance; the `data-inverted` variant flips the base colors for use on light
+ * (cream) backgrounds.
+ */
+.boxyFillingPill {
+  display: inline-block;
+  border: 2px solid var(--accent);
+  border-radius: 5px;
+  padding: 0 7px 4px;
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-ink) 0%,
+    var(--color-ink) 50%,
+    var(--accent) 50%,
+    var(--accent) 100%
+  );
+  background-size: 100% 230%;
+  background-position: 0% 0%;
+  transition:
+    background-position 0.25s cubic-bezier(0.9, 0, 0.5, 1),
+    color 0.2s linear;
+}
+
+.boxyFillingPill:hover {
+  color: var(--color-ink);
+  background-position: 0% 90%;
+  cursor: pointer;
+}
+
+.boxyFillingPill[data-inverted="true"] {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-cream) 0%,
+    var(--color-cream) 50%,
+    var(--accent) 50%,
+    var(--accent) 100%
+  );
+}
+
+.boxyFillingPill[data-inverted="true"]:hover {
+  color: var(--color-cream);
+}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type CSSProperties, type ReactNode } from "react";
+import styles from "./Navbar.module.css";
 
 type NavLink = {
   href: string;
@@ -108,8 +109,11 @@ export default function Navbar() {
         >
           <div className="flex flex-col lg:h-16 lg:flex-row lg:items-stretch">
             {NAV_LINKS.map((link) => {
-              const isActive = !link.external && pathname === link.href;
-              const className = `nav-link flex items-center justify-center text-nowrap px-6 py-4 text-center leading-tight lg:py-0 ${isActive ? "nav-link-active" : ""}`;
+              // The home route is the default landing page, so it is never
+              // highlighted as active.
+              const isActive =
+                !link.external && link.href !== "/" && pathname === link.href;
+              const className = `${styles.navLink} ${isActive ? styles.navLinkActive : ""} flex items-center justify-center text-nowrap px-6 py-4 text-center leading-tight lg:py-0`;
               const style = { "--accent": link.accent } as CSSProperties;
 
               if (link.external) {

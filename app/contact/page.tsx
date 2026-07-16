@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BoxyFillingPill from "@/components/BoxyFillingPill";
 import PageHeading from "@/components/PageHeading";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ const INPUT_CLASSES =
 export default function ContactPage() {
   return (
     <section className="px-sm">
-      <PageHeading>CONTACT</PageHeading>
+      <PageHeading>contact</PageHeading>
 
       <p className="pt-4 text-center text-sm">
         Want to sell me something?
@@ -27,9 +28,9 @@ export default function ContactPage() {
         <form
           action="https://formspree.io/f/mdojyrgj"
           method="post"
-          className="w-full max-w-md"
+          className="w-full max-w-[28rem] space-y-3"
         >
-          <div className="pb-3">
+          <div>
             <label htmlFor="name">Your Name</label>
             <input
               type="text"
@@ -40,7 +41,7 @@ export default function ContactPage() {
             />
           </div>
 
-          <div className="pb-3">
+          <div>
             <label htmlFor="_replyto">Email</label>
             <input
               type="email"
@@ -50,13 +51,10 @@ export default function ContactPage() {
               aria-describedby="emailHelp"
               placeholder="email@gmail.com"
             />
-            <small id="emailHelp" className="text-xs text-cream/60">
-              Optional. I promise I won&apos;t sign you up for any spam email
-              lists.
-            </small>
+            <small id="emailHelp" className="text-xs text-cream/60">Optional. I promise I won&apos;t sign you up for any spam email lists.</small>
           </div>
 
-          <div className="pb-3">
+          <div>
             <label htmlFor="phone">Phone Number</label>
             <input
               type="text"
@@ -65,12 +63,10 @@ export default function ContactPage() {
               name="phone"
               placeholder="(555) 555-5555"
             />
-            <small className="text-xs text-cream/60">
-              Optional. I might sell your number to spam call lists.
-            </small>
+            <small className="text-xs text-cream/60">Optional. I might sell your number to spam call lists.</small>
           </div>
 
-          <div className="pb-3">
+          <div>
             <label htmlFor="message">Message</label>
             <textarea
               className={INPUT_CLASSES}
@@ -82,14 +78,10 @@ export default function ContactPage() {
             />
           </div>
 
-          <div className="flex justify-center pb-3 pt-4">
-            <button
-              type="submit"
-              className="pill text-2xl"
-              style={{ ["--accent" as string]: "var(--color-purple)" }}
-            >
+          <div className="flex justify-center pt-4">
+            <BoxyFillingPill submit accent="var(--color-purple)" className="text-2xl">
               Submit
-            </button>
+            </BoxyFillingPill>
           </div>
         </form>
       </div>

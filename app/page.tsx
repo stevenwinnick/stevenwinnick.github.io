@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import BoxyFillingPill from "@/components/BoxyFillingPill";
 import PageHeading from "@/components/PageHeading";
-import Pill from "@/components/Pill";
 
 const RESUME_URL =
   "https://drive.google.com/file/d/17jHs-lGyFanjH1GBPOZNlB5fl1YMSl2K/view";
@@ -39,7 +39,7 @@ export default function HomePage() {
       {/* Landing section: fills the viewport below the navbar. */}
       <section className="flex min-h-[calc(100vh-4rem)] flex-col">
         <div className="flex flex-1 flex-col items-center justify-center px-sm">
-          <PageHeading className="uppercase">Hey, I&apos;m Steven</PageHeading>
+          <PageHeading>Hey, I&apos;m Steven</PageHeading>
 
           <div className="flex w-full max-w-6xl flex-col items-center justify-center gap-md lg:flex-row">
             <div className="text-center lg:max-w-[750px] lg:flex-1">
@@ -47,26 +47,26 @@ export default function HomePage() {
               <div className="h-12" />
               <p className="text-sm">
                 If you&apos;re{" "}
-                <Pill href="/" accent="var(--color-green)">
+                <BoxyFillingPill href="/" accent="var(--color-green)">
                   here
-                </Pill>{" "}
+                </BoxyFillingPill>{" "}
                 because of my{" "}
-                <Pill href={RESUME_URL} accent="var(--color-yellow)" external>
+                <BoxyFillingPill href={RESUME_URL} accent="var(--color-yellow)" external>
                   resume
-                </Pill>{" "}
+                </BoxyFillingPill>{" "}
                 or{" "}
-                <Pill href="/contact" accent="var(--color-purple)">
+                <BoxyFillingPill href="/contact" accent="var(--color-purple)">
                   application,
-                </Pill>
+                </BoxyFillingPill>
                 <br />
                 click to learn more{" "}
-                <Pill href="/about" accent="var(--color-blue)">
+                <BoxyFillingPill href="/about" accent="var(--color-blue)">
                   about me
-                </Pill>{" "}
+                </BoxyFillingPill>{" "}
                 or check out{" "}
-                <Pill href="/projects" accent="var(--color-red)">
+                <BoxyFillingPill href="/projects" accent="var(--color-red)">
                   my work
-                </Pill>
+                </BoxyFillingPill>
               </p>
             </div>
 
@@ -126,9 +126,9 @@ export default function HomePage() {
 
         <p className="px-sm py-12 text-center text-sm">
           To see more about these projects and others I&apos;ve worked on, click{" "}
-          <Pill href="/projects" accent="var(--color-red)" inverted>
+          <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
             here
-          </Pill>
+          </BoxyFillingPill>
         </p>
       </section>
     </>

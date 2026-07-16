@@ -4,7 +4,7 @@
  * instance; the `data-inverted` variant flips the base colors for use on light
  * (cream) backgrounds.
  */
-.pill {
+.boxyFillingPill {
   display: inline-block;
   border: 2px solid var(--accent);
   border-radius: 5px;
@@ -25,13 +25,13 @@
     color 0.2s linear;
 }
 
-.pill:hover {
+.boxyFillingPill:hover {
   color: var(--color-ink);
   background-position: 0% 90%;
   cursor: pointer;
 }
 
-.pill[data-inverted="true"] {
+.boxyFillingPill[data-inverted="true"] {
   background-color: var(--color-cream);
   color: var(--color-ink);
   background-image: linear-gradient(
@@ -43,6 +43,6 @@
   );
 }
 
-.pill[data-inverted="true"]:hover {
+.boxyFillingPill[data-inverted="true"]:hover {
   color: var(--color-cream);
 }

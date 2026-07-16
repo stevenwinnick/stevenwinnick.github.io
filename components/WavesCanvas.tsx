@@ -5,9 +5,8 @@ import { useEffect, useRef } from "react";
 /**
  * Sonic Canvas: draw a shape and hear it played back as a looping sound wave.
  *
- * The drawing-to-audio algorithm is a faithful port of the original vanilla-JS
- * implementation. It runs inside an effect so it can touch browser-only APIs
- * (canvas, Web Audio) and clean up its listeners and audio graph on unmount.
+ * It runs inside an effect so it can touch browser-only APIs (canvas, Web
+ * Audio) and clean up its listeners and audio graph on unmount.
  */
 export default function WavesCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -58,7 +57,7 @@ export default function WavesCanvas() {
     const TEXT_COLOR = "#FFFDE9";
     const BACKGROUND_COLOR = "#181818";
     const canvasText = "DRAW SOUND WAVES";
-    ctx.font = "8vw soehne-dreiviertelfett";
+    ctx.font = "8vw redacted-title";
     const textWidth = ctx.measureText(canvasText).width;
     const centerX = (canvas.width - textWidth) / 2;
     const centerY = canvas.height / 2;

@@ -28,7 +28,7 @@ export default function BoxyFillingPill({
 }: BoxyFillingPillProps) {
   const style = { "--accent": accent } as CSSProperties;
   const dataInverted = inverted ? "true" : undefined;
-  const classNames = `${styles.pill} ${className}`.trim();
+  const classNames = `${styles.boxyFillingPill} ${className}`.trim();
 
   if (submit) {
     return (

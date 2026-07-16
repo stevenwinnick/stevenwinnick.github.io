@@ -39,12 +39,12 @@ const NAV_LINKS: NavLink[] = [
 const SOCIAL_LINKS = [
   {
     href: "https://linkedin.com/in/stevenwinnick",
-    src: "/img/linkedin-cream.png",
+    src: "/img/linkedinCream.png",
     alt: "LinkedIn",
   },
   {
     href: "https://github.com/stevenwinnick",
-    src: "/img/github-cream.png",
+    src: "/img/githubCream.png",
     alt: "GitHub",
   },
 ];
@@ -93,7 +93,7 @@ export default function Navbar() {
             className="mr-2 p-2 lg:hidden"
           >
             <Image
-              src="/img/hamburger-cream.png"
+              src="/img/hamburgerCream.png"
               alt=""
               width={24}
               height={24}

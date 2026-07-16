@@ -184,7 +184,7 @@ export const PROJECTS: Project[] = [
     title: "RhymeNet",
     subtitle:
       "An English language database containing information about both words' phoenetic and written syllable divisions",
-    image: { src: "/img/RhymesHighlighted.jpg", width: 1280, height: 720 },
+    image: { src: "/img/rhymesHighlighted.jpg", width: 1280, height: 720 },
     skills: [
       "Database design and creation",
       "Linguistic theory (phonemes, syllabization, consonant clustering)",
@@ -213,7 +213,7 @@ export const PROJECTS: Project[] = [
         {` and I built a simulator of our favorite card game, Sheepshead, then trained an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning`}
       </>
     ),
-    image: { src: "/img/RoyalFlush.jpg", width: 1002, height: 668 },
+    image: { src: "/img/royalFlush.jpg", width: 1002, height: 668 },
     skills: [
       "AI game playing",
       "Deep Reinforcement Learning",
@@ -238,7 +238,7 @@ export const PROJECTS: Project[] = [
     title: "MIDI INTERPRETER",
     subtitle:
       "A program allowing me to customize the inputs programs interpret from my MIDI keyboard so I can use it for keyboard shortcuts",
-    image: { src: "/img/MidiKeyboard.jpg", width: 2560, height: 1707 },
+    image: { src: "/img/midiKeyboard.jpg", width: 2560, height: 1707 },
     skills: [
       "Linux Kernel",
       "Operating Systems",
@@ -258,7 +258,7 @@ export const PROJECTS: Project[] = [
     title: "IMAGE CAPTIONER",
     subtitle:
       "For the final project for my Natural Language Processing class, I built an image caption generator",
-    image: { src: "/img/TowerOfBabel.jpg", width: 1200, height: 878 },
+    image: { src: "/img/towerOfBabel.jpg", width: 1200, height: 878 },
     skills: [
       "Computer Vision with CNNs",
       "Stacked/Deep Bidirectional Recurrent Neural Networks",
@@ -275,7 +275,7 @@ export const PROJECTS: Project[] = [
     id: "walking-robot",
     title: "WALKING ROBOT",
     subtitle: "A built-from-scratch robot made as part of Columbia's Robotics Studio",
-    image: { src: "/img/WalkingRobotRender.jpg", width: 2048, height: 1536 },
+    image: { src: "/img/walkingRobotRender.jpg", width: 2048, height: 1536 },
     skills: [
       "Robotic Movement",
       "Solidworks",
@@ -299,7 +299,7 @@ export const PROJECTS: Project[] = [
     title: "NEURAL NETWORK",
     subtitle:
       "To gain a better understanding of deep learning, I built a neural network from scratch",
-    image: { src: "/img/NeuralNetwork.jpg", width: 1024, height: 768 },
+    image: { src: "/img/neuralNetwork.jpg", width: 1024, height: 768 },
     skills: [
       "Neural networks and deep learning",
       "Numpy and Pandas",
@@ -320,7 +320,7 @@ export const PROJECTS: Project[] = [
     smallTitle: true,
     subtitle:
       "During the summer of 2022, I was an intern at Paramount on the Technology Strategy team",
-    image: { src: "/img/ParamountLogo.jpg", width: 1200, height: 627 },
+    image: { src: "/img/paramountLogo.jpg", width: 1200, height: 627 },
     skills: [
       "Innovation strategy",
       "SAFe Agile",
@@ -341,7 +341,7 @@ export const PROJECTS: Project[] = [
     title: "SONAR INTERNSHIP",
     subtitle:
       "After my first year of college, I was a Product Manager and Software Engineer intern at Sonar, a digital health startup",
-    image: { src: "/img/SonarPhoto.jpg", width: 1920, height: 1600 },
+    image: { src: "/img/sonarPhoto.jpg", width: 1920, height: 1600 },
     skills: [
       "Product Management",
       "Competitive analysis",
@@ -361,7 +361,7 @@ export const PROJECTS: Project[] = [
   {
     id: "this-website",
     title: "THIS WEBSITE",
-    image: { src: "/img/WebsiteScreenshot.png", width: 2880, height: 1638 },
+    image: { src: "/img/websiteScreenshot.png", width: 2880, height: 1638 },
     skills: ["HTML and CSS", "JavaScript", "Bootstrap", "Design with Figma"],
     description: (
       <p>

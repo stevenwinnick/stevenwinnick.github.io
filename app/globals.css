@@ -1,18 +1,15 @@
 @import "tailwindcss";
 
-/*
- * Self-hosted display + body typefaces. The original site shipped these as
- * "redacted" woff2 files; the family names are kept so the design reads the same.
- */
+/* Self-hosted display + body typefaces */
 @font-face {
-  font-family: "soehne-dreiviertelfett";
-  src: url("/fonts/redacted-title.woff2") format("woff2");
+  font-family: "redacted-title";
+  src: url("/fonts/redactedTitle.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: "soehne-buch";
-  src: url("/fonts/redacted-body.woff2") format("woff2");
+  font-family: "redacted-body";
+  src: url("/fonts/redactedBody.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -32,8 +29,8 @@
   --color-blue: #1982c4;
   --color-purple: #6a4c93;
 
-  --font-title: "soehne-dreiviertelfett", sans-serif;
-  --font-body: "soehne-buch", sans-serif;
+  --font-title: "redacted-title", sans-serif;
+  --font-body: "redacted-body", sans-serif;
 
   /*
    * Fluid type scale (xs–xl). Each size uses clamp() so a single utility scales
@@ -69,11 +66,7 @@ body {
 }
 
 @layer components {
-  /*
-   * Underlined prose links that turn blue on hover. This one stays global
-   * because it is shared across several components (bio, project copy, etc.).
-   * The navbar link and pill animations live in their component CSS modules.
-   */
+  /* Underlined prose links that turn blue on hover */
   .prose-link {
     text-decoration: underline;
     color: inherit;

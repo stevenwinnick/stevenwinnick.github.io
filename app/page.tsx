@@ -10,7 +10,7 @@ const PREVIEW_PROJECTS = [
   {
     anchor: "foghorn",
     title: "FOGHORN API",
-    image: "/img/FoghornSquare.jpg",
+    image: "/img/foghornSquare.jpg",
     dimensions: 680,
     blurb:
       "A tool for easily logging messages and recieving Slack notifications when sections of code are executed",
@@ -18,7 +18,7 @@ const PREVIEW_PROJECTS = [
   {
     anchor: "sheepshead",
     title: "SHEEPSHEAD AI",
-    image: "/img/RoyalFlushSquare.jpg",
+    image: "/img/royalFlushSquare.jpg",
     dimensions: 668,
     blurb:
       "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning",
@@ -26,7 +26,7 @@ const PREVIEW_PROJECTS = [
   {
     anchor: "rhymenet",
     title: "RHYMENET",
-    image: "/img/RhymesHighlightedSquare.jpg",
+    image: "/img/rhymesHighlightedSquare.jpg",
     dimensions: 720,
     blurb:
       "An English language database containing information about words' phoenetic and written syllable divisions",
@@ -72,7 +72,7 @@ export default function HomePage() {
 
             <div className="shrink-0">
               <Image
-                src="/img/bigheadshotcircle.png"
+                src="/img/bigHeadshotCircle.png"
                 alt="Steven Winnick"
                 width={400}
                 height={400}
@@ -84,7 +84,7 @@ export default function HomePage() {
         </div>
 
         <Image
-          src="/img/carat-cream.png"
+          src="/img/caratCream.png"
           alt=""
           width={40}
           height={40}

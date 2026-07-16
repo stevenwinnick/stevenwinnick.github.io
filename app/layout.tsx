@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Steven Winnick's Website",
   description:
-    "The personal website of Steven Winnick, a software engineer passionate about music and technology.",
+    "The personal website of Steven Winnick, a software engineer in New York City",
 };
 
 export default function RootLayout({

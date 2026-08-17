@@ -37,7 +37,12 @@ export default function HomePage() {
   return (
     <>
       <section className="screen-section flex flex-col">
-        <div className="page-grid screen-section-offset flex-1 gap-y-line pb-2line">
+        {/*
+         * Content starts at the top, not centred: centring splits the leftover
+         * space in half, which lands the copy half a line off the grid whenever
+         * that space is an odd number of lines.
+         */}
+        <div className="page-grid flex-1 content-start gap-y-line py-2line">
           <PageHeading className="col-main">Hey, I&apos;m Steven</PageHeading>
 
           <div className="col-main space-y-2line text-center text-sm xl:row-start-2 xl:text-left">

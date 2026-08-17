@@ -191,20 +191,6 @@ body {
   min-block-size: round(down, calc(100dvh - var(--nav-height)), var(--line));
 }
 
-/*
- * Sits content near the optical centre of a screen-section. Centring it for
- * real would put it half a line off the grid whenever the free space is an odd
- * number of lines, so it is pushed down by a snapped fraction of the viewport
- * instead, and the remaining space falls below it.
- */
-@utility screen-section-offset {
-  padding-block-start: round(
-    down,
-    calc((100dvh - var(--nav-height)) / 5),
-    var(--line)
-  );
-}
-
 @layer components {
   /* Underlined prose links that turn blue on hover */
   .prose-link {

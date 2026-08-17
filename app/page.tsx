@@ -39,12 +39,14 @@ export default function HomePage() {
   return (
     <>
       <section className="screen-section flex flex-col">
-        <div className="page-grid flex-1 content-end gap-y-line pt-2line pb-line">
-          <h1 className="col-main text-center font-title text-xl uppercase">
-            Hey, I&apos;m Steven
-          </h1>
+        {/*
+         * Off the page grid on purpose: the first screen is one centred block,
+         * with the measure capped at the width of the two centre columns.
+         */}
+        <div className="flex flex-1 flex-col items-center justify-center gap-line px-line py-line text-center">
+          <h1 className="font-title text-xl uppercase">Hey, I&apos;m Steven</h1>
 
-          <div className="col-main space-y-2line text-center text-sm">
+          <div className="max-w-(--grid-main) space-y-2line text-sm">
             <p>Welcome to my website!</p>
             <p>
               If you&apos;re{" "}
@@ -99,15 +101,19 @@ export default function HomePage() {
          * per column at `xl`, 2x2 once the columns reach full width, stacked
          * two columns wide below that.
          */}
-        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto]">
+        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto] xl:gap-y-0">
           {PREVIEW_PROJECTS.map((project) => (
             <Link
               key={project.anchor}
               href={`/projects#${project.anchor}`}
               className="col-span-2 min-w-0 text-inherit no-underline md:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
             >
-              {/* One column wide from `md`, so the title steps down to fit. */}
-              <p className="text-center font-title text-md md:text-col">
+              {/*
+               * One column wide from `md`, so the title steps down to fit. At
+               * `xl` it sits at the bottom of the shared title row, so a
+               * one-line title still meets the top of its image.
+               */}
+              <p className="font-title text-md md:text-col xl:self-end">
                 {project.title}
               </p>
               <figure className="module-frame m-0">

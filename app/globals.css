@@ -54,6 +54,8 @@
   --grid-module-lines: 7;
   --grid-gutter: var(--line);
   --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
+  /* The two centre columns and the gutter between them: a ~61 character measure. */
+  --grid-main: calc(2 * var(--grid-col) + var(--grid-gutter));
   /* Two lines, so the grid carries on uninterrupted below the navbar. */
   --nav-height: calc(2 * var(--line));
 }
@@ -63,22 +65,23 @@
    * The rest of the type scale. Only display sizes (`md`–`xl`) are fluid,
    * since they have no measure to protect.
    *
-   * Every line height snaps up to a whole number of grid lines, so a block of
-   * text is always a whole number of lines tall no matter its size. `1em`
-   * resolves against the element's own font size, so one expression works for
-   * every step, including the fluid ones.
+   * `--leading-grid` rounds a size up to a whole number of grid lines, so a
+   * block of text is always a whole number of lines tall. `1em` resolves
+   * against the element's own font size, so the one expression covers every
+   * step, fluid ones included.
    */
+  --leading-grid: round(up, 1em, var(--line));
   --text-xs: 1rem;
-  --text-xs--line-height: round(up, 1em, var(--line));
+  --text-xs--line-height: var(--leading-grid);
   --text-md: clamp(1.9rem, 5vw, 2.9rem);
-  --text-md--line-height: round(up, 1em, var(--line));
+  --text-md--line-height: var(--leading-grid);
   /* Display type for a single grid column: the widest that fits one. */
   --text-col: 2.125rem;
-  --text-col--line-height: round(up, 1em, var(--line));
+  --text-col--line-height: var(--leading-grid);
   --text-lg: clamp(2.75rem, 8vw, 5rem);
-  --text-lg--line-height: round(up, 1em, var(--line));
+  --text-lg--line-height: var(--leading-grid);
   --text-xl: clamp(3.25rem, 10vw, 7.5rem);
-  --text-xl--line-height: round(up, 1em, var(--line));
+  --text-xl--line-height: var(--leading-grid);
 
   /*
    * Spacing on the grid: `line` is one line of body text, the unit the whole
@@ -93,9 +96,8 @@
 
   /*
    * Off-grid spacing scale, kept for the pages that have not moved onto the
-   * grid yet (e.g. `px-sm`, `gap-md`). Prefer the line scale above for new
-   * work. Note: these names shadow the `max-w-{sm,md,lg,xl}` container sizes,
-   * so use a numeric or arbitrary value for max-width instead.
+   * grid yet. These names shadow the `max-w-{sm,md,lg,xl}` container sizes, so
+   * use a numeric or arbitrary value for max-width instead.
    */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -136,9 +138,12 @@ body {
  */
 @utility page-grid {
   display: grid;
+  /* The gutter is also the side margin, via the collapsed outer tracks. */
   column-gap: var(--grid-gutter);
   grid-template-columns:
+    /* Outer track: soaks up the leftover width, down to nothing on a phone. */
     [bleed-start] minmax(0, 1fr)
+    /* Both centre columns start here, and so do left, right, and wide. */
     [wide-start left-start right-start main-start] minmax(0, var(--grid-col))
     minmax(0, var(--grid-col)) [main-end left-end right-end wide-end]
     minmax(0, 1fr) [bleed-end];
@@ -146,6 +151,7 @@ body {
   @variant xl {
     grid-template-columns:
       [bleed-start] minmax(0, 1fr)
+      /* An outer column appears on each side, so left and right split off. */
       [wide-start left-start] minmax(0, var(--grid-col))
       [left-end main-start] minmax(0, var(--grid-col))
       minmax(0, var(--grid-col))

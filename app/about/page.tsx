@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <section className="flex flex-col px-sm pb-xl">
-      <PageHeading className="mt-6 mb-6 lg:mb-10">My Bio</PageHeading>
+      <PageHeading>My Bio</PageHeading>
 
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-md lg:flex-row">
         <div className="lg:w-1/2">

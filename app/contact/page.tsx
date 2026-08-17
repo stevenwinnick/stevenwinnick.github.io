@@ -12,7 +12,7 @@ const INPUT_CLASSES =
 export default function ContactPage() {
   return (
     <section className="px-sm">
-      <PageHeading className="mt-6 mb-6 lg:mb-10">contact</PageHeading>
+      <PageHeading>contact</PageHeading>
 
       <p className="pt-4 text-center text-sm">
         Want to sell me something?

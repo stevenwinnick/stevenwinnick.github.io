@@ -18,7 +18,11 @@
  *   --color-... becomes bg-, text-, and border- utilities (e.g. text-blue)
  *   --font-...  becomes font- utilities (e.g. font-title)
  *   --text-...  becomes text- font-size utilities (e.g. text-lg)
+ *   --leading-... becomes leading- line-height utilities (e.g. leading-body)
  *   --spacing-... becomes p-, m-, and gap- utilities (e.g. gap-md)
+ *
+ * Everything below is ordered so that a token appears after the tokens it is
+ * derived from.
  */
 @theme {
   --color-cream: #fffde9;
@@ -33,8 +37,30 @@
   --font-body: "redacted-body", sans-serif;
 
   /*
-   * Type scale. Body text (`xs`, `sm`) is a fixed size so that one line is
-   * always exactly one grid line; only display sizes (`md`–`xl`) are fluid,
+   * Body text: a fixed size and a fixed leading, so that one line is always
+   * the same height. The grid below is derived from these two numbers.
+   */
+  --text-sm: 1.25rem;
+  --leading-body: 1.5;
+  --text-sm--line-height: var(--leading-body);
+}
+
+/*
+ * The grid system, derived from a single unit: one line of body text,
+ * including its leading.
+ */
+:root {
+  --line: calc(var(--text-sm) * var(--leading-body));
+  --grid-module-lines: 7;
+  --grid-gutter: var(--line);
+  --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
+  /* Two lines, so the grid carries on uninterrupted below the navbar. */
+  --nav-height: calc(2 * var(--line));
+}
+
+@theme {
+  /*
+   * The rest of the type scale. Only display sizes (`md`–`xl`) are fluid,
    * since they have no measure to protect.
    *
    * Every line height snaps up to a whole number of grid lines, so a block of
@@ -44,8 +70,6 @@
    */
   --text-xs: 1rem;
   --text-xs--line-height: round(up, 1em, var(--line));
-  --text-sm: 1.25rem;
-  --text-sm--line-height: round(up, 1em, var(--line));
   --text-md: clamp(1.9rem, 5vw, 2.9rem);
   --text-md--line-height: round(up, 1em, var(--line));
   /* Display type for a single grid column: the widest that fits one. */
@@ -80,28 +104,6 @@
   --spacing-xl: 4rem;
 }
 
-/*
- * The grid system, derived from a single unit: one line of body text,
- * including its leading. See the grid utilities below for how to use it.
- *
- *   line   one line of body text, and the gutter between columns
- *   module one grid field: `--grid-module-lines` tall, 4:3 where the columns
- *          are fixed
- *   column 4/3 of a module's height, so two columns and a gutter make a
- *          ~61 character measure
- *
- * Changing --line or --grid-module-lines re-derives everything else. The 1.5
- * here is the body text's line height, so the two have to move together.
- */
-:root {
-  --line: calc(var(--text-sm) * 1.5);
-  --grid-module-lines: 7;
-  --grid-gutter: var(--line);
-  --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
-  /* Two lines, so the grid carries on uninterrupted below the navbar. */
-  --nav-height: calc(2 * var(--line));
-}
-
 body {
   background-color: var(--color-ink);
   color: var(--color-cream);
@@ -109,15 +111,28 @@ body {
 }
 
 /*
- * The page grid. Columns are fluid up to their maximum width, so a phone gets
- * two narrow columns with a gutter of margin on each side (the empty outer
- * tracks collapse to nothing and the column gap supplies the margin), and the
- * columns settle at --grid-col once there is room (~650px). From `xl` there is
- * room for one more column on each side, for images, captions, and asides.
+ * The page grid: two content columns, growing to four at `xl`, with an empty
+ * track on each side that takes up whatever is left over.
  *
- * Place children by name with col-main, col-left, col-right, col-wide, or
- * col-bleed. Below `xl` the outer columns do not exist, and their names
- * collapse onto the two centre columns.
+ * The bracketed words are grid line names, not columns. Each `-start`/`-end`
+ * pair marks where a named span begins and ends, so a child can say
+ * `grid-column: main` instead of counting track numbers. The spans are:
+ *
+ * - `main`: the two centre columns, where the reading content goes
+ * - `left`, `right`: the columns outside main, for images and asides
+ * - `wide`: left through right, everything except the outer tracks
+ * - `bleed`: the full width of the grid, outer tracks included, for anything
+ *   that should run to the edges of the screen (a full-width image, a band of
+ *   background colour) rather than sit inside the margins
+ *
+ * Below `xl` the left and right columns do not exist, so their names sit on
+ * the same lines as main and a child placed there falls back into the centre.
+ *
+ * Every content track is `minmax(0, var(--grid-col))`: it caps at one column
+ * width but can shrink, so a phone gets two narrow columns with a gutter of
+ * margin on each side (the empty outer tracks collapse to nothing and the
+ * column gap supplies the margin), the columns settle at --grid-col once
+ * there is room (~650px), and no width can force an overflow.
  */
 @utility page-grid {
   display: grid;
@@ -130,11 +145,12 @@ body {
 
   @variant xl {
     grid-template-columns:
-      [bleed-start] 1fr
-      [wide-start left-start] var(--grid-col)
-      [left-end main-start] var(--grid-col) var(--grid-col)
-      [main-end right-start] var(--grid-col) [right-end wide-end]
-      1fr [bleed-end];
+      [bleed-start] minmax(0, 1fr)
+      [wide-start left-start] minmax(0, var(--grid-col))
+      [left-end main-start] minmax(0, var(--grid-col))
+      minmax(0, var(--grid-col))
+      [main-end right-start] minmax(0, var(--grid-col)) [right-end wide-end]
+      minmax(0, 1fr) [bleed-end];
   }
 }
 

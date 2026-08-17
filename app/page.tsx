@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import BoxyFillingPill from "@/components/BoxyFillingPill";
-import PageHeading from "@/components/PageHeading";
 
 const RESUME_URL =
   "https://drive.google.com/file/d/17jHs-lGyFanjH1GBPOZNlB5fl1YMSl2K/view";
@@ -10,26 +9,29 @@ const PREVIEW_PROJECTS = [
   {
     anchor: "foghorn",
     title: "FOGHORN API",
-    image: "/img/foghornSquare.jpg",
-    dimensions: 680,
+    image: { src: "/img/foghornSquare.jpg", width: 680, height: 680 },
     blurb:
       "A tool for easily logging messages and recieving Slack notifications when sections of code are executed",
   },
   {
     anchor: "sheepshead",
     title: "SHEEPSHEAD AI",
-    image: "/img/royalFlushSquare.jpg",
-    dimensions: 668,
+    image: { src: "/img/royalFlushSquare.jpg", width: 668, height: 668 },
     blurb:
       "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning",
   },
   {
     anchor: "rhymenet",
     title: "RHYMENET",
-    image: "/img/rhymesHighlightedSquare.jpg",
-    dimensions: 720,
+    image: { src: "/img/rhymesHighlightedSquare.jpg", width: 720, height: 720 },
     blurb:
       "An English language database containing information about words' phoenetic and written syllable divisions",
+  },
+  {
+    anchor: "waves",
+    title: "SONIC CANVAS",
+    image: { src: "/img/soundwaves.png", width: 1200, height: 673 },
+    blurb: "A creative tool for quickly testing sound wave samples",
   },
 ];
 
@@ -37,15 +39,12 @@ export default function HomePage() {
   return (
     <>
       <section className="screen-section flex flex-col">
-        {/*
-         * Content starts at the top, not centred: centring splits the leftover
-         * space in half, which lands the copy half a line off the grid whenever
-         * that space is an odd number of lines.
-         */}
-        <div className="page-grid flex-1 content-start gap-y-line py-2line">
-          <PageHeading className="col-main">Hey, I&apos;m Steven</PageHeading>
+        <div className="page-grid flex-1 content-end gap-y-line pt-2line pb-line">
+          <h1 className="col-main text-center font-title text-xl uppercase">
+            Hey, I&apos;m Steven
+          </h1>
 
-          <div className="col-main space-y-2line text-center text-sm xl:row-start-2 xl:text-left">
+          <div className="col-main space-y-2line text-center text-sm">
             <p>Welcome to my website!</p>
             <p>
               If you&apos;re{" "}
@@ -74,18 +73,6 @@ export default function HomePage() {
               </BoxyFillingPill>
             </p>
           </div>
-
-          {/* Headshot moves beside the copy once the outer columns exist. */}
-          <figure className="col-main m-0 xl:col-left xl:row-start-2">
-            <Image
-              src="/img/bigHeadshotCircle.png"
-              alt="Steven Winnick"
-              width={400}
-              height={400}
-              priority
-              className="mx-auto block w-auto max-w-full object-contain lines-9 xl:lines-8"
-            />
-          </figure>
         </div>
 
         <Image
@@ -108,39 +95,41 @@ export default function HomePage() {
 
         {/*
          * Subgrid so the previews use the page grid's columns and gutters, and
-         * so their titles, images, and blurbs share rows across all three.
+         * so their titles, images, and blurbs share rows across all four. One
+         * per column at `xl`, 2x2 once the columns reach full width, stacked
+         * two columns wide below that.
          */}
         <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto]">
           {PREVIEW_PROJECTS.map((project) => (
             <Link
               key={project.anchor}
               href={`/projects#${project.anchor}`}
-              className="col-span-2 min-w-0 text-inherit no-underline xl:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
+              className="col-span-2 min-w-0 text-inherit no-underline md:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
             >
-              <p className="text-center font-title text-md xl:text-col">
+              {/* One column wide from `md`, so the title steps down to fit. */}
+              <p className="text-center font-title text-md md:text-col">
                 {project.title}
               </p>
               <figure className="module-frame m-0">
                 <Image
-                  src={project.image}
+                  src={project.image.src}
                   alt={project.title}
-                  width={project.dimensions}
-                  height={project.dimensions}
+                  width={project.image.width}
+                  height={project.image.height}
                   className="module-crop bg-ink p-1"
                 />
               </figure>
               <p className="text-sm">{project.blurb}</p>
             </Link>
           ))}
-
-          <p className="col-span-2 text-center text-sm xl:col-span-1 xl:row-span-3 xl:self-center xl:text-left">
-            To see more about these projects and others I&apos;ve worked on,
-            click{" "}
-            <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
-              here
-            </BoxyFillingPill>
-          </p>
         </div>
+
+        <p className="col-main text-center text-sm">
+          To see more about these projects and others I&apos;ve worked on, click{" "}
+          <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
+            here
+          </BoxyFillingPill>
+        </p>
       </section>
     </>
   );

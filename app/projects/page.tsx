@@ -7,7 +7,7 @@ export default function ProjectsPage() {
     <>
       <section className="bg-cream px-sm py-3 text-ink">
         <div className="mx-auto max-w-5xl">
-          <PageHeading className="mt-6 mb-6 lg:mb-10">Projects</PageHeading>
+          <PageHeading>Projects</PageHeading>
           <p className="text-center text-sm">A bit about my favorite projects I&apos;ve worked on and what I learned from each</p>
         </div>
       </section>

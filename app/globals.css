@@ -48,6 +48,9 @@
   --text-sm--line-height: round(up, 1em, var(--line));
   --text-md: clamp(1.9rem, 5vw, 2.9rem);
   --text-md--line-height: round(up, 1em, var(--line));
+  /* Display type for a single grid column: the widest that fits one. */
+  --text-col: 2.125rem;
+  --text-col--line-height: round(up, 1em, var(--line));
   --text-lg: clamp(2.75rem, 8vw, 5rem);
   --text-lg--line-height: round(up, 1em, var(--line));
   --text-xl: clamp(3.25rem, 10vw, 7.5rem);
@@ -107,9 +110,10 @@ body {
 
 /*
  * The page grid. Columns are fluid up to their maximum width, so a phone gets
- * two narrow columns with a gutter of margin on each side, and the columns
- * settle at --grid-col once there is room (~650px). From `xl` there is room
- * for one more column on each side, for images, captions, and asides.
+ * two narrow columns with a gutter of margin on each side (the empty outer
+ * tracks collapse to nothing and the column gap supplies the margin), and the
+ * columns settle at --grid-col once there is room (~650px). From `xl` there is
+ * room for one more column on each side, for images, captions, and asides.
  *
  * Place children by name with col-main, col-left, col-right, col-wide, or
  * col-bleed. Below `xl` the outer columns do not exist, and their names
@@ -119,10 +123,10 @@ body {
   display: grid;
   column-gap: var(--grid-gutter);
   grid-template-columns:
-    [bleed-start] minmax(var(--grid-gutter), 1fr)
+    [bleed-start] minmax(0, 1fr)
     [wide-start left-start right-start main-start] minmax(0, var(--grid-col))
     minmax(0, var(--grid-col)) [main-end left-end right-end wide-end]
-    minmax(var(--grid-gutter), 1fr) [bleed-end];
+    minmax(0, 1fr) [bleed-end];
 
   @variant xl {
     grid-template-columns:
@@ -185,6 +189,20 @@ body {
 @utility screen-section {
   min-block-size: calc(100dvh - var(--nav-height));
   min-block-size: round(down, calc(100dvh - var(--nav-height)), var(--line));
+}
+
+/*
+ * Sits content near the optical centre of a screen-section. Centring it for
+ * real would put it half a line off the grid whenever the free space is an odd
+ * number of lines, so it is pushed down by a snapped fraction of the viewport
+ * instead, and the remaining space falls below it.
+ */
+@utility screen-section-offset {
+  padding-block-start: round(
+    down,
+    calc((100dvh - var(--nav-height)) / 5),
+    var(--line)
+  );
 }
 
 @layer components {

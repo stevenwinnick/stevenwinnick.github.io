@@ -37,10 +37,10 @@ export default function HomePage() {
   return (
     <>
       <section className="screen-section flex flex-col">
-        <div className="page-grid flex-1 content-center gap-y-line py-2line">
+        <div className="page-grid screen-section-offset flex-1 gap-y-line pb-2line">
           <PageHeading className="col-main">Hey, I&apos;m Steven</PageHeading>
 
-          <div className="col-main space-y-2line text-center text-sm xl:row-start-2 xl:self-center xl:text-left">
+          <div className="col-main space-y-2line text-center text-sm xl:row-start-2 xl:text-left">
             <p>Welcome to my website!</p>
             <p>
               If you&apos;re{" "}
@@ -110,9 +110,11 @@ export default function HomePage() {
             <Link
               key={project.anchor}
               href={`/projects#${project.anchor}`}
-              className="col-span-2 text-inherit no-underline xl:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
+              className="col-span-2 min-w-0 text-inherit no-underline xl:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
             >
-              <p className="text-center font-title text-md">{project.title}</p>
+              <p className="text-center font-title text-md xl:text-col">
+                {project.title}
+              </p>
               <figure className="module-frame m-0">
                 <Image
                   src={project.image}

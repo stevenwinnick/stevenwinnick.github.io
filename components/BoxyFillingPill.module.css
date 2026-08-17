@@ -3,9 +3,13 @@
  * (an animated gradient driven by background-position). `--accent` is set per
  * instance; the `data-inverted` variant flips the base colors for use on light
  * (cream) backgrounds.
+ *
+ * It is `inline`, not `inline-block`, so its border and padding do not grow the
+ * line box: an inline-block's height would push prose off the baseline grid.
  */
 .boxyFillingPill {
-  display: inline-block;
+  display: inline;
+  box-decoration-break: clone;
   border: 2px solid var(--accent);
   border-radius: 5px;
   padding: 0 7px 4px;

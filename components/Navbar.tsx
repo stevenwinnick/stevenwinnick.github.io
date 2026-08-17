@@ -60,9 +60,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 bg-ink font-title">
-      <div className="flex flex-col lg:h-16 lg:flex-row lg:items-stretch">
+      <div className="flex flex-col lg:h-(--nav-height) lg:flex-row lg:items-stretch">
         {/* Brand, socials, and mobile menu toggle */}
-        <div className="flex h-16 items-center border-b-[3px] border-cream lg:flex-1">
+        <div className="flex h-(--nav-height) items-center border-b-[3px] border-cream lg:flex-1">
           <Link
             href="/"
             className="px-3 text-3xl font-semibold text-cream no-underline"
@@ -107,7 +107,7 @@ export default function Navbar() {
           id="nav-menu"
           className={`overflow-hidden transition-[max-height] duration-500 ease-in-out lg:!max-h-none lg:overflow-visible ${open ? "max-h-96" : "max-h-0"}`}
         >
-          <div className="flex flex-col lg:h-16 lg:flex-row lg:items-stretch">
+          <div className="flex flex-col lg:h-(--nav-height) lg:flex-row lg:items-stretch">
             {NAV_LINKS.map((link) => {
               // The home route is the default landing page, so it is never
               // highlighted as active.

@@ -33,24 +33,42 @@
   --font-body: "redacted-body", sans-serif;
 
   /*
-   * Fluid type scale (xs–xl). Each size uses clamp() so a single utility scales
-   * smoothly across breakpoints without needing responsive variants.
+   * Type scale. Body text (`xs`, `sm`) is a fixed size so that one line is
+   * always exactly one grid line; only display sizes (`md`–`xl`) are fluid,
+   * since they have no measure to protect.
+   *
+   * Every line height snaps up to a whole number of grid lines, so a block of
+   * text is always a whole number of lines tall no matter its size. `1em`
+   * resolves against the element's own font size, so one expression works for
+   * every step, including the fluid ones.
    */
-  --text-xs: clamp(0.85rem, 1.6vw, 1rem);
-  --text-xs--line-height: 1.4;
-  --text-sm: clamp(1.05rem, 2.4vw, 1.3rem);
-  --text-sm--line-height: 1.45;
+  --text-xs: 1rem;
+  --text-xs--line-height: round(up, 1em, var(--line));
+  --text-sm: 1.25rem;
+  --text-sm--line-height: round(up, 1em, var(--line));
   --text-md: clamp(1.9rem, 5vw, 2.9rem);
-  --text-md--line-height: 1.1;
+  --text-md--line-height: round(up, 1em, var(--line));
   --text-lg: clamp(2.75rem, 8vw, 5rem);
-  --text-lg--line-height: 1;
+  --text-lg--line-height: round(up, 1em, var(--line));
   --text-xl: clamp(3.25rem, 10vw, 7.5rem);
-  --text-xl--line-height: 1;
+  --text-xl--line-height: round(up, 1em, var(--line));
 
   /*
-   * Spacing scale (xs–xl) for padding, margin, and gaps (e.g. `px-sm`,
-   * `gap-md`). Note: these names shadow the `max-w-{sm,md,lg,xl}` container
-   * sizes, so use a numeric or arbitrary value for max-width instead.
+   * Spacing on the grid: `line` is one line of body text, the unit the whole
+   * grid is built from (e.g. `gap-line`, `mt-2line`, `py-half-line`).
+   */
+  --spacing-half-line: calc(var(--line) / 2);
+  --spacing-line: var(--line);
+  --spacing-2line: calc(2 * var(--line));
+  --spacing-3line: calc(3 * var(--line));
+  --spacing-4line: calc(4 * var(--line));
+  --spacing-6line: calc(6 * var(--line));
+
+  /*
+   * Off-grid spacing scale, kept for the pages that have not moved onto the
+   * grid yet (e.g. `px-sm`, `gap-md`). Prefer the line scale above for new
+   * work. Note: these names shadow the `max-w-{sm,md,lg,xl}` container sizes,
+   * so use a numeric or arbitrary value for max-width instead.
    */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -59,10 +77,114 @@
   --spacing-xl: 4rem;
 }
 
+/*
+ * The grid system, derived from a single unit: one line of body text,
+ * including its leading. See the grid utilities below for how to use it.
+ *
+ *   line   one line of body text, and the gutter between columns
+ *   module one grid field: `--grid-module-lines` tall, 4:3 where the columns
+ *          are fixed
+ *   column 4/3 of a module's height, so two columns and a gutter make a
+ *          ~61 character measure
+ *
+ * Changing --line or --grid-module-lines re-derives everything else. The 1.5
+ * here is the body text's line height, so the two have to move together.
+ */
+:root {
+  --line: calc(var(--text-sm) * 1.5);
+  --grid-module-lines: 7;
+  --grid-gutter: var(--line);
+  --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
+  /* Two lines, so the grid carries on uninterrupted below the navbar. */
+  --nav-height: calc(2 * var(--line));
+}
+
 body {
   background-color: var(--color-ink);
   color: var(--color-cream);
   font-family: var(--font-body);
+}
+
+/*
+ * The page grid. Columns are fluid up to their maximum width, so a phone gets
+ * two narrow columns with a gutter of margin on each side, and the columns
+ * settle at --grid-col once there is room (~650px). From `xl` there is room
+ * for one more column on each side, for images, captions, and asides.
+ *
+ * Place children by name with col-main, col-left, col-right, col-wide, or
+ * col-bleed. Below `xl` the outer columns do not exist, and their names
+ * collapse onto the two centre columns.
+ */
+@utility page-grid {
+  display: grid;
+  column-gap: var(--grid-gutter);
+  grid-template-columns:
+    [bleed-start] minmax(var(--grid-gutter), 1fr)
+    [wide-start left-start right-start main-start] minmax(0, var(--grid-col))
+    minmax(0, var(--grid-col)) [main-end left-end right-end wide-end]
+    minmax(var(--grid-gutter), 1fr) [bleed-end];
+
+  @variant xl {
+    grid-template-columns:
+      [bleed-start] 1fr
+      [wide-start left-start] var(--grid-col)
+      [left-end main-start] var(--grid-col) var(--grid-col)
+      [main-end right-start] var(--grid-col) [right-end wide-end]
+      1fr [bleed-end];
+  }
+}
+
+@utility col-main {
+  grid-column: main;
+}
+
+@utility col-left {
+  grid-column: left;
+}
+
+@utility col-right {
+  grid-column: right;
+}
+
+@utility col-wide {
+  grid-column: wide;
+}
+
+@utility col-bleed {
+  grid-column: bleed;
+}
+
+/* A box that is a whole number of grid lines tall, e.g. `lines-7`. */
+@utility lines-* {
+  block-size: calc(--value(integer) * var(--line));
+}
+
+/*
+ * A cropped image that fills its column: as close to the module's 4:3 as the
+ * grid allows, while its height stays a whole number of lines so the rhythm
+ * survives fluid column widths. Where the columns are fixed this lands on 4:3
+ * exactly. Needs a `module-frame` parent to measure against, and falls back to
+ * a plain 4:3 crop without round().
+ */
+@utility module-frame {
+  container-type: inline-size;
+}
+
+@utility module-crop {
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  block-size: round(nearest, 75cqw, var(--line));
+  object-fit: cover;
+}
+
+/*
+ * Fills the viewport below the navbar, rounded down to whole lines so the
+ * section boundary stays on the grid. `dvh` so a collapsing mobile URL bar
+ * does not leave a gap.
+ */
+@utility screen-section {
+  min-block-size: calc(100dvh - var(--nav-height));
+  min-block-size: round(down, calc(100dvh - var(--nav-height)), var(--line));
 }
 
 @layer components {

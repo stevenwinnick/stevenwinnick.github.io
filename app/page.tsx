@@ -36,51 +36,51 @@ const PREVIEW_PROJECTS = [
 export default function HomePage() {
   return (
     <>
-      {/* Landing section: fills the viewport below the navbar. */}
-      <section className="flex min-h-[calc(100vh-4rem)] flex-col">
-        <div className="flex flex-1 flex-col items-center justify-center px-sm">
-          <PageHeading>Hey, I&apos;m Steven</PageHeading>
+      <section className="screen-section flex flex-col">
+        <div className="page-grid flex-1 content-center gap-y-line py-2line">
+          <PageHeading className="col-main">Hey, I&apos;m Steven</PageHeading>
 
-          <div className="flex w-full max-w-6xl flex-col items-center justify-center gap-md lg:flex-row">
-            <div className="text-center lg:max-w-[750px] lg:flex-1">
-              <p className="text-sm">Welcome to my website!</p>
-              <div className="h-12" />
-              <p className="text-sm">
-                If you&apos;re{" "}
-                <BoxyFillingPill href="/" accent="var(--color-green)">
-                  here
-                </BoxyFillingPill>{" "}
-                because of my{" "}
-                <BoxyFillingPill href={RESUME_URL} accent="var(--color-yellow)" external>
-                  resume
-                </BoxyFillingPill>{" "}
-                or{" "}
-                <BoxyFillingPill href="/contact" accent="var(--color-purple)">
-                  application,
-                </BoxyFillingPill>
-                <br />
-                click to learn more{" "}
-                <BoxyFillingPill href="/about" accent="var(--color-blue)">
-                  about me
-                </BoxyFillingPill>{" "}
-                or check out{" "}
-                <BoxyFillingPill href="/projects" accent="var(--color-red)">
-                  my work
-                </BoxyFillingPill>
-              </p>
-            </div>
-
-            <div className="shrink-0">
-              <Image
-                src="/img/bigHeadshotCircle.png"
-                alt="Steven Winnick"
-                width={400}
-                height={400}
-                priority
-                className="mx-auto block h-auto w-[70vw] lg:w-[400px]"
-              />
-            </div>
+          <div className="col-main space-y-2line text-center text-sm xl:row-start-2 xl:self-center xl:text-left">
+            <p>Welcome to my website!</p>
+            <p>
+              If you&apos;re{" "}
+              <BoxyFillingPill href="/" accent="var(--color-green)">
+                here
+              </BoxyFillingPill>{" "}
+              because of my{" "}
+              <BoxyFillingPill
+                href={RESUME_URL}
+                accent="var(--color-yellow)"
+                external
+              >
+                resume
+              </BoxyFillingPill>{" "}
+              or{" "}
+              <BoxyFillingPill href="/contact" accent="var(--color-purple)">
+                application,
+              </BoxyFillingPill>{" "}
+              click to learn more{" "}
+              <BoxyFillingPill href="/about" accent="var(--color-blue)">
+                about me
+              </BoxyFillingPill>{" "}
+              or check out{" "}
+              <BoxyFillingPill href="/projects" accent="var(--color-red)">
+                my work
+              </BoxyFillingPill>
+            </p>
           </div>
+
+          {/* Headshot moves beside the copy once the outer columns exist. */}
+          <figure className="col-main m-0 xl:col-left xl:row-start-2">
+            <Image
+              src="/img/bigHeadshotCircle.png"
+              alt="Steven Winnick"
+              width={400}
+              height={400}
+              priority
+              className="mx-auto block w-auto max-w-full object-contain lines-9 xl:lines-8"
+            />
+          </figure>
         </div>
 
         <Image
@@ -88,48 +88,52 @@ export default function HomePage() {
           alt=""
           width={40}
           height={40}
-          className="mx-auto mb-2 block h-auto w-[5%]"
+          className="mx-auto mb-half-line block w-auto lines-1"
         />
-        <div className="h-4 bg-cream" />
+        <div className="h-half-line bg-cream" />
       </section>
 
-      {/* Projects preview */}
-      <section className="bg-cream text-ink">
-        <div className="px-sm pt-2">
-          <h2 className="text-center font-title text-xl">PROJECTS</h2>
-          <p className="pb-3 text-center text-sm">
+      <section className="page-grid gap-y-2line bg-cream py-2line text-ink">
+        <div className="col-main space-y-line text-center">
+          <h2 className="font-title text-xl">PROJECTS</h2>
+          <p className="text-sm">
             Here are a few of the projects I&apos;ve worked on recently
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-sm px-sm pt-3 lg:grid-cols-3">
+        {/*
+         * Subgrid so the previews use the page grid's columns and gutters, and
+         * so their titles, images, and blurbs share rows across all three.
+         */}
+        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto]">
           {PREVIEW_PROJECTS.map((project) => (
             <Link
               key={project.anchor}
               href={`/projects#${project.anchor}`}
-              className="text-inherit no-underline"
+              className="col-span-2 text-inherit no-underline xl:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
             >
-              <p className="pt-3 text-center font-title text-md">
-                {project.title}
-              </p>
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={project.dimensions}
-                height={project.dimensions}
-                className="h-auto w-full bg-ink p-1"
-              />
-              <p className="pt-1 text-sm">{project.blurb}</p>
+              <p className="text-center font-title text-md">{project.title}</p>
+              <figure className="module-frame m-0">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={project.dimensions}
+                  height={project.dimensions}
+                  className="module-crop bg-ink p-1"
+                />
+              </figure>
+              <p className="text-sm">{project.blurb}</p>
             </Link>
           ))}
-        </div>
 
-        <p className="px-sm py-12 text-center text-sm">
-          To see more about these projects and others I&apos;ve worked on, click{" "}
-          <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
-            here
-          </BoxyFillingPill>
-        </p>
+          <p className="col-span-2 text-center text-sm xl:col-span-1 xl:row-span-3 xl:self-center xl:text-left">
+            To see more about these projects and others I&apos;ve worked on,
+            click{" "}
+            <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
+              here
+            </BoxyFillingPill>
+          </p>
+        </div>
       </section>
     </>
   );

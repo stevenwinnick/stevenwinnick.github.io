@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 
 /**
  * The large, centered page title shared across pages. It uppercases its text
- * and adds spacing above and below itself (more below on desktop). Defaults to
- * the `xl` type scale; pass `className` to tweak the size for a specific layout.
+ * and defaults to the `xl` type scale. Spacing around it belongs to the layout
+ * that places it, so pass `className` for margins, size, or alignment tweaks.
  */
 export default function PageHeading({
   children,
@@ -14,7 +14,7 @@ export default function PageHeading({
 }) {
   return (
     <h1
-      className={`mt-6 mb-6 text-center font-title text-xl uppercase lg:mb-10 ${className}`}
+      className={`text-center font-title text-xl uppercase ${className}`}
     >
       {children}
     </h1>

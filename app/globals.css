@@ -13,6 +13,20 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "ibm-plex-serif";
+  src: url("/fonts/ibmPlexSerifRegular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ibm-plex-serif";
+  src: url("/fonts/ibmPlexSerifMedium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
 /*
  * Design tokens. Tailwind v4 exposes each of these as utilities:
  *   --color-... becomes bg-, text-, and border- utilities (e.g. text-blue)
@@ -33,15 +47,21 @@
   --color-blue: #1982c4;
   --color-purple: #6a4c93;
 
+  /* The two-colour palette of the landing page. */
+  --color-paper: #ffffff;
+  --color-ultramarine: #000f7f;
+
   --font-title: "redacted-title", sans-serif;
   --font-body: "redacted-body", sans-serif;
+  --font-serif: "ibm-plex-serif", serif;
 
   /*
    * Body text: a fixed size and a fixed leading, so that one line is always
-   * the same height. The grid below is derived from these two numbers.
+   * the same height. The grid below is derived from these two numbers, and the
+   * leading is the one that makes a line a whole 24px.
    */
-  --text-sm: 1.25rem;
-  --leading-body: 1.5;
+  --text-sm: 0.9375rem;
+  --leading-body: 1.6;
   --text-sm--line-height: var(--leading-body);
 }
 
@@ -56,10 +76,15 @@
   --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
   /* One row of modules, the vertical counterpart of --grid-col. */
   --grid-row: calc(var(--grid-module-lines) * var(--line));
-  /* The two centre columns and the gutter between them: a ~61 character measure. */
+  /* Two columns and the gutter between them: a ~65 character measure. */
   --grid-main: calc(2 * var(--grid-col) + var(--grid-gutter));
   /* Two lines, so the grid carries on uninterrupted below the navbar. */
   --nav-height: calc(2 * var(--line));
+  /*
+   * The landing page header: one row of modules, held off the top by a gutter
+   * and closed by a 1px rule, which the offset below it has to account for.
+   */
+  --header-height: calc(var(--grid-gutter) + var(--grid-row) + 1px);
 }
 
 @theme {
@@ -73,17 +98,19 @@
    * step, fluid ones included.
    */
   --leading-grid: round(up, 1em, var(--line));
-  --text-xs: 1rem;
+  --text-xs: 0.8125rem;
   --text-xs--line-height: var(--leading-grid);
-  --text-md: clamp(1.9rem, 5vw, 2.9rem);
+  --text-md: clamp(1.125rem, 2vw, 1.375rem);
   --text-md--line-height: var(--leading-grid);
   /* Display type for a single grid column: the widest that fits one. */
-  --text-col: 2.125rem;
+  --text-col: 1.375rem;
   --text-col--line-height: var(--leading-grid);
-  --text-lg: clamp(2.75rem, 8vw, 5rem);
+  --text-lg: clamp(1.625rem, 3.5vw, 2.25rem);
   --text-lg--line-height: var(--leading-grid);
-  --text-xl: clamp(3.25rem, 10vw, 7.5rem);
+  --text-xl: clamp(2rem, 5vw, 3rem);
   --text-xl--line-height: var(--leading-grid);
+  /* Letterspaced small caps, for labels set at body size. */
+  --tracking-label: 0.12em;
 
   /*
    * Spacing on the grid: `line` is one line of body text, the unit the whole
@@ -115,7 +142,7 @@ body {
 }
 
 /*
- * The page grid: two content columns, growing to four at `xl`, with an empty
+ * The page grid: two content columns, growing to four at `lg`, with an empty
  * track on each side that takes up whatever is left over.
  *
  * The bracketed words are grid line names, not columns. Each `-start`/`-end`
@@ -129,14 +156,14 @@ body {
  *   that should run to the edges of the screen (a full-width image, a band of
  *   background colour) rather than sit inside the margins
  *
- * Below `xl` the left and right columns do not exist, so their names sit on
+ * Below `lg` the left and right columns do not exist, so their names sit on
  * the same lines as main and a child placed there falls back into the centre.
  *
- * Below `xl` the two columns are fluid and the outer tracks are zero width, so
+ * Below `lg` the two columns are fluid and the outer tracks are zero width, so
  * the side margin is one gutter at every width: the content grows with the
  * screen instead of capping at --grid-col and leaving margins that widen until
  * the four-column layout takes over. The two layouts meet almost exactly at
- * `xl` (1220px of content at 1279px, 1210px at 1280px). Only the four-column
+ * `lg` (976px of content at 1023px, 968px at 1024px). Only the four-column
  * layout has fixed columns, and there the outer `1fr` tracks centre the grid.
  * A zero-width outer track still leaves its column gap, so `bleed` reaches the
  * edges of the screen at every width.
@@ -152,7 +179,7 @@ body {
     minmax(0, 1fr) [main-end left-end right-end wide-end]
     0 [bleed-end];
 
-  @variant xl {
+  @variant lg {
     grid-template-columns:
       /* Outer track: soaks up whatever the fixed columns leave over. */
       [bleed-start] minmax(0, 1fr)
@@ -167,6 +194,15 @@ body {
 
 @utility col-main {
   grid-column: main;
+}
+
+/*
+ * A two column measure that starts at the outer left column, so reading
+ * content shares its left edge with the header's brand rather than stepping in
+ * a column once the outer columns appear.
+ */
+@utility col-measure {
+  grid-column: left-start / span 2;
 }
 
 @utility col-left {

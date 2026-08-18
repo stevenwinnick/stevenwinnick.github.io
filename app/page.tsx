@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import BoxyFillingPill from "@/components/BoxyFillingPill";
-
-const RESUME_URL =
-  "https://drive.google.com/file/d/17jHs-lGyFanjH1GBPOZNlB5fl1YMSl2K/view";
+import FillingLink from "@/components/FillingLink";
+import LandingHeader from "@/components/LandingHeader";
+import { RESUME_URL } from "@/data/navigation";
 
 const PREVIEW_PROJECTS = [
   {
@@ -37,113 +36,95 @@ const PREVIEW_PROJECTS = [
 
 export default function HomePage() {
   return (
-    <>
-      <section className="screen-section flex flex-col">
-        {/*
-         * Off the page grid on purpose: the first screen is one centred block,
-         * with the measure capped at the width of the two centre columns.
-         */}
-        <div className="flex flex-1 flex-col items-center justify-center gap-line px-line py-line text-center">
-          <h1 className="font-title text-xl uppercase">Hey, I&apos;m Steven</h1>
+    <div className="min-h-dvh bg-paper font-serif text-ultramarine">
+      <LandingHeader />
 
-          {/*
-           * A module row each, greeting on its floor and the links on the next
-           * row's ceiling, so the two meet across one gutter. `min-rows-1` so a
-           * phone can spill the links past the row rather than clip them.
-           */}
-          <div className="flex max-w-(--grid-main) flex-col gap-line text-sm">
-            <p className="flex min-rows-1 items-end justify-center">
-              Welcome to my website!
-            </p>
-            <p className="min-rows-1">
-              If you&apos;re{" "}
-              <BoxyFillingPill href="/" accent="var(--color-green)">
-                here
-              </BoxyFillingPill>{" "}
-              because of my{" "}
-              <BoxyFillingPill
-                href={RESUME_URL}
-                accent="var(--color-yellow)"
-                external
-              >
-                resume
-              </BoxyFillingPill>{" "}
-              or{" "}
-              <BoxyFillingPill href="/contact" accent="var(--color-purple)">
-                application,
-              </BoxyFillingPill>{" "}
-              click to learn more{" "}
-              <BoxyFillingPill href="/about" accent="var(--color-blue)">
-                about me
-              </BoxyFillingPill>{" "}
-              or check out{" "}
-              <BoxyFillingPill href="/projects" accent="var(--color-red)">
-                my work
-              </BoxyFillingPill>
-            </p>
-          </div>
-        </div>
+      {/*
+       * Every text block is a module row with its copy on the row's ceiling, so
+       * the page reads as a column of rows separated by a gutter.
+       */}
+      <main className="pt-(--header-height)">
+        <section className="page-grid gap-y-line pt-line">
+          <h1 className="col-measure min-rows-1 text-xl">
+            Hey, I&apos;m Steven
+          </h1>
 
-        <Image
-          src="/img/caratCream.png"
-          alt=""
-          width={40}
-          height={40}
-          className="mx-auto mb-half-line block w-auto lines-1"
-        />
-        <div className="h-half-line bg-cream" />
-      </section>
+          <p className="col-measure min-rows-1 text-sm">
+            Welcome to my website!
+          </p>
 
-      <section className="page-grid gap-y-line bg-cream py-2line text-ink">
-        <div className="col-main flex min-rows-1 flex-col justify-end gap-line text-center">
-          <h2 className="font-title text-xl">PROJECTS</h2>
-          <p className="text-sm">
+          <p className="col-measure min-rows-1 text-sm">
+            If you&apos;re <FillingLink href="/">here</FillingLink> because of my{" "}
+            <FillingLink href={RESUME_URL} external>
+              resume
+            </FillingLink>{" "}
+            or <FillingLink href="/contact">application,</FillingLink> click to
+            learn more <FillingLink href="/about">about me</FillingLink> or check
+            out <FillingLink href="/projects">my work</FillingLink>
+          </p>
+        </section>
+
+        <section className="page-grid gap-y-line pb-2line">
+          <hr className="col-wide m-0 border-t border-ultramarine" />
+
+          <h2 className="col-measure min-rows-1 text-md tracking-label uppercase">
+            Projects
+          </h2>
+
+          <p className="col-measure min-rows-1 text-sm">
             Here are a few of the projects I&apos;ve worked on recently
           </p>
-        </div>
 
-        {/*
-         * Subgrid so the previews use the page grid's columns and gutters, and
-         * so their titles, images, and blurbs share rows across all four. One
-         * per column at `xl`, 2x2 once the columns reach full width, stacked
-         * two columns wide below that.
-         */}
-        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto] xl:gap-y-line">
-          {PREVIEW_PROJECTS.map((project) => (
-            <Link
-              key={project.anchor}
-              href={`/projects#${project.anchor}`}
-              className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline md:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
-            >
-              {/*
-               * One column wide from `md`, so the title steps down to fit, and
-               * a module-tall field with the title on its floor, so titles meet
-               * the tops of their images however many lines they run to.
-               */}
-              <p className="flex rows-1 items-end font-title text-md md:text-col">
-                {project.title}
-              </p>
-              <figure className="module-frame m-0">
-                <Image
-                  src={project.image.src}
-                  alt={project.title}
-                  width={project.image.width}
-                  height={project.image.height}
-                  className="module-crop bg-ink p-1"
-                />
-              </figure>
-              <p className="text-sm">{project.blurb}</p>
-            </Link>
-          ))}
-        </div>
+          {/*
+           * Subgrid so the previews use the page grid's columns and gutters, and
+           * so their titles, images, and blurbs share rows across all four. One
+           * per column at `lg`, 2x2 once the columns reach full width, stacked
+           * two columns wide below that.
+           */}
+          <div className="col-wide grid grid-cols-subgrid gap-y-2line lg:grid-rows-[auto_auto_auto] lg:gap-y-line">
+            {PREVIEW_PROJECTS.map((project) => (
+              <Link
+                key={project.anchor}
+                href={`/projects#${project.anchor}`}
+                className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline md:col-span-1 lg:row-span-3 lg:grid lg:grid-rows-subgrid"
+              >
+                <p className="flex lines-1 items-end text-sm tracking-label uppercase">
+                  {project.title}
+                </p>
+                <figure className="module-frame relative isolate m-0">
+                  <Image
+                    src={project.image.src}
+                    alt={project.title}
+                    width={project.image.width}
+                    height={project.image.height}
+                    className="module-crop"
+                  />
+                  {/*
+                   * `color` keeps the photograph's luminosity and takes its hue
+                   * from the overlay, so every image reads as one blue.
+                   */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-ultramarine mix-blend-color"
+                  />
+                </figure>
+                <p className="text-sm">{project.blurb}</p>
+              </Link>
+            ))}
+          </div>
 
-        <p className="col-main min-rows-1 text-center text-sm">
-          To see more about these projects and others I&apos;ve worked on, click{" "}
-          <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
-            here
-          </BoxyFillingPill>
-        </p>
-      </section>
-    </>
+          <p className="col-measure min-rows-1 text-sm">
+            To see more about these projects and others I&apos;ve worked on,
+            click <FillingLink href="/projects">here</FillingLink>
+          </p>
+        </section>
+
+        <footer className="page-grid">
+          <p className="col-wide flex lines-2 items-center border-t border-ultramarine text-xs">
+            &copy; 2026 Steven Winnick
+          </p>
+        </footer>
+      </main>
+    </div>
   );
 }

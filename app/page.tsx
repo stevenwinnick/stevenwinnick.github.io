@@ -10,27 +10,27 @@ const PREVIEW_PROJECTS = [
     title: "Foghorn API",
     image: { src: "/img/foghornSquare.jpg", width: 680, height: 680 },
     blurb:
-      "A tool for easily logging messages and recieving Slack notifications when sections of code are executed",
+      "A tool for easily logging messages and recieving Slack notifications when sections of code are executed.",
   },
   {
     anchor: "sheepshead",
     title: "Sheepshead AI",
     image: { src: "/img/royalFlushSquare.jpg", width: 668, height: 668 },
     blurb:
-      "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning",
+      "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning.",
   },
   {
     anchor: "rhymenet",
     title: "RhymeNet",
     image: { src: "/img/rhymesHighlightedSquare.jpg", width: 720, height: 720 },
     blurb:
-      "An English language database containing information about words' phoenetic and written syllable divisions",
+      "An English language database containing information about words' phoenetic and written syllable divisions.",
   },
   {
     anchor: "waves",
     title: "Sonic Canvas",
     image: { src: "/img/soundwaves.png", width: 1200, height: 673 },
-    blurb: "A creative tool for quickly testing sound wave samples",
+    blurb: "A creative tool for quickly testing sound wave samples.",
   },
 ];
 
@@ -45,10 +45,11 @@ export default function HomePage() {
        */}
       <main className="pt-(--header-height)">
         <section className="page-grid gap-y-line pt-line">
-          <div className="col-main flex min-rows-1 flex-col gap-line">
-            <h1 className="text-xl">Hey, I&apos;m Steven.</h1>
-            <p className="text-sm">Welcome to my website!</p>
-          </div>
+          <h1 className="col-main flex rows-1 items-end text-xl">
+            Hey, I&apos;m Steven.
+          </h1>
+
+          <p className="col-main min-rows-1 text-sm">Welcome to my website!</p>
 
           <p className="col-main min-rows-1 text-sm">
             If you&apos;re <FillingLink href="/">here</FillingLink> because of
@@ -56,9 +57,9 @@ export default function HomePage() {
             <FillingLink href={RESUME_URL} external>
               resume
             </FillingLink>{" "}
-            or <FillingLink href="/contact">application,</FillingLink> click to
+            or <FillingLink href="/contact">application</FillingLink>, click to
             learn more <FillingLink href="/about">about me</FillingLink> or
-            check out <FillingLink href="/projects">my work</FillingLink>
+            check out <FillingLink href="/projects">my work</FillingLink>.
           </p>
         </section>
 
@@ -76,7 +77,7 @@ export default function HomePage() {
             <div className="col-main flex min-rows-1 flex-col gap-line">
               <h2 className="text-md">Projects</h2>
               <p className="text-sm">
-                Here are a few of the projects I&apos;ve worked on recently
+                Here are a few of the projects I&apos;ve worked on recently:
               </p>
             </div>
 
@@ -120,7 +121,7 @@ export default function HomePage() {
 
             <p className="col-main min-rows-1 text-sm">
               To see more about these projects and others I&apos;ve worked on,
-              click <FillingLink href="/projects">here</FillingLink>
+              click <FillingLink href="/projects">here</FillingLink>.
             </p>
           </div>
         </section>

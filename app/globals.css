@@ -109,8 +109,6 @@
   --text-lg--line-height: var(--leading-grid);
   --text-xl: clamp(2rem, 5vw, 3rem);
   --text-xl--line-height: var(--leading-grid);
-  /* Letterspaced small caps, for labels set at body size. */
-  --tracking-label: 0.12em;
 
   /*
    * Spacing on the grid: `line` is one line of body text, the unit the whole
@@ -194,15 +192,6 @@ body {
 
 @utility col-main {
   grid-column: main;
-}
-
-/*
- * A two column measure that starts at the outer left column, so reading
- * content shares its left edge with the header's brand rather than stepping in
- * a column once the outer columns appear.
- */
-@utility col-measure {
-  grid-column: left-start / span 2;
 }
 
 @utility col-left {

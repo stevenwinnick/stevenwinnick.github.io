@@ -7,28 +7,28 @@ import { RESUME_URL } from "@/data/navigation";
 const PREVIEW_PROJECTS = [
   {
     anchor: "foghorn",
-    title: "FOGHORN API",
+    title: "Foghorn API",
     image: { src: "/img/foghornSquare.jpg", width: 680, height: 680 },
     blurb:
       "A tool for easily logging messages and recieving Slack notifications when sections of code are executed",
   },
   {
     anchor: "sheepshead",
-    title: "SHEEPSHEAD AI",
+    title: "Sheepshead AI",
     image: { src: "/img/royalFlushSquare.jpg", width: 668, height: 668 },
     blurb:
       "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning",
   },
   {
     anchor: "rhymenet",
-    title: "RHYMENET",
+    title: "RhymeNet",
     image: { src: "/img/rhymesHighlightedSquare.jpg", width: 720, height: 720 },
     blurb:
       "An English language database containing information about words' phoenetic and written syllable divisions",
   },
   {
     anchor: "waves",
-    title: "SONIC CANVAS",
+    title: "Sonic Canvas",
     image: { src: "/img/soundwaves.png", width: 1200, height: 673 },
     blurb: "A creative tool for quickly testing sound wave samples",
   },
@@ -45,15 +45,12 @@ export default function HomePage() {
        */}
       <main className="pt-(--header-height)">
         <section className="page-grid gap-y-line pt-line">
-          <h1 className="col-measure min-rows-1 text-xl">
-            Hey, I&apos;m Steven
-          </h1>
+          <div className="col-main min-rows-1">
+            <h1 className="text-xl">Hey, I&apos;m Steven.</h1>
+            <p className="text-sm">Welcome to my website!</p>
+          </div>
 
-          <p className="col-measure min-rows-1 text-sm">
-            Welcome to my website!
-          </p>
-
-          <p className="col-measure min-rows-1 text-sm">
+          <p className="col-main min-rows-1 text-sm">
             If you&apos;re <FillingLink href="/">here</FillingLink> because of my{" "}
             <FillingLink href={RESUME_URL} external>
               resume
@@ -67,13 +64,12 @@ export default function HomePage() {
         <section className="page-grid gap-y-line pb-2line">
           <hr className="col-wide m-0 border-t border-ultramarine" />
 
-          <h2 className="col-measure min-rows-1 text-md tracking-label uppercase">
-            Projects
-          </h2>
-
-          <p className="col-measure min-rows-1 text-sm">
-            Here are a few of the projects I&apos;ve worked on recently
-          </p>
+          <div className="col-main min-rows-1">
+            <h2 className="text-md">Projects</h2>
+            <p className="text-sm">
+              Here are a few of the projects I&apos;ve worked on recently
+            </p>
+          </div>
 
           {/*
            * Subgrid so the previews use the page grid's columns and gutters, and
@@ -88,7 +84,7 @@ export default function HomePage() {
                 href={`/projects#${project.anchor}`}
                 className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline md:col-span-1 lg:row-span-3 lg:grid lg:grid-rows-subgrid"
               >
-                <p className="flex lines-1 items-end text-sm tracking-label uppercase">
+                <p className="flex lines-1 items-end text-sm">
                   {project.title}
                 </p>
                 <figure className="module-frame relative isolate m-0">
@@ -113,7 +109,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <p className="col-measure min-rows-1 text-sm">
+          <p className="col-main min-rows-1 text-sm">
             To see more about these projects and others I&apos;ve worked on,
             click <FillingLink href="/projects">here</FillingLink>
           </p>

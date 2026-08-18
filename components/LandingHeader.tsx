@@ -51,10 +51,7 @@ export default function LandingHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ultramarine bg-paper pt-line text-ultramarine">
       <div className="page-grid">
         <div className="col-wide flex rows-1 items-end justify-between">
-          <Link
-            href="/"
-            className="text-sm tracking-label uppercase no-underline"
-          >
+          <Link href="/" className="text-sm no-underline">
             Steven Winnick
           </Link>
 
@@ -83,7 +80,7 @@ export default function LandingHeader() {
                 key={item.href}
                 href={item.href}
                 external={item.external}
-                className="text-sm tracking-label uppercase"
+                className="text-sm"
               >
                 {item.label}
               </FillingLink>

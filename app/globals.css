@@ -132,26 +132,29 @@ body {
  * Below `xl` the left and right columns do not exist, so their names sit on
  * the same lines as main and a child placed there falls back into the centre.
  *
- * Every content track is `minmax(0, var(--grid-col))`: it caps at one column
- * width but can shrink, so a phone gets two narrow columns with a gutter of
- * margin on each side (the empty outer tracks collapse to nothing and the
- * column gap supplies the margin), the columns settle at --grid-col once
- * there is room (~650px), and no width can force an overflow.
+ * Below `xl` the two columns are fluid and the outer tracks are zero width, so
+ * the side margin is one gutter at every width: the content grows with the
+ * screen instead of capping at --grid-col and leaving margins that widen until
+ * the four-column layout takes over. The two layouts meet almost exactly at
+ * `xl` (1220px of content at 1279px, 1210px at 1280px). Only the four-column
+ * layout has fixed columns, and there the outer `1fr` tracks centre the grid.
+ * A zero-width outer track still leaves its column gap, so `bleed` reaches the
+ * edges of the screen at every width.
  */
 @utility page-grid {
   display: grid;
-  /* The gutter is also the side margin, via the collapsed outer tracks. */
+  /* The gutter is also the side margin, via the empty outer tracks. */
   column-gap: var(--grid-gutter);
   grid-template-columns:
-    /* Outer track: soaks up the leftover width, down to nothing on a phone. */
-    [bleed-start] minmax(0, 1fr)
+    [bleed-start] 0
     /* Both centre columns start here, and so do left, right, and wide. */
-    [wide-start left-start right-start main-start] minmax(0, var(--grid-col))
-    minmax(0, var(--grid-col)) [main-end left-end right-end wide-end]
-    minmax(0, 1fr) [bleed-end];
+    [wide-start left-start right-start main-start] minmax(0, 1fr)
+    minmax(0, 1fr) [main-end left-end right-end wide-end]
+    0 [bleed-end];
 
   @variant xl {
     grid-template-columns:
+      /* Outer track: soaks up whatever the fixed columns leave over. */
       [bleed-start] minmax(0, 1fr)
       /* An outer column appears on each side, so left and right split off. */
       [wide-start left-start] minmax(0, var(--grid-col))

@@ -46,9 +46,16 @@ export default function HomePage() {
         <div className="flex flex-1 flex-col items-center justify-center gap-line px-line py-line text-center">
           <h1 className="font-title text-xl uppercase">Hey, I&apos;m Steven</h1>
 
-          <div className="max-w-(--grid-main) space-y-2line text-sm">
-            <p>Welcome to my website!</p>
-            <p>
+          {/*
+           * A module row each, greeting on its floor and the links on the next
+           * row's ceiling, so the two meet across one gutter. `min-rows-1` so a
+           * phone can spill the links past the row rather than clip them.
+           */}
+          <div className="flex max-w-(--grid-main) flex-col gap-line text-sm">
+            <p className="flex min-rows-1 items-end justify-center">
+              Welcome to my website!
+            </p>
+            <p className="min-rows-1">
               If you&apos;re{" "}
               <BoxyFillingPill href="/" accent="var(--color-green)">
                 here
@@ -87,8 +94,8 @@ export default function HomePage() {
         <div className="h-half-line bg-cream" />
       </section>
 
-      <section className="page-grid gap-y-2line bg-cream py-2line text-ink">
-        <div className="col-main space-y-line text-center">
+      <section className="page-grid gap-y-line bg-cream py-2line text-ink">
+        <div className="col-main flex min-rows-1 flex-col justify-end gap-line text-center">
           <h2 className="font-title text-xl">PROJECTS</h2>
           <p className="text-sm">
             Here are a few of the projects I&apos;ve worked on recently
@@ -101,19 +108,19 @@ export default function HomePage() {
          * per column at `xl`, 2x2 once the columns reach full width, stacked
          * two columns wide below that.
          */}
-        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto] xl:gap-y-0">
+        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto] xl:gap-y-line">
           {PREVIEW_PROJECTS.map((project) => (
             <Link
               key={project.anchor}
               href={`/projects#${project.anchor}`}
-              className="col-span-2 min-w-0 text-inherit no-underline md:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
+              className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline md:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
             >
               {/*
                * One column wide from `md`, so the title steps down to fit, and
                * a module-tall field with the title on its floor, so titles meet
                * the tops of their images however many lines they run to.
                */}
-              <p className="font-title text-md md:flex md:rows-1 md:items-end md:text-col">
+              <p className="flex rows-1 items-end font-title text-md md:text-col">
                 {project.title}
               </p>
               <figure className="module-frame m-0">
@@ -130,7 +137,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="col-main text-center text-sm">
+        <p className="col-main min-rows-1 text-center text-sm">
           To see more about these projects and others I&apos;ve worked on, click{" "}
           <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
             here

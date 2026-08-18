@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Self-hosted display + body typefaces */
+/* Self-hosted display + body + landing page typefaces */
 @font-face {
   font-family: "redacted-title";
   src: url("/fonts/redactedTitle.woff2") format("woff2");
@@ -14,16 +14,8 @@
 }
 
 @font-face {
-  font-family: "ibm-plex-serif";
-  src: url("/fonts/ibmPlexSerifRegular.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ibm-plex-serif";
-  src: url("/fonts/ibmPlexSerifMedium.woff2") format("woff2");
-  font-weight: 500;
+  font-family: "redacted2";
+  src: url("/fonts/redacted2.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -49,11 +41,11 @@
 
   /* The two-colour palette of the landing page. */
   --color-paper: #ffffff;
-  --color-ultramarine: #003fdf;
+  --color-ultramarine: #003FBF;
 
   --font-title: "redacted-title", sans-serif;
   --font-body: "redacted-body", sans-serif;
-  --font-serif: "ibm-plex-serif", serif;
+  --font-serif: "redacted2", serif;
 
   /*
    * Body text: a fixed size and a fixed leading, so that one line is always

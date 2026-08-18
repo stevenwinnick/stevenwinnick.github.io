@@ -41,7 +41,7 @@
 
   /* The two-colour palette of the landing page. */
   --color-paper: #ffffff;
-  --color-ultramarine: #003FBF;
+  --color-ultramarine: #003fbf;
 
   --font-title: "redacted-title", sans-serif;
   --font-body: "redacted-body", sans-serif;
@@ -49,11 +49,11 @@
 
   /*
    * Body text: a fixed size and a fixed leading, so that one line is always
-   * the same height. The grid below is derived from these two numbers, and the
-   * leading is the one that makes a line a whole 24px.
+   * the same height. The grid below is derived from these two numbers, which
+   * are the browser default size and Tailwind's default leading: a 24px line.
    */
-  --text-sm: 0.9375rem;
-  --leading-body: 1.6;
+  --text-sm: 1rem;
+  --leading-body: 1.5;
   --text-sm--line-height: var(--leading-body);
 }
 
@@ -63,7 +63,7 @@
  */
 :root {
   --line: calc(var(--text-sm) * var(--leading-body));
-  --grid-module-lines: 7;
+  --grid-module-lines: 10;
   --grid-gutter: var(--line);
   --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
   /* One row of modules, the vertical counterpart of --grid-col. */
@@ -223,13 +223,15 @@ body {
  */
 @utility rows-* {
   block-size: calc(
-    --value(integer) * (var(--grid-row) + var(--grid-gutter)) - var(--grid-gutter)
+    --value(integer) * (var(--grid-row) + var(--grid-gutter)) -
+      var(--grid-gutter)
   );
 }
 
 @utility min-rows-* {
   min-block-size: calc(
-    --value(integer) * (var(--grid-row) + var(--grid-gutter)) - var(--grid-gutter)
+    --value(integer) * (var(--grid-row) + var(--grid-gutter)) -
+      var(--grid-gutter)
   );
 }
 

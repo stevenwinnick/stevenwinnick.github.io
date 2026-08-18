@@ -74,9 +74,12 @@ export default function LandingHeader() {
 
       {open && (
         <div id="landing-menu" className="page-grid">
-          {/* Any click inside the menu is either a link or a miss; both close it. */}
+          {/*
+           * One module, hung off the right end of the header's rule, under the
+           * toggle. Any click inside is either a link or a miss; both close it.
+           */}
           <nav
-            className="col-wide flex flex-col items-end border-x border-b border-ultramarine px-half-line py-half-line"
+            className="col-wide flex rows-1 w-(--grid-col) max-w-full flex-col items-end justify-self-end border border-t-0 border-ultramarine px-half-line py-half-line"
             onClick={() => setOpen(false)}
           >
             {NAV_ITEMS.map((item) => (

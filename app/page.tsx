@@ -96,24 +96,23 @@ export default function HomePage() {
         </div>
 
         {/*
-         * Subgrid so the previews use the page grid's columns and gutters, and
-         * so their titles, images, and blurbs share rows across all four. One
-         * per column at `xl`, 2x2 once the columns reach full width, stacked
-         * two columns wide below that.
+         * One preview per column at `xl`, 2x2 once a column is full width,
+         * stacked below that. The tracks are even, so they line up with the
+         * page columns without a subgrid.
          */}
-        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto] xl:gap-y-0">
+        <div className="col-wide grid grid-cols-1 gap-x-(--grid-gutter) gap-y-2line md:grid-cols-2 xl:grid-cols-4">
           {PREVIEW_PROJECTS.map((project) => (
             <Link
               key={project.anchor}
               href={`/projects#${project.anchor}`}
-              className="col-span-2 min-w-0 text-inherit no-underline md:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
+              className="flex min-w-0 flex-col gap-line text-inherit no-underline"
             >
               {/*
-               * One column wide from `md`, so the title steps down to fit. At
-               * `xl` it sits at the bottom of the shared title row, so a
-               * one-line title still meets the top of its image.
+               * Two-line field with the title on its floor, so titles meet the
+               * tops of their images whether they run to one line or two. One
+               * column wide from `md`, so the type steps down to fit.
                */}
-              <p className="font-title text-md md:text-col xl:self-end">
+              <p className="flex min-lines-2 items-end font-title text-md md:text-col">
                 {project.title}
               </p>
               <figure className="module-frame m-0">

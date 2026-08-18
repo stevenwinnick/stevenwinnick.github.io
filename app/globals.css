@@ -54,6 +54,8 @@
   --grid-module-lines: 7;
   --grid-gutter: var(--line);
   --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
+  /* One row of modules, the vertical counterpart of --grid-col. */
+  --grid-row: calc(var(--grid-module-lines) * var(--line));
   /* The two centre columns and the gutter between them: a ~61 character measure. */
   --grid-main: calc(2 * var(--grid-col) + var(--grid-gutter));
   /* Two lines, so the grid carries on uninterrupted below the navbar. */
@@ -180,9 +182,35 @@ body {
   grid-column: bleed;
 }
 
-/* A box that is a whole number of grid lines tall, e.g. `lines-7`. */
+/*
+ * A box that is a whole number of grid lines tall, e.g. `lines-7`. `min-lines-*`
+ * is the same height as a floor, for a box that has to grow with its content.
+ */
 @utility lines-* {
   block-size: calc(--value(integer) * var(--line));
+}
+
+@utility min-lines-* {
+  min-block-size: calc(--value(integer) * var(--line));
+}
+
+/*
+ * A box that is a whole number of module rows tall, gutters between rows
+ * included, e.g. `rows-2` is two modules plus the gutter that separates them.
+ * `min-rows-*` is the same height as a floor, for a box that has to grow with
+ * its content: growth is in whole lines, not whole rows, since CSS cannot round
+ * an intrinsic height.
+ */
+@utility rows-* {
+  block-size: calc(
+    --value(integer) * (var(--grid-row) + var(--grid-gutter)) - var(--grid-gutter)
+  );
+}
+
+@utility min-rows-* {
+  min-block-size: calc(
+    --value(integer) * (var(--grid-row) + var(--grid-gutter)) - var(--grid-gutter)
+  );
 }
 
 /*

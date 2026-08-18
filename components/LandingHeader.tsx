@@ -48,9 +48,13 @@ export default function LandingHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-ultramarine bg-paper pt-line text-ultramarine">
+    <header className="fixed inset-x-0 top-0 z-50 bg-paper pt-line text-ultramarine">
       <div className="page-grid">
-        <div className="col-wide flex rows-1 items-end justify-between">
+        {/*
+         * The rule turns up the sides of the row and stops at the outer columns'
+         * outer edges, so the header reads as a tray the page sits under.
+         */}
+        <div className="col-wide flex rows-1 items-end justify-between border-x border-b border-ultramarine px-half-line">
           <Link href="/" className="text-sm no-underline">
             Steven Winnick
           </Link>
@@ -69,10 +73,10 @@ export default function LandingHeader() {
       </div>
 
       {open && (
-        <div id="landing-menu" className="page-grid border-t border-ultramarine">
+        <div id="landing-menu" className="page-grid">
           {/* Any click inside the menu is either a link or a miss; both close it. */}
           <nav
-            className="col-wide flex flex-col items-end py-half-line"
+            className="col-wide flex flex-col items-end border-x border-b border-ultramarine px-half-line py-half-line"
             onClick={() => setOpen(false)}
           >
             {NAV_ITEMS.map((item) => (

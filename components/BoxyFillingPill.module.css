@@ -9,6 +9,8 @@
  */
 .boxyFillingPill {
   display: inline;
+  /* Safari only implements the prefixed form; without it a wrapped pill breaks open. */
+  -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   border: 2px solid var(--accent);
   border-radius: 5px;

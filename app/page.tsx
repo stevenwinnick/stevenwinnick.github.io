@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import BoxyFillingPill from "@/components/BoxyFillingPill";
-import PageHeading from "@/components/PageHeading";
 
 const RESUME_URL =
   "https://drive.google.com/file/d/17jHs-lGyFanjH1GBPOZNlB5fl1YMSl2K/view";
@@ -10,76 +9,78 @@ const PREVIEW_PROJECTS = [
   {
     anchor: "foghorn",
     title: "FOGHORN API",
-    image: "/img/foghornSquare.jpg",
-    dimensions: 680,
+    image: { src: "/img/foghornSquare.jpg", width: 680, height: 680 },
     blurb:
       "A tool for easily logging messages and recieving Slack notifications when sections of code are executed",
   },
   {
     anchor: "sheepshead",
     title: "SHEEPSHEAD AI",
-    image: "/img/royalFlushSquare.jpg",
-    dimensions: 668,
+    image: { src: "/img/royalFlushSquare.jpg", width: 668, height: 668 },
     blurb:
       "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning",
   },
   {
     anchor: "rhymenet",
     title: "RHYMENET",
-    image: "/img/rhymesHighlightedSquare.jpg",
-    dimensions: 720,
+    image: { src: "/img/rhymesHighlightedSquare.jpg", width: 720, height: 720 },
     blurb:
       "An English language database containing information about words' phoenetic and written syllable divisions",
+  },
+  {
+    anchor: "waves",
+    title: "SONIC CANVAS",
+    image: { src: "/img/soundwaves.png", width: 1200, height: 673 },
+    blurb: "A creative tool for quickly testing sound wave samples",
   },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* Landing section: fills the viewport below the navbar. */}
-      <section className="flex min-h-[calc(100vh-4rem)] flex-col">
-        <div className="flex flex-1 flex-col items-center justify-center px-sm">
-          <PageHeading>Hey, I&apos;m Steven</PageHeading>
+      <section className="screen-section flex flex-col">
+        {/*
+         * Off the page grid on purpose: the first screen is one centred block,
+         * with the measure capped at the width of the two centre columns.
+         */}
+        <div className="flex flex-1 flex-col items-center justify-center gap-line px-line py-line text-center">
+          <h1 className="font-title text-xl uppercase">Hey, I&apos;m Steven</h1>
 
-          <div className="flex w-full max-w-6xl flex-col items-center justify-center gap-md lg:flex-row">
-            <div className="text-center lg:max-w-[750px] lg:flex-1">
-              <p className="text-sm">Welcome to my website!</p>
-              <div className="h-12" />
-              <p className="text-sm">
-                If you&apos;re{" "}
-                <BoxyFillingPill href="/" accent="var(--color-green)">
-                  here
-                </BoxyFillingPill>{" "}
-                because of my{" "}
-                <BoxyFillingPill href={RESUME_URL} accent="var(--color-yellow)" external>
-                  resume
-                </BoxyFillingPill>{" "}
-                or{" "}
-                <BoxyFillingPill href="/contact" accent="var(--color-purple)">
-                  application,
-                </BoxyFillingPill>
-                <br />
-                click to learn more{" "}
-                <BoxyFillingPill href="/about" accent="var(--color-blue)">
-                  about me
-                </BoxyFillingPill>{" "}
-                or check out{" "}
-                <BoxyFillingPill href="/projects" accent="var(--color-red)">
-                  my work
-                </BoxyFillingPill>
-              </p>
-            </div>
-
-            <div className="shrink-0">
-              <Image
-                src="/img/bigHeadshotCircle.png"
-                alt="Steven Winnick"
-                width={400}
-                height={400}
-                priority
-                className="mx-auto block h-auto w-[70vw] lg:w-[400px]"
-              />
-            </div>
+          {/*
+           * A module row each, greeting on its floor and the links on the next
+           * row's ceiling, so the two meet across one gutter. `min-rows-1` so a
+           * phone can spill the links past the row rather than clip them.
+           */}
+          <div className="flex max-w-(--grid-main) flex-col gap-line text-sm">
+            <p className="flex min-rows-1 items-end justify-center">
+              Welcome to my website!
+            </p>
+            <p className="min-rows-1">
+              If you&apos;re{" "}
+              <BoxyFillingPill href="/" accent="var(--color-green)">
+                here
+              </BoxyFillingPill>{" "}
+              because of my{" "}
+              <BoxyFillingPill
+                href={RESUME_URL}
+                accent="var(--color-yellow)"
+                external
+              >
+                resume
+              </BoxyFillingPill>{" "}
+              or{" "}
+              <BoxyFillingPill href="/contact" accent="var(--color-purple)">
+                application,
+              </BoxyFillingPill>{" "}
+              click to learn more{" "}
+              <BoxyFillingPill href="/about" accent="var(--color-blue)">
+                about me
+              </BoxyFillingPill>{" "}
+              or check out{" "}
+              <BoxyFillingPill href="/projects" accent="var(--color-red)">
+                my work
+              </BoxyFillingPill>
+            </p>
           </div>
         </div>
 
@@ -88,43 +89,55 @@ export default function HomePage() {
           alt=""
           width={40}
           height={40}
-          className="mx-auto mb-2 block h-auto w-[5%]"
+          className="mx-auto mb-half-line block w-auto lines-1"
         />
-        <div className="h-4 bg-cream" />
+        <div className="h-half-line bg-cream" />
       </section>
 
-      {/* Projects preview */}
-      <section className="bg-cream text-ink">
-        <div className="px-sm pt-2">
-          <h2 className="text-center font-title text-xl">PROJECTS</h2>
-          <p className="pb-3 text-center text-sm">
+      <section className="page-grid gap-y-line bg-cream py-2line text-ink">
+        <div className="col-main flex min-rows-1 flex-col justify-end gap-line text-center">
+          <h2 className="font-title text-xl">PROJECTS</h2>
+          <p className="text-sm">
             Here are a few of the projects I&apos;ve worked on recently
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-sm px-sm pt-3 lg:grid-cols-3">
+        {/*
+         * Subgrid so the previews use the page grid's columns and gutters, and
+         * so their titles, images, and blurbs share rows across all four. One
+         * per column at `xl`, 2x2 once the columns reach full width, stacked
+         * two columns wide below that.
+         */}
+        <div className="col-wide grid grid-cols-subgrid gap-y-2line xl:grid-rows-[auto_auto_auto] xl:gap-y-line">
           {PREVIEW_PROJECTS.map((project) => (
             <Link
               key={project.anchor}
               href={`/projects#${project.anchor}`}
-              className="text-inherit no-underline"
+              className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline md:col-span-1 xl:row-span-3 xl:grid xl:grid-rows-subgrid"
             >
-              <p className="pt-3 text-center font-title text-md">
+              {/*
+               * One column wide from `md`, so the title steps down to fit, and
+               * a module-tall field with the title on its floor, so titles meet
+               * the tops of their images however many lines they run to.
+               */}
+              <p className="flex rows-1 items-end font-title text-md md:text-col">
                 {project.title}
               </p>
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={project.dimensions}
-                height={project.dimensions}
-                className="h-auto w-full bg-ink p-1"
-              />
-              <p className="pt-1 text-sm">{project.blurb}</p>
+              <figure className="module-frame m-0">
+                <Image
+                  src={project.image.src}
+                  alt={project.title}
+                  width={project.image.width}
+                  height={project.image.height}
+                  className="module-crop bg-ink p-1"
+                />
+              </figure>
+              <p className="text-sm">{project.blurb}</p>
             </Link>
           ))}
         </div>
 
-        <p className="px-sm py-12 text-center text-sm">
+        <p className="col-main min-rows-1 text-center text-sm">
           To see more about these projects and others I&apos;ve worked on, click{" "}
           <BoxyFillingPill href="/projects" accent="var(--color-red)" inverted>
             here

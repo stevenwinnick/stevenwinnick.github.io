@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {/* Offset content below the fixed navbar. */}
-        <div className="pt-16">{children}</div>
+        <div className="pt-(--nav-height)">{children}</div>
         <Footer />
       </body>
     </html>

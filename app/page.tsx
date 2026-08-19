@@ -1,6 +1,5 @@
 import Link from "next/link";
 import FillingLink from "@/components/FillingLink";
-import GridIntro from "@/components/GridIntro";
 import ModuleImage from "@/components/ModuleImage";
 import { RESUME_URL } from "@/data/navigation";
 import { PREVIEWED_PROJECTS } from "@/data/projects";
@@ -12,8 +11,6 @@ import { PREVIEWED_PROJECTS } from "@/data/projects";
 export default function HomePage() {
   return (
     <>
-      <GridIntro />
-
       <section className="page-grid gap-y-line pt-line">
         <h1 className="col-main rows-1 normal-case">Hey, I&apos;m Steven.</h1>
 

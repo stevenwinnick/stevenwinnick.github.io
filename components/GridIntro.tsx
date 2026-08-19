@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import styles from "./GridIntro.module.css";
 
@@ -96,12 +97,7 @@ function measureGrid(probes: {
   };
 }
 
-/**
- * The landing page's opening animation: the grid the page is built on, drawn
- * over the visible area as a plaid of modules and gutters, retreating off the
- * screen a line at a time.
- */
-export default function GridIntro() {
+function RetreatingGrid() {
   const gutterRef = useRef<HTMLDivElement>(null);
   const moduleRowRef = useRef<HTMLDivElement>(null);
   const wideRef = useRef<HTMLDivElement>(null);
@@ -200,4 +196,16 @@ export default function GridIntro() {
       </div>
     </>
   );
+}
+
+/**
+ * A page's opening animation: the grid the site is built on, drawn over the
+ * visible area as a plaid of modules and gutters, retreating off the screen a
+ * line at a time.
+ *
+ * Keyed on the route so that it plays again on each page opened, since the
+ * chrome it lives in outlives any one page.
+ */
+export default function GridIntro() {
+  return <RetreatingGrid key={usePathname()} />;
 }

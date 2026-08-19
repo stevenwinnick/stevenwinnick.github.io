@@ -1,9 +1,11 @@
+import GridIntro from "@/components/GridIntro";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 
 /**
- * The frame every page sits in: the fixed header, the rules that run down the
- * sides of the page, and the footer. The root layout wraps every route in it.
+ * The frame every page sits in: the opening animation, the fixed header, the
+ * rules that run down the sides of the page, and the footer. The root layout
+ * wraps every route in it.
  */
 export default function SiteChrome({
   children,
@@ -12,6 +14,8 @@ export default function SiteChrome({
 }) {
   return (
     <div className="relative min-h-dvh bg-white font-body text-blue">
+      <GridIntro />
+
       <SiteHeader />
 
       {/*

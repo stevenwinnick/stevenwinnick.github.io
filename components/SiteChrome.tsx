@@ -27,7 +27,7 @@ export default function SiteChrome({
         aria-hidden="true"
         className="page-grid pointer-events-none absolute inset-0 z-60"
       >
-        <div className="col-wide -mx-[calc(var(--spacing-line)+1px)] cols2:border-x cols2:border-blue" />
+        <div className="col-wide cols2:-mx-[calc(var(--spacing-line)+1px)] cols2:border-x cols2:border-blue" />
       </div>
 
       <main className="pt-(--header-height)">

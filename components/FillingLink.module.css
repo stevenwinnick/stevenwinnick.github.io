@@ -10,7 +10,6 @@
   /* Safari only implements the prefixed form; without it a wrapped link breaks open. */
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.2em;
   text-decoration-thickness: from-font;

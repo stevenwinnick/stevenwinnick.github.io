@@ -13,6 +13,10 @@ const SCROLL_THRESHOLD_PX = 8;
  * Whether the header is on screen: it leaves on a scroll down and comes back on
  * a scroll up, and is always up while the page is within a header's height of
  * the top, where there is nothing for it to cover.
+ *
+ * Tabbing into the header also brings it back: a fixed element cannot be
+ * scrolled into view, so an off-screen header would take focus somewhere the
+ * keyboard user cannot see.
  */
 function useHeaderShown(headerRef: React.RefObject<HTMLElement | null>) {
   const [shown, setShown] = useState(true);
@@ -32,8 +36,15 @@ function useHeaderShown(headerRef: React.RefObject<HTMLElement | null>) {
       setShown(delta < 0 || scrollY <= (headerRef.current?.offsetHeight ?? 0));
     };
 
+    const onFocusIn = () => setShown(true);
+
+    const header = headerRef.current;
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    header?.addEventListener("focusin", onFocusIn);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      header?.removeEventListener("focusin", onFocusIn);
+    };
   }, [headerRef]);
 
   return shown;

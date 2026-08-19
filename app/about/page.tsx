@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import FillingLink from "@/components/FillingLink";
-import Heading from "@/components/Heading";
 import ModuleImage from "@/components/ModuleImage";
+import PageHeading from "@/components/PageHeading";
 
 export const metadata: Metadata = {
   title: "About | Steven Winnick",
@@ -15,18 +15,21 @@ const GRADUATION_PHOTO = {
 
 export default function AboutPage() {
   return (
-    <section className="page-grid gap-y-line pt-line pb-2line">
-      <Heading level={1} className="col-main rows-1">
-        My bio
-      </Heading>
+    <section className="page-grid gap-y-line pb-2line">
+      <PageHeading>About</PageHeading>
 
-      {/* One column wide once the columns are at full width, full width below. */}
-      <ModuleImage
-        image={GRADUATION_PHOTO}
-        alt="Steven Winnick at his Columbia University graduation"
-        tall
-        className="col-span-2 cols2:col-span-1"
-      />
+      {/*
+       * Subgrid so the photo's columns are the page grid's columns: one column
+       * wide once the columns are at full width, full width below.
+       */}
+      <div className="col-wide grid grid-cols-subgrid gap-line">
+        <ModuleImage
+          image={GRADUATION_PHOTO}
+          alt="Steven Winnick at his Columbia University graduation"
+          tall
+          className="col-span-2 cols2:col-span-1"
+        />
+      </div>
 
       <div className="col-main flex flex-col gap-line text-sm">
         <p>

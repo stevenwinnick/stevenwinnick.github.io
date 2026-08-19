@@ -17,7 +17,21 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const SOCIAL_LINKS = [
-  { href: "https://linkedin.com/in/stevenwinnick", label: "LinkedIn" },
-  { href: "https://github.com/stevenwinnick", label: "GitHub" },
+export type SocialLink = {
+  href: string;
+  label: string;
+  icon: string;
+};
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  {
+    href: "https://linkedin.com/in/stevenwinnick",
+    label: "LinkedIn",
+    icon: "/img/linkedin.png",
+  },
+  {
+    href: "https://github.com/stevenwinnick",
+    label: "GitHub",
+    icon: "/img/github.png",
+  },
 ];

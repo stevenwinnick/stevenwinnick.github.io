@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from "./ModuleImage.module.css";
 
 export type ModuleImageSource = { src: string; width: number; height: number };
 
@@ -22,13 +23,13 @@ export default function ModuleImage({
   className = "",
 }: ModuleImageProps) {
   return (
-    <figure className={`module-frame relative isolate m-0 ${className}`}>
+    <figure className={`${styles.frame} relative isolate m-0 ${className}`}>
       <Image
         src={image.src}
         alt={alt}
         width={image.width}
         height={image.height}
-        className={tall ? "module-crop-tall" : "module-crop"}
+        className={tall ? styles.cropTall : styles.crop}
       />
       <span
         aria-hidden="true"

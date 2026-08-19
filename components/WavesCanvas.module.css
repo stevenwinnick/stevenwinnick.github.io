@@ -1,0 +1,10 @@
+/*
+ * Fills the viewport between the header and the footer, rounded down to whole
+ * lines so the canvas boundary stays on the grid. `dvh` so a collapsing mobile
+ * URL bar does not leave a gap.
+ */
+.canvasFrame {
+  --canvas-height: calc(100dvh - var(--header-height) - var(--footer-height));
+  min-block-size: var(--canvas-height);
+  min-block-size: round(down, var(--canvas-height), var(--line));
+}

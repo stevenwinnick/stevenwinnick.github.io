@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       <section className="page-grid gap-y-line pt-line">
-        <Heading level={1} className="col-main rows-1">
+        <Heading level={1} caps={false} className="col-main rows-1">
           Hey, I&apos;m Steven.
         </Heading>
 

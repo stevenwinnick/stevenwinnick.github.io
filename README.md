@@ -26,10 +26,10 @@ npm run serve   # serves the built `out/` directory locally
 
 ## Project structure
 
-- `app/` — routes (App Router); `app/layout.tsx` wraps every route in `SiteChrome`, so pages render only their own content
-- `components/` — shared UI (`SiteChrome`, `SiteHeader`, `SiteFooter`, `Heading`, `ModuleImage`, `FillingLink`, `ProjectSection`, `WavesCanvas`)
-- `data/` — the project list (`projects.tsx`, whose optional `preview` field feeds the landing page) and the site's navigation and social links (`navigation.ts`)
-- `app/globals.css` — Tailwind import, design tokens (`@theme`: the blue/white palette, fonts, `xs`–`xl` type scale, and the `--line`/`--grid-col`/`--grid-row` grid units), fonts, and the shared `page-grid`, column, line-height, and `fill-on-hover` utilities
+- `app/` — routes (App Router)
+- `components/` — shared UI
+- `data/` — shared data
+- `app/globals.css` — global shared CSS: the design tokens and the grid utilities every page is built on
 - `public/` — static assets (images, fonts, `CNAME`, `.nojekyll`)
 
 ## Deployment

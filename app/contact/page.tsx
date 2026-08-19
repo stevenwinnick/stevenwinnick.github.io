@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Heading from "@/components/Heading";
+import PageHeading from "@/components/PageHeading";
 
 export const metadata: Metadata = {
   title: "Contact | Steven Winnick",
@@ -15,10 +15,8 @@ const HINT_CLASSES = "flex lines-1 items-end text-xs";
 
 export default function ContactPage() {
   return (
-    <section className="page-grid gap-y-line pt-line pb-2line">
-      <Heading level={1} className="col-main rows-1">
-        Contact
-      </Heading>
+    <section className="page-grid gap-y-line pb-2line">
+      <PageHeading>Contact</PageHeading>
 
       <p className="col-main min-rows-1 text-sm">
         Want to sell me something?
@@ -97,7 +95,7 @@ export default function ContactPage() {
 
         <button
           type="submit"
-          className="lines-2 self-start border border-blue px-line font-header text-md font-semibold uppercase tracking-header fill-on-hover"
+          className="lines-2 self-start border border-blue px-line font-header text-h3 font-semibold uppercase tracking-header fill-on-hover"
         >
           Send
         </button>

@@ -25,7 +25,7 @@ export default function ProjectSection({ project }: { project: Project }) {
   return (
     <section id={project.id} className="page-grid scroll-mt-(--header-height)">
       <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
-        <Heading level={2} className="col-main rows-1">
+        <Heading level={3} className="col-main rows-1">
           {project.title}
         </Heading>
 
@@ -40,7 +40,7 @@ export default function ProjectSection({ project }: { project: Project }) {
         />
 
         <div className="col-main flex flex-col gap-line">
-          <Heading level={3} className="lines-1">
+          <Heading level={4} className="lines-1">
             Skills
           </Heading>
 
@@ -53,7 +53,7 @@ export default function ProjectSection({ project }: { project: Project }) {
             ))}
           </ul>
 
-          <Heading level={3} className="lines-1">
+          <Heading level={4} className="lines-1">
             Description
           </Heading>
 

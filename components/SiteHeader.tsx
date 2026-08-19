@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import FillingLink from "./FillingLink";
-import { NAV_ITEMS } from "@/data/navigation";
+import SocialLink from "./SocialLink";
+import { NAV_ITEMS, SOCIAL_LINKS } from "@/data/navigation";
 
 function MenuIcon({ open }: { open: boolean }) {
   if (open) {
@@ -42,7 +43,7 @@ function MenuIcon({ open }: { open: boolean }) {
 
 /**
  * The site header: one module row tall, one gutter below the top of the screen,
- * with the name and the menu toggle sitting on the row's floor.
+ * with the name, the social links, and the menu toggle on the row's floor.
  */
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -58,21 +59,27 @@ export default function SiteHeader() {
         <div className="col-wide -mx-line flex rows-1 items-end justify-between border-b border-blue px-line pb-line">
           <Link
             href="/"
-            className="font-header text-md font-semibold uppercase tracking-header no-underline"
+            className="font-header text-h3 font-semibold uppercase tracking-header no-underline"
           >
             Steven Winnick
           </Link>
 
-          <button
-            type="button"
-            aria-label="Toggle navigation menu"
-            aria-expanded={open}
-            aria-controls="site-menu"
-            onClick={() => setOpen((prev) => !prev)}
-            className="flex lines-1 cursor-pointer items-center"
-          >
-            <MenuIcon open={open} />
-          </button>
+          <div className="flex items-center gap-half-line">
+            {SOCIAL_LINKS.map((social) => (
+              <SocialLink key={social.href} social={social} />
+            ))}
+
+            <button
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded={open}
+              aria-controls="site-menu"
+              onClick={() => setOpen((prev) => !prev)}
+              className="flex lines-1 cursor-pointer items-center pl-half-line"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
       </div>
 

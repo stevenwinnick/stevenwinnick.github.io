@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import styles from "./WavesCanvas.module.css";
 
 /**
  * Sonic Canvas: draw a shape and hear it played back as a looping sound wave.
@@ -57,7 +58,12 @@ export default function WavesCanvas() {
     const TAIL_LENGTH = 50;
     const DRAW_SPEED = 3;
     const canvasText = "DRAW SOUND WAVES";
-    ctx.font = `8vw ${token("--font-header")}`;
+    // Measure at a reference size, then scale so the prompt fills 80% of the
+    // canvas, which is narrower than the screen a viewport unit would measure.
+    const headerFont = token("--font-header");
+    ctx.font = `100px ${headerFont}`;
+    const promptSize = (80 * canvas.width) / ctx.measureText(canvasText).width;
+    ctx.font = `${promptSize}px ${headerFont}`;
     const textWidth = ctx.measureText(canvasText).width;
     const centerX = (canvas.width - textWidth) / 2;
     const centerY = canvas.height / 2;
@@ -315,7 +321,7 @@ export default function WavesCanvas() {
   return (
     <div
       ref={containerRef}
-      className="col-wide screen-section w-full overflow-hidden"
+      className={`${styles.canvasFrame} col-wide w-full overflow-hidden`}
     >
       <canvas ref={canvasRef} className="block touch-none">
         Draw on this canvas to hear your sound waves!

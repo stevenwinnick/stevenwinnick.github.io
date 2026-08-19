@@ -17,7 +17,13 @@ export default function SocialLink({ social }: { social: SocialLinkData }) {
       <span
         aria-hidden="true"
         className="block size-line bg-current"
+        // Safari before 15.4 only understands the prefixed properties, and
+        // without a mask the span is a solid square.
         style={{
+          WebkitMaskImage: `url(${social.icon})`,
+          WebkitMaskSize: "contain",
+          WebkitMaskPosition: "center",
+          WebkitMaskRepeat: "no-repeat",
           maskImage: `url(${social.icon})`,
           maskSize: "contain",
           maskPosition: "center",

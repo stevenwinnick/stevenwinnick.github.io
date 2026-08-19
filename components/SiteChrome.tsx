@@ -12,11 +12,11 @@ export default function SiteChrome({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="legacy-type">
       <Navbar />
       {/* Offset content below the fixed navbar. */}
       <div className="pt-(--nav-height)">{children}</div>
       <Footer />
-    </>
+    </div>
   );
 }

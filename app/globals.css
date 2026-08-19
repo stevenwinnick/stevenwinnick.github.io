@@ -127,6 +127,31 @@
   --breakpoint-cols4: 87.5rem;
 }
 
+/*
+ * The type scale the pages that have not been redesigned yet were built for,
+ * pinned here so the landing page's smaller scale does not shrink them. Delete
+ * this block once those pages move onto the new scale.
+ *
+ * Every token another token derives from has to be repeated: a custom property
+ * is substituted where it is *declared*, not where it is used, so redeclaring
+ * `--line` alone would leave the line heights and `--nav-height` computed from
+ * the root's value.
+ */
+.legacy-type {
+  --text-xs: 1rem;
+  --text-sm: 1.25rem;
+  --text-md: clamp(1.9rem, 5vw, 2.9rem);
+  --text-lg: clamp(2.75rem, 8vw, 5rem);
+  --text-xl: clamp(3.25rem, 10vw, 7.5rem);
+  --line: calc(var(--text-sm) * var(--leading-body));
+  --leading-grid: round(up, 1em, var(--line));
+  --text-xs--line-height: var(--leading-grid);
+  --text-md--line-height: var(--leading-grid);
+  --text-lg--line-height: var(--leading-grid);
+  --text-xl--line-height: var(--leading-grid);
+  --nav-height: calc(2 * var(--line));
+}
+
 body {
   background-color: var(--color-ink);
   color: var(--color-cream);

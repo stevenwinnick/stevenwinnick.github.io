@@ -6,8 +6,8 @@ import styles from "./GridIntro.module.css";
 const HOLD_MS = 150;
 const STAGGER_MS = 100;
 const RETREAT_MS = 420;
-/* How far the columns' retreat reaches back into the tail of the rows'. */
-const PHASE_OVERLAP_MS = 150;
+/* The pause between the last row line leaving and the first column line going. */
+const PHASE_GAP_MS = 500;
 
 type Line = {
   /** Distance from the top of the screen for a row, from the left for a column. */
@@ -80,10 +80,7 @@ function measureGrid(probes: {
     }));
 
   const columnsStartMs =
-    HOLD_MS +
-    (rowLines.length - 1) * STAGGER_MS +
-    RETREAT_MS -
-    PHASE_OVERLAP_MS;
+    HOLD_MS + (rowLines.length - 1) * STAGGER_MS + RETREAT_MS + PHASE_GAP_MS;
   const columnLines = columnOffsets
     .sort((a, b) => b - a)
     .map((offset, index) => ({
@@ -154,41 +151,53 @@ export default function GridIntro() {
   }
 
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-70 overflow-hidden"
-    >
-      {/* Measured, never seen: the page grid at the width of the screen. */}
-      <div className="page-grid invisible absolute inset-0">
-        <div ref={gutterRef} className="lines-1" />
-        <div ref={moduleRowRef} className="rows-1" />
-        <div ref={wideRef} className="col-wide" />
-        <div ref={mainRef} className="col-main" />
+    <>
+      {/*
+       * The rows sit under the header, which is opaque, so they stop at it
+       * rather than striping the name and the menu toggle. The columns are drawn
+       * over it, as the page's own frame is.
+       */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-40 overflow-hidden"
+      >
+        {/* Measured, never seen: the page grid at the width of the screen. */}
+        <div className="page-grid invisible absolute inset-0">
+          <div ref={gutterRef} className="lines-1" />
+          <div ref={moduleRowRef} className="rows-1" />
+          <div ref={wideRef} className="col-wide" />
+          <div ref={mainRef} className="col-main" />
+        </div>
+
+        {grid?.rowLines.map((line) => (
+          <div
+            key={`row-${line.offset}`}
+            className={styles.rowLine}
+            style={{
+              top: `${line.offset}px`,
+              animationDuration: `${RETREAT_MS}ms`,
+              animationDelay: `${line.delayMs}ms`,
+            }}
+          />
+        ))}
       </div>
 
-      {grid?.rowLines.map((line) => (
-        <div
-          key={`row-${line.offset}`}
-          className={styles.rowLine}
-          style={{
-            top: `${line.offset}px`,
-            animationDuration: `${RETREAT_MS}ms`,
-            animationDelay: `${line.delayMs}ms`,
-          }}
-        />
-      ))}
-
-      {grid?.columnLines.map((line) => (
-        <div
-          key={`column-${line.offset}`}
-          className={styles.columnLine}
-          style={{
-            left: `${line.offset}px`,
-            animationDuration: `${RETREAT_MS}ms`,
-            animationDelay: `${line.delayMs}ms`,
-          }}
-        />
-      ))}
-    </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-70 overflow-hidden"
+      >
+        {grid?.columnLines.map((line) => (
+          <div
+            key={`column-${line.offset}`}
+            className={styles.columnLine}
+            style={{
+              left: `${line.offset}px`,
+              animationDuration: `${RETREAT_MS}ms`,
+              animationDelay: `${line.delayMs}ms`,
+            }}
+          />
+        ))}
+      </div>
+    </>
   );
 }

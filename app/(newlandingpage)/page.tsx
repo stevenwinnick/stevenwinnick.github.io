@@ -36,8 +36,25 @@ const PREVIEW_PROJECTS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-dvh bg-white font-new text-blue-new">
+    <div className="relative min-h-dvh bg-white font-body-new text-blue-new">
       <LandingHeader />
+
+      {/*
+       * The frame the page sits in, a gutter outside the columns and drawn over
+       * the fixed header so it reads as one line down the whole page. It only
+       * appears once the columns are at full width, since below that the gutter
+       * is the screen's own edge.
+       */}
+      <div
+        aria-hidden="true"
+        className="page-grid pointer-events-none absolute inset-0 z-60"
+      >
+        {/*
+         * The extra pixel puts the rule just outside the gutter, so the page's
+         * horizontal rules butt up against its inside edge.
+         */}
+        <div className="col-wide -mx-[calc(var(--spacing-line)+1px)] cols2:border-x cols2:border-blue-new" />
+      </div>
 
       {/*
        * Every text block is a module row with its copy on the row's ceiling, so
@@ -45,7 +62,7 @@ export default function HomePage() {
        */}
       <main className="pt-(--header-height)">
         <section className="page-grid gap-y-line pt-line">
-          <h1 className="col-main flex rows-1 items-end text-xl">
+          <h1 className="col-main flex rows-1 items-end font-header-new text-xl font-medium tracking-header-new">
             Hey, I&apos;m Steven.
           </h1>
 
@@ -54,7 +71,7 @@ export default function HomePage() {
           <p className="col-main min-rows-1 text-sm">
             If you&apos;re <FillingLink href="/">here</FillingLink> because of
             my{" "}
-            <FillingLink href={RESUME_URL} external>
+            <FillingLink href={RESUME_URL} external newTab>
               resume
             </FillingLink>{" "}
             or <FillingLink href="/contact">application</FillingLink>, click to
@@ -64,19 +81,18 @@ export default function HomePage() {
         </section>
 
         <section className="page-grid pb-2line">
-          {/* Mobile has no room for the box, so the section keeps a plain rule. */}
-          <hr className="col-wide m-0 border-t border-blue-new cols2:hidden" />
-
           {/*
-           * Subgrid so the section keeps the page grid's columns while the box
-           * around it is drawn a gutter outside them: the negative margin takes
-           * the border out to there and the matching padding brings the columns
-           * back, so they still line up with the rest of the page. The extra
-           * pixel puts the side borders outside the grid, so they fall off the
-           * screen rather than cutting across it below `cols4`.
+           * Subgrid so the section keeps the page grid's columns while its rules
+           * run a gutter outside them, out to the frame: the negative margin
+           * takes them there and the matching padding brings the columns back,
+           * so they still line up with the rest of the page. Only the frame
+           * draws the sides, and it closes the section off at the bottom where
+           * there is no frame to meet.
            */}
-          <div className="col-wide grid grid-cols-subgrid gap-y-line pt-line cols2:-mx-[calc(var(--spacing-line)+1px)] cols2:border cols2:border-blue-new cols2:px-[calc(var(--spacing-line)+1px)] cols2:py-line">
-            <h2 className="col-main flex rows-1 items-end text-md">Projects</h2>
+          <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue-new px-line py-line cols2:border-b">
+            <h2 className="col-main flex rows-1 items-end font-header-new text-lg font-semibold tracking-header-new">
+              Projects
+            </h2>
 
             <p className="col-main min-rows-1 text-sm">
               Here are a few of the projects I&apos;ve worked on recently:
@@ -96,7 +112,7 @@ export default function HomePage() {
                   href={`/projects#${project.anchor}`}
                   className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline cols2:col-span-1 cols4:row-span-3 cols4:grid cols4:grid-rows-subgrid"
                 >
-                  <p className="flex lines-1 items-end text-sm">
+                  <p className="flex lines-1 items-end font-header-new text-md font-semibold tracking-header-new">
                     {project.title}
                   </p>
                   <figure className="module-frame relative isolate m-0">
@@ -129,7 +145,7 @@ export default function HomePage() {
         </section>
 
         <footer className="page-grid">
-          <p className="col-wide flex lines-2 items-center border-t border-blue-new text-xs">
+          <p className="col-wide flex lines-2 items-center text-xs">
             &copy; 2026 Steven Winnick
           </p>
         </footer>

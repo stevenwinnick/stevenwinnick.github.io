@@ -51,12 +51,11 @@ export default function LandingHeader() {
     <header className="fixed inset-x-0 top-0 z-50 bg-white pt-line text-blue-new">
       <div className="page-grid">
         {/*
-         * The rule turns up the sides of the row and stops a gutter outside the
-         * outer columns, so the header reads as a tray the page sits under. The
+         * The rule runs out to the page's frame, which draws the sides. The
          * negative margin takes it out there and the padding brings the content
          * back to the columns, a line clear of the rule on both sides and below.
          */}
-        <div className="col-wide -mx-line flex rows-1 items-end justify-between border-x border-b border-blue-new px-line pb-line">
+        <div className="col-wide -mx-line flex rows-1 items-end justify-between border-b border-blue-new px-line pb-line">
           <Link href="/" className="text-sm no-underline">
             Steven Winnick
           </Link>
@@ -96,6 +95,7 @@ export default function LandingHeader() {
                 key={item.href}
                 href={item.href}
                 external={item.external}
+                newTab={item.newTab}
                 className="text-sm"
               >
                 {item.label}

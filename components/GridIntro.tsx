@@ -8,7 +8,7 @@ const HOLD_MS = 150;
 const STAGGER_MS = 100;
 const RETREAT_MS = 420;
 /* The pause between the last row line leaving and the first column line going. */
-const PHASE_GAP_MS = 500;
+const PHASE_GAP_MS = 240;
 
 type Line = {
   /** Distance from the top of the screen for a row, from the left for a column. */

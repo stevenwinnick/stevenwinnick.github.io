@@ -21,12 +21,13 @@ export default function AboutPage() {
       <p className="col-main min-rows-1 text-sm">A bit about me.</p>
 
       {/*
-       * The photos flank the copy in the outer columns from `cols4`, starting
-       * on the intro's row, and run above it below that width, where those
-       * columns do not exist. Their columns are explicit throughout, since
-       * auto-placement would otherwise drop them in an outer track that is
-       * zero width until `cols4`. The mirrored photo is decorative, hence the
-       * empty alt.
+       * The photos flank the copy in the outer columns from `cols4`, the left
+       * one on the intro's row and the right one a row lower, with the copy, so
+       * the two are offset. Below `cols4` the single photo runs above the copy,
+       * where those columns do not exist. Their columns are explicit
+       * throughout, since auto-placement would otherwise drop them in an outer
+       * track that is zero width until `cols4`. The repeated photo carries no
+       * alt text.
        */}
       <ModuleImage
         image={GRADUATION_PHOTO}
@@ -39,7 +40,7 @@ export default function AboutPage() {
         image={GRADUATION_PHOTO}
         alt=""
         tall
-        className="hidden self-start cols4:col-start-5 cols4:col-end-6 cols4:row-start-2 cols4:row-end-4 cols4:block"
+        className="hidden self-start cols4:col-start-5 cols4:col-end-6 cols4:row-start-3 cols4:row-end-4 cols4:block"
       />
 
       <div className="col-main flex flex-col gap-line text-sm">

@@ -21,37 +21,49 @@ function SkillListItem({ skill }: { skill: SkillItem }) {
 // The negative margin lets the opening rule run out to the page frame while the
 // subgrid keeps the content on the page grid's columns.
 export default function ProjectSection({ project }: { project: Project }) {
-  // The shots start on the skills row, which is the third only when the project
-  // has a subtitle to fill the second.
-  const imageRow = project.subtitle ? "cols4:row-start-3" : "cols4:row-start-2";
+  /*
+   * The rows are placed by hand because the composition changes at every step:
+   * mobile stacks the title, shot, summary and body; from `cols2` the summary
+   * takes the left column with the shot beside it and a second shot below;
+   * from `cols4` the shots move out to the outer columns, the second offset a
+   * row down so it sits with the body. Without a summary every row above the
+   * body moves up one.
+   */
+  const summaryRow = "row-start-3 cols2:row-start-2";
+  const secondShotRow = project.subtitle
+    ? "cols2:row-start-3"
+    : "cols2:row-start-2";
+  const bodyRow = project.subtitle
+    ? "row-start-4 cols4:row-start-3"
+    : "row-start-3 cols4:row-start-2";
 
   return (
     <section id={project.id} className="page-grid scroll-mt-(--header-height)">
       <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
-        <h3 className="col-main rows-1">{project.title}</h3>
+        <h3 className="col-main row-start-1 rows-1">{project.title}</h3>
 
-        {project.subtitle && (
-          <p className="col-main min-rows-1 text-sm">{project.subtitle}</p>
-        )}
-
-        {/*
-         * From `cols4` the shot sits in the left outer column and is mirrored
-         * into the right one, so the copy runs between the two. The mirrored
-         * copy is decorative, hence the empty alt.
-         */}
         <ModuleImage
           image={project.image}
           alt={project.title}
-          className={`col-start-1 col-end-3 self-start cols2:col-end-2 ${imageRow}`}
+          className="col-start-1 col-end-3 row-start-2 self-start cols2:col-start-2 cols2:col-end-3 cols4:col-start-1 cols4:col-end-2"
         />
 
+        {project.subtitle && (
+          <p
+            className={`col-main min-rows-1 text-sm cols2:col-start-1 cols2:col-end-2 cols4:col-start-2 cols4:col-end-4 ${summaryRow}`}
+          >
+            {project.subtitle}
+          </p>
+        )}
+
+        {/* A repeat of the shot above, so it carries no alt text. */}
         <ModuleImage
           image={project.image}
           alt=""
-          className={`hidden self-start cols4:col-start-4 cols4:col-end-5 cols4:block ${imageRow}`}
+          className={`hidden self-start cols2:col-start-1 cols2:col-end-2 cols2:block cols4:col-start-4 cols4:col-end-5 ${secondShotRow}`}
         />
 
-        <div className="col-main flex flex-col gap-line">
+        <div className={`col-main flex flex-col gap-line ${bodyRow}`}>
           <h4 className="lines-1">Skills</h4>
 
           <ul className="list-disc pl-line text-sm">

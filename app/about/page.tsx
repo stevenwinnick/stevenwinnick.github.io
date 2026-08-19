@@ -16,7 +16,7 @@ const GRADUATION_PHOTO = {
 
 export default function AboutPage() {
   return (
-    <section className="page-grid gap-y-line pb-2line">
+    <section className="page-grid gap-y-line pb-(--grid-row)">
       <PageHeading>About</PageHeading>
 
       <PageIntro>A bit about me.</PageIntro>

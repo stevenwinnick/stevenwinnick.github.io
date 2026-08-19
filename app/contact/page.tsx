@@ -73,7 +73,7 @@ function Field({
 
 export default function ContactPage() {
   return (
-    <section className="page-grid gap-y-line pb-2line">
+    <section className="page-grid gap-y-line pb-(--grid-row)">
       <PageHeading>Contact</PageHeading>
 
       <PageIntro>

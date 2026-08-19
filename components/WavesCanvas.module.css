@@ -1,10 +1,13 @@
 /*
- * Fills the viewport between the header and the footer, rounded down to whole
- * lines so the canvas boundary stays on the grid. `dvh` so a collapsing mobile
- * URL bar does not leave a gap.
+ * Fills the viewport between the header and the footer's text, rounded down to
+ * whole lines so the canvas boundary stays on the grid. The empty row above
+ * that text is left to scroll, so that the drawing area keeps its height.
+ * `dvh` so a collapsing mobile URL bar does not leave a gap.
  */
 .canvasFrame {
-  --canvas-height: calc(100dvh - var(--header-height) - var(--footer-height));
+  --canvas-height: calc(
+    100dvh - var(--header-height) - var(--footer-text-height)
+  );
   min-block-size: var(--canvas-height);
   min-block-size: round(down, var(--canvas-height), var(--line));
 }

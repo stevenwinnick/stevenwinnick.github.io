@@ -51,7 +51,8 @@
   /* One row of modules, the vertical counterpart of --grid-col. */
   --grid-row: calc(var(--grid-module-lines) * var(--line));
   --header-height: calc(var(--grid-gutter) + var(--grid-row));
-  --footer-height: calc(2 * var(--line));
+  /* The footer's line of text, its rule and the empty row above them aside. */
+  --footer-text-height: calc(2 * var(--line));
 }
 
 @theme {

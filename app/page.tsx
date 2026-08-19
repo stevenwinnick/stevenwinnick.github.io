@@ -27,16 +27,16 @@ export default function HomePage() {
         </p>
       </section>
 
-      <section className="page-grid pb-2line">
+      <section className="page-grid">
         {/*
          * Subgrid so the section keeps the page grid's columns while its rules
          * run a gutter outside them, out to the frame: the negative margin
          * takes them there and the matching padding brings the columns back,
          * so they still line up with the rest of the page. Only the frame
-         * draws the sides, and it closes the section off at the bottom where
-         * there is no frame to meet.
+         * draws the sides, and the footer's rule closes the section off at the
+         * bottom.
          */}
-        <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line cols2:border-b">
+        <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
           <h2 className="col-main rows-1">Projects</h2>
 
           <p className="col-main min-rows-1 text-sm">

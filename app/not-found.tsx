@@ -4,7 +4,7 @@ import PageIntro from "@/components/PageIntro";
 
 export default function NotFound() {
   return (
-    <section className="page-grid gap-y-line pb-2line">
+    <section className="page-grid gap-y-line pb-(--grid-row)">
       <PageHeading>Page not found</PageHeading>
 
       <PageIntro>

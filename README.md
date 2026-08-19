@@ -29,7 +29,7 @@ npm run serve   # serves the built `out/` directory locally
 - `app/` — routes (App Router)
 - `components/` — shared UI
 - `data/` — shared data
-- `app/globals.css` — global shared CSS: the design tokens and the grid utilities every page is built on
+- `app/globals.css` — global shared CSS
 - `public/` — static assets (images, fonts, `CNAME`, `.nojekyll`)
 
 ## Deployment

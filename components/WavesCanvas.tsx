@@ -23,9 +23,11 @@ export default function WavesCanvas() {
 
     // Audio graph: a compressor feeds the destination, a global gain feeds the
     // compressor, and a pool of buffer/gain nodes lets multiple sounds overlap.
-    const audioCtx = new (window.AudioContext ||
+    const audioCtx = new (
+      window.AudioContext ||
       (window as unknown as { webkitAudioContext: typeof AudioContext })
-        .webkitAudioContext)();
+        .webkitAudioContext
+    )();
     const dynamicsCompressor = audioCtx.createDynamicsCompressor();
     dynamicsCompressor.connect(audioCtx.destination);
     const globalGain = audioCtx.createGain();
@@ -55,6 +57,9 @@ export default function WavesCanvas() {
     let path: number[][] = [];
     let prevX = 0;
     let prevY = 0;
+    let red = 0;
+    let green = 0;
+    let blue = 256;
     const TAIL_LENGTH = 50;
     const DRAW_SPEED = 3;
     const canvasText = "DRAW SOUND WAVES";
@@ -84,11 +89,48 @@ export default function WavesCanvas() {
       prevY = newY;
     }
 
+    // Walks the edges of the RGB cube, so consecutive strokes shade into each
+    // other and the drawn wave runs through the whole spectrum.
+    function nextColor() {
+      const CYCLE_SPEED = 3;
+      if (red >= 256) {
+        if (blue > 0) {
+          blue -= CYCLE_SPEED;
+        } else if (green >= 256) {
+          red -= CYCLE_SPEED;
+        } else {
+          green += CYCLE_SPEED;
+        }
+      } else if (green >= 256) {
+        if (red > 0) {
+          red -= CYCLE_SPEED;
+        } else if (blue >= 256) {
+          green -= CYCLE_SPEED;
+        } else {
+          blue += CYCLE_SPEED;
+        }
+      } else if (blue >= 256) {
+        if (green > 0) {
+          green -= CYCLE_SPEED;
+        } else if (red >= 256) {
+          blue -= CYCLE_SPEED;
+        } else {
+          red += CYCLE_SPEED;
+        }
+      }
+      return `rgb(${red}, ${green}, ${blue})`;
+    }
+
     // Draw a line between two points
-    function drawLine(startX: number, startY: number, endX: number, endY: number) {
+    function drawLine(
+      startX: number,
+      startY: number,
+      endX: number,
+      endY: number,
+    ) {
       if (!ctx) return;
       ctx.beginPath();
-      ctx.strokeStyle = FOREGROUND_COLOR;
+      ctx.strokeStyle = nextColor();
       ctx.lineWidth = 8;
       ctx.lineCap = "round";
       ctx.moveTo(startX, startY);
@@ -123,8 +165,10 @@ export default function WavesCanvas() {
       const cosAngle = Math.cos(-angle);
       const sinAngle = Math.sin(-angle);
       return drawnPath.map((point) => {
-        const newX = cosAngle * (point[0] - startX) - sinAngle * (point[1] - startY);
-        const newY = sinAngle * (point[0] - startX) + cosAngle * (point[1] - startY);
+        const newX =
+          cosAngle * (point[0] - startX) - sinAngle * (point[1] - startY);
+        const newY =
+          sinAngle * (point[0] - startX) + cosAngle * (point[1] - startY);
         return [newX, newY];
       });
     }
@@ -171,7 +215,10 @@ export default function WavesCanvas() {
       return curBuffer;
     }
 
-    function startPlayingWave(wave: Float32Array<ArrayBuffer>, bufferIdx: number) {
+    function startPlayingWave(
+      wave: Float32Array<ArrayBuffer>,
+      bufferIdx: number,
+    ) {
       initBufferSource(bufferIdx);
       buffers[bufferIdx] = audioCtx.createBuffer(
         1,
@@ -215,7 +262,12 @@ export default function WavesCanvas() {
       }
     }
 
-    function eraseLine(startX: number, startY: number, endX: number, endY: number) {
+    function eraseLine(
+      startX: number,
+      startY: number,
+      endX: number,
+      endY: number,
+    ) {
       if (!ctx) return;
       ctx.beginPath();
       ctx.lineWidth = 12;
@@ -244,7 +296,10 @@ export default function WavesCanvas() {
       ) {
         const newX = localPrevX + 1;
         const newY = newWave[newX];
-        prevQueue.push([startX + repetitions * repetitionX + newX, startY + newY]);
+        prevQueue.push([
+          startX + repetitions * repetitionX + newX,
+          startY + newY,
+        ]);
         drawLine(
           startX + repetitions * repetitionX + localPrevX,
           startY + localPrevY,

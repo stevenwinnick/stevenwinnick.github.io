@@ -1,4 +1,3 @@
-import Heading from "@/components/Heading";
 import ModuleImage from "@/components/ModuleImage";
 import type { Project, SkillItem } from "@/data/projects";
 
@@ -25,9 +24,7 @@ export default function ProjectSection({ project }: { project: Project }) {
   return (
     <section id={project.id} className="page-grid scroll-mt-(--header-height)">
       <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
-        <Heading level={3} className="col-main rows-1">
-          {project.title}
-        </Heading>
+        <h3 className="col-main rows-1">{project.title}</h3>
 
         {project.subtitle && (
           <p className="col-main min-rows-1 text-sm">{project.subtitle}</p>
@@ -40,9 +37,7 @@ export default function ProjectSection({ project }: { project: Project }) {
         />
 
         <div className="col-main flex flex-col gap-line">
-          <Heading level={4} className="lines-1">
-            Skills
-          </Heading>
+          <h4 className="lines-1">Skills</h4>
 
           <ul className="list-disc pl-line text-sm">
             {project.skills.map((skill) => (
@@ -53,9 +48,7 @@ export default function ProjectSection({ project }: { project: Project }) {
             ))}
           </ul>
 
-          <Heading level={4} className="lines-1">
-            Description
-          </Heading>
+          <h4 className="lines-1">Description</h4>
 
           <div className="flex flex-col gap-line text-sm">
             {project.description}

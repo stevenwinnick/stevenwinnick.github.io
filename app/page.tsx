@@ -1,6 +1,5 @@
 import Link from "next/link";
 import FillingLink from "@/components/FillingLink";
-import Heading from "@/components/Heading";
 import ModuleImage from "@/components/ModuleImage";
 import { RESUME_URL } from "@/data/navigation";
 import { PREVIEWED_PROJECTS } from "@/data/projects";
@@ -13,9 +12,7 @@ export default function HomePage() {
   return (
     <>
       <section className="page-grid gap-y-line pt-line">
-        <Heading level={1} caps={false} className="col-main rows-1">
-          Hey, I&apos;m Steven.
-        </Heading>
+        <h1 className="col-main rows-1 normal-case">Hey, I&apos;m Steven.</h1>
 
         <p className="col-main min-rows-1 text-sm">Welcome to my website!</p>
 
@@ -40,9 +37,7 @@ export default function HomePage() {
          * there is no frame to meet.
          */}
         <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line cols2:border-b">
-          <Heading level={2} className="col-main rows-1">
-            Projects
-          </Heading>
+          <h2 className="col-main rows-1">Projects</h2>
 
           <p className="col-main min-rows-1 text-sm">
             Here are a few of the projects I&apos;ve worked on recently:
@@ -62,10 +57,11 @@ export default function HomePage() {
                 href={`/projects#${project.id}`}
                 className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline cols2:col-span-1 cols4:row-span-3 cols4:grid cols4:grid-rows-subgrid"
               >
-                <Heading level={3} className="lines-1">
-                  {project.title}
-                </Heading>
-                <ModuleImage image={project.preview.image} alt={project.title} />
+                <h3 className="lines-1">{project.title}</h3>
+                <ModuleImage
+                  image={project.preview.image}
+                  alt={project.title}
+                />
                 <p className="min-rows-1 text-sm">{project.preview.blurb}</p>
               </Link>
             ))}

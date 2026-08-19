@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Heading from "./Heading";
 
 /**
  * A page's title, on the floor of the module row below the site header, with
@@ -8,9 +7,5 @@ import Heading from "./Heading";
  * below that.
  */
 export default function PageHeading({ children }: { children: ReactNode }) {
-  return (
-    <Heading level={2} className="col-main rows-1 -mb-line">
-      {children}
-    </Heading>
-  );
+  return <h2 className="col-main rows-1 -mb-line">{children}</h2>;
 }

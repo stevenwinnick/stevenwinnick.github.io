@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import FillingLink from "@/components/FillingLink";
+import GridIntro from "@/components/GridIntro";
 import LandingHeader from "@/components/LandingHeader";
 import { RESUME_URL } from "@/data/navigation";
 
@@ -37,6 +38,8 @@ const PREVIEW_PROJECTS = [
 export default function HomePage() {
   return (
     <div className="relative min-h-dvh bg-white font-body-new text-blue-new">
+      <GridIntro />
+
       <LandingHeader />
 
       {/*

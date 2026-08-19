@@ -1,0 +1,41 @@
+/*
+ * The opening animation's grid lines. Each line is laid down at full length and
+ * then retreats along itself, the rows towards the left and the columns towards
+ * the top, so the whole plaid pulls off the screen up and to the left. The
+ * timings live in `GridIntro.tsx`, since they depend on how many lines fit on
+ * the screen.
+ */
+.line {
+  position: absolute;
+  background-color: var(--color-blue-new);
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  animation-fill-mode: forwards;
+}
+
+.rowLine {
+  composes: line;
+  inset-inline: 0;
+  block-size: 1px;
+  transform-origin: left center;
+  animation-name: retreat-inline;
+}
+
+.columnLine {
+  composes: line;
+  inset-block: 0;
+  inline-size: 1px;
+  transform-origin: center top;
+  animation-name: retreat-block;
+}
+
+@keyframes retreat-inline {
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes retreat-block {
+  to {
+    transform: scaleY(0);
+  }
+}

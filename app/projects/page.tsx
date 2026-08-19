@@ -1,24 +1,27 @@
+import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
+import PageIntro from "@/components/PageIntro";
 import ProjectSection from "@/components/ProjectSection";
 import { PROJECTS } from "@/data/projects";
+
+export const metadata: Metadata = {
+  title: "Projects | Steven Winnick",
+};
 
 export default function ProjectsPage() {
   return (
     <>
-      <section className="bg-cream px-sm py-3 text-ink">
-        <div className="mx-auto max-w-5xl">
-          <PageHeading>Projects</PageHeading>
-          <p className="text-center text-sm">A bit about my favorite projects I&apos;ve worked on and what I learned from each</p>
-        </div>
+      <section className="page-grid gap-y-line">
+        <PageHeading>Projects</PageHeading>
+
+        <PageIntro>
+          A bit about my favorite projects I&apos;ve worked on and what I
+          learned from each.
+        </PageIntro>
       </section>
 
-      {/* Sections alternate color schemes, starting with the inverted (cream) one. */}
-      {PROJECTS.map((project, index) => (
-        <ProjectSection
-          key={project.id}
-          project={project}
-          inverted={index % 2 === 0}
-        />
+      {PROJECTS.map((project) => (
+        <ProjectSection key={project.id} project={project} />
       ))}
     </>
   );

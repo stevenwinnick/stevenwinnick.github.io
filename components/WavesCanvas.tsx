@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import styles from "./WavesCanvas.module.css";
 
 /**
  * Sonic Canvas: draw a shape and hear it played back as a looping sound wave.
@@ -22,9 +23,11 @@ export default function WavesCanvas() {
 
     // Audio graph: a compressor feeds the destination, a global gain feeds the
     // compressor, and a pool of buffer/gain nodes lets multiple sounds overlap.
-    const audioCtx = new (window.AudioContext ||
+    const audioCtx = new (
+      window.AudioContext ||
       (window as unknown as { webkitAudioContext: typeof AudioContext })
-        .webkitAudioContext)();
+        .webkitAudioContext
+    )();
     const dynamicsCompressor = audioCtx.createDynamicsCompressor();
     dynamicsCompressor.connect(audioCtx.destination);
     const globalGain = audioCtx.createGain();
@@ -42,26 +45,34 @@ export default function WavesCanvas() {
       gainNodes[i].gain.value = 0;
     }
 
-    // Canvas setup
+    // Canvas setup. The canvas cannot use CSS, so it reads the palette and the
+    // display face off the document instead of repeating them.
+    const rootStyle = getComputedStyle(document.documentElement);
+    const token = (name: string) => rootStyle.getPropertyValue(name).trim();
+    const FOREGROUND_COLOR = token("--color-blue");
+    const BACKGROUND_COLOR = token("--color-white");
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
     let mouseDown = false;
     let path: number[][] = [];
     let prevX = 0;
     let prevY = 0;
-    let prevR = 0;
-    let prevG = 0;
-    let prevB = 256;
+    let red = 0;
+    let green = 0;
+    let blue = 256;
     const TAIL_LENGTH = 50;
     const DRAW_SPEED = 3;
-    const TEXT_COLOR = "#FFFDE9";
-    const BACKGROUND_COLOR = "#181818";
     const canvasText = "DRAW SOUND WAVES";
-    ctx.font = "8vw redacted-title";
+    // Measure at a reference size, then scale so the prompt fills 80% of the
+    // canvas, which is narrower than the screen a viewport unit would measure.
+    const headerFont = token("--font-header");
+    ctx.font = `100px ${headerFont}`;
+    const promptSize = (80 * canvas.width) / ctx.measureText(canvasText).width;
+    ctx.font = `${promptSize}px ${headerFont}`;
     const textWidth = ctx.measureText(canvasText).width;
     const centerX = (canvas.width - textWidth) / 2;
     const centerY = canvas.height / 2;
-    ctx.fillStyle = TEXT_COLOR;
+    ctx.fillStyle = FOREGROUND_COLOR;
     ctx.fillText(canvasText, centerX, centerY);
 
     function resetPath() {
@@ -78,8 +89,45 @@ export default function WavesCanvas() {
       prevY = newY;
     }
 
+    // Walks the edges of the RGB cube, so consecutive strokes shade into each
+    // other and the drawn wave runs through the whole spectrum.
+    function nextColor() {
+      const CYCLE_SPEED = 3;
+      if (red >= 256) {
+        if (blue > 0) {
+          blue -= CYCLE_SPEED;
+        } else if (green >= 256) {
+          red -= CYCLE_SPEED;
+        } else {
+          green += CYCLE_SPEED;
+        }
+      } else if (green >= 256) {
+        if (red > 0) {
+          red -= CYCLE_SPEED;
+        } else if (blue >= 256) {
+          green -= CYCLE_SPEED;
+        } else {
+          blue += CYCLE_SPEED;
+        }
+      } else if (blue >= 256) {
+        if (green > 0) {
+          green -= CYCLE_SPEED;
+        } else if (red >= 256) {
+          blue -= CYCLE_SPEED;
+        } else {
+          red += CYCLE_SPEED;
+        }
+      }
+      return `rgb(${red}, ${green}, ${blue})`;
+    }
+
     // Draw a line between two points
-    function drawLine(startX: number, startY: number, endX: number, endY: number) {
+    function drawLine(
+      startX: number,
+      startY: number,
+      endX: number,
+      endY: number,
+    ) {
       if (!ctx) return;
       ctx.beginPath();
       ctx.strokeStyle = nextColor();
@@ -89,37 +137,6 @@ export default function WavesCanvas() {
       ctx.lineTo(endX, endY);
       ctx.stroke();
       ctx.closePath();
-    }
-
-    // Cycle through the colors
-    function nextColor() {
-      const CYCLE_SPEED = 3;
-      if (prevR >= 256) {
-        if (prevB > 0) {
-          prevB = prevB - CYCLE_SPEED;
-        } else if (prevG >= 256) {
-          prevR = prevR - CYCLE_SPEED;
-        } else {
-          prevG = prevG + CYCLE_SPEED;
-        }
-      } else if (prevG >= 256) {
-        if (prevR > 0) {
-          prevR = prevR - CYCLE_SPEED;
-        } else if (prevB >= 256) {
-          prevG = prevG - CYCLE_SPEED;
-        } else {
-          prevB = prevB + CYCLE_SPEED;
-        }
-      } else if (prevB >= 256) {
-        if (prevG > 0) {
-          prevG = prevG - CYCLE_SPEED;
-        } else if (prevR >= 256) {
-          prevB = prevB - CYCLE_SPEED;
-        } else {
-          prevR = prevR + CYCLE_SPEED;
-        }
-      }
-      return `rgb(${prevR}, ${prevG}, ${prevB})`;
     }
 
     // Compute the sound wave, start playing it, animate the path, then stop it
@@ -148,8 +165,10 @@ export default function WavesCanvas() {
       const cosAngle = Math.cos(-angle);
       const sinAngle = Math.sin(-angle);
       return drawnPath.map((point) => {
-        const newX = cosAngle * (point[0] - startX) - sinAngle * (point[1] - startY);
-        const newY = sinAngle * (point[0] - startX) + cosAngle * (point[1] - startY);
+        const newX =
+          cosAngle * (point[0] - startX) - sinAngle * (point[1] - startY);
+        const newY =
+          sinAngle * (point[0] - startX) + cosAngle * (point[1] - startY);
         return [newX, newY];
       });
     }
@@ -196,7 +215,10 @@ export default function WavesCanvas() {
       return curBuffer;
     }
 
-    function startPlayingWave(wave: Float32Array<ArrayBuffer>, bufferIdx: number) {
+    function startPlayingWave(
+      wave: Float32Array<ArrayBuffer>,
+      bufferIdx: number,
+    ) {
       initBufferSource(bufferIdx);
       buffers[bufferIdx] = audioCtx.createBuffer(
         1,
@@ -240,7 +262,12 @@ export default function WavesCanvas() {
       }
     }
 
-    function eraseLine(startX: number, startY: number, endX: number, endY: number) {
+    function eraseLine(
+      startX: number,
+      startY: number,
+      endX: number,
+      endY: number,
+    ) {
       if (!ctx) return;
       ctx.beginPath();
       ctx.lineWidth = 12;
@@ -269,7 +296,10 @@ export default function WavesCanvas() {
       ) {
         const newX = localPrevX + 1;
         const newY = newWave[newX];
-        prevQueue.push([startX + repetitions * repetitionX + newX, startY + newY]);
+        prevQueue.push([
+          startX + repetitions * repetitionX + newX,
+          startY + newY,
+        ]);
         drawLine(
           startX + repetitions * repetitionX + localPrevX,
           startY + localPrevY,
@@ -346,8 +376,7 @@ export default function WavesCanvas() {
   return (
     <div
       ref={containerRef}
-      // Fill the space between the fixed navbar (4rem) and the footer (30px).
-      className="h-[calc(100vh-4rem-30px)] w-full overflow-hidden"
+      className={`${styles.canvasFrame} col-wide w-full overflow-hidden`}
     >
       <canvas ref={canvasRef} className="block touch-none">
         Draw on this canvas to hear your sound waves!

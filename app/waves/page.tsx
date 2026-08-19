@@ -6,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function WavesPage() {
-  return <WavesCanvas />;
+  return (
+    <section className="page-grid">
+      <WavesCanvas />
+    </section>
+  );
 }

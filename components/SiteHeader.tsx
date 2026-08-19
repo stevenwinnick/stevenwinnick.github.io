@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import FillingLink from "./FillingLink";
-import { NAV_ITEMS } from "@/data/navigation";
+import SocialLink from "./SocialLink";
+import { NAV_ITEMS, SOCIAL_LINKS } from "@/data/navigation";
 
 function MenuIcon({ open }: { open: boolean }) {
   if (open) {
@@ -41,38 +42,44 @@ function MenuIcon({ open }: { open: boolean }) {
 }
 
 /**
- * The landing page header: one module row tall, one gutter below the top of the
- * screen, with the name and the menu toggle sitting on the row's floor.
+ * The site header: one module row tall, one gutter below the top of the screen,
+ * with the name, the social links, and the menu toggle on the row's floor.
  */
-export default function LandingHeader() {
+export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white pt-line text-blue-new">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white pt-line text-blue">
       <div className="page-grid">
         {/*
          * The rule runs out to the page's frame, which draws the sides. The
          * negative margin takes it out there and the padding brings the content
          * back to the columns, a line clear of the rule on both sides and below.
          */}
-        <div className="col-wide -mx-line flex rows-1 items-end justify-between border-b border-blue-new px-line pb-line">
+        <div className="col-wide -mx-line flex rows-1 items-end justify-between border-b border-blue px-line pb-line">
           <Link
             href="/"
-            className="font-header-new text-md font-semibold uppercase tracking-header-new no-underline"
+            className="font-header text-h3 font-semibold uppercase tracking-header no-underline"
           >
             Steven Winnick
           </Link>
 
-          <button
-            type="button"
-            aria-label="Toggle navigation menu"
-            aria-expanded={open}
-            aria-controls="landing-menu"
-            onClick={() => setOpen((prev) => !prev)}
-            className="flex lines-1 cursor-pointer items-center"
-          >
-            <MenuIcon open={open} />
-          </button>
+          <div className="flex items-center gap-half-line">
+            {SOCIAL_LINKS.map((social) => (
+              <SocialLink key={social.href} social={social} />
+            ))}
+
+            <button
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded={open}
+              aria-controls="site-menu"
+              onClick={() => setOpen((prev) => !prev)}
+              className="flex lines-1 cursor-pointer items-center pl-half-line"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -81,16 +88,13 @@ export default function LandingHeader() {
        * background across the width of the screen.
        */}
       {open && (
-        <div
-          id="landing-menu"
-          className="page-grid absolute inset-x-0 top-full"
-        >
+        <div id="site-menu" className="page-grid absolute inset-x-0 top-full">
           {/*
            * One module, hung off the right end of the header's rule, under the
            * toggle. Any click inside is either a link or a miss; both close it.
            */}
           <nav
-            className="col-wide -mr-line flex rows-1 w-(--grid-col) max-w-full flex-col items-end justify-self-end border border-t-0 border-blue-new bg-white px-line py-half-line"
+            className="col-wide -mr-line flex rows-1 w-(--grid-col) max-w-full flex-col items-end justify-self-end border border-t-0 border-blue bg-white px-line py-half-line"
             onClick={() => setOpen(false)}
           >
             {NAV_ITEMS.map((item) => (

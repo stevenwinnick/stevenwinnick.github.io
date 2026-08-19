@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteChrome from "@/components/SiteChrome";
 import { ibmPlexSerif } from "./fonts";
 import "./globals.css";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={ibmPlexSerif.variable}>
-      <body>{children}</body>
+      <body>
+        <SiteChrome>{children}</SiteChrome>
+      </body>
     </html>
   );
 }

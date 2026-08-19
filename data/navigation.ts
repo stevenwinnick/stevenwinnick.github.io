@@ -16,3 +16,22 @@ export const NAV_ITEMS: NavItem[] = [
   { href: RESUME_URL, label: "Resume", external: true, newTab: true },
   { href: "/contact", label: "Contact" },
 ];
+
+export type SocialLink = {
+  href: string;
+  label: string;
+  icon: string;
+};
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  {
+    href: "https://linkedin.com/in/stevenwinnick",
+    label: "LinkedIn",
+    icon: "/img/linkedin.png",
+  },
+  {
+    href: "https://github.com/stevenwinnick",
+    label: "GitHub",
+    icon: "/img/github.png",
+  },
+];

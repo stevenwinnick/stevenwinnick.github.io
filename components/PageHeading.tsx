@@ -1,21 +1,17 @@
 import type { ReactNode } from "react";
 
 /**
- * The large, centered page title shared across pages. It uppercases its text
- * and adds spacing above and below itself (more below on desktop). Defaults to
- * the `xl` type scale; pass `className` to tweak the size for a specific layout.
+ * A page's title, on the floor of the module row below the site header, with
+ * the body copy starting at the top of the next row. The negative margin
+ * cancels the section's row gap, which would otherwise hold the body a line
+ * below that.
+ *
+ * It is the page's top-level heading, set at the `h2` step so it stays a size
+ * below the landing page's hero.
  */
-export default function PageHeading({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export default function PageHeading({ children }: { children: ReactNode }) {
   return (
-    <h1
-      className={`mt-6 mb-6 text-center font-title text-xl uppercase lg:mb-10 ${className}`}
-    >
+    <h1 className="col-main rows-1 -mb-line text-h2 font-semibold">
       {children}
     </h1>
   );

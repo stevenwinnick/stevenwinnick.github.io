@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ModuleImage from "@/components/ModuleImage";
 import type { Project, SkillItem } from "@/data/projects";
 
 function SkillListItem({ skill }: { skill: SkillItem }) {
@@ -9,7 +9,7 @@ function SkillListItem({ skill }: { skill: SkillItem }) {
   return (
     <li>
       {skill.label}
-      <ul className="list-disc pl-6">
+      <ul className="list-disc pl-line">
         {skill.children.map((child) => (
           <li key={child}>{child}</li>
         ))}
@@ -18,49 +18,71 @@ function SkillListItem({ skill }: { skill: SkillItem }) {
   );
 }
 
-/**
- * Renders a single project. Sections alternate between the default (dark) and
- * inverted (cream) color schemes; prose links inherit the section text color.
- */
-export default function ProjectSection({
-  project,
-  inverted,
-}: {
-  project: Project;
-  inverted: boolean;
-}) {
-  return (
-    <section
-      id={project.id}
-      // `scroll-mt` keeps anchored jumps clear of the fixed navbar.
-      className={`scroll-mt-20 px-sm py-3 ${inverted ? "bg-cream text-ink" : "bg-ink text-cream"}`}
-    >
-      <div className="mx-auto max-w-5xl">
-        <h2 className={`font-title ${project.smallTitle ? "text-md" : "text-lg"}`}>
-          {project.title}
-        </h2>
-        {project.subtitle && <p className="text-sm">{project.subtitle}</p>}
+// The negative margin lets the opening rule run out to the page frame while the
+// subgrid keeps the content on the page grid's columns. The bottom padding is a
+// module row, so a project is set off from the rule that opens the next one.
+export default function ProjectSection({ project }: { project: Project }) {
+  /*
+   * The rows are placed by hand because the composition changes at every step:
+   * mobile stacks the title, shot, summary and body; from `cols2` the summary
+   * takes the left column with the shot beside it and a second shot below;
+   * from `cols4` the shots move out to the outer columns, the second offset a
+   * row down so it sits with the body. Without a summary every row above the
+   * body moves up one.
+   */
+  const summaryRow = "row-start-3 cols2:row-start-2";
+  const secondShotRow = project.subtitle
+    ? "cols2:row-start-3"
+    : "cols2:row-start-2";
+  const bodyRow = project.subtitle
+    ? "row-start-4 cols4:row-start-3"
+    : "row-start-3 cols4:row-start-2";
 
-        <Image
-          src={project.image.src}
+  return (
+    <section id={project.id} className="page-grid scroll-mt-(--header-height)">
+      <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line pt-line pb-(--grid-row)">
+        {/* A step below its level's size, so the page title stays the largest. */}
+        <h2 className="col-main row-start-1 rows-1 text-h3">{project.title}</h2>
+
+        <ModuleImage
+          image={project.image}
           alt={project.title}
-          width={project.image.width}
-          height={project.image.height}
-          className={`my-2 h-auto w-full p-1 ${inverted ? "bg-ink" : "bg-cream"}`}
+          className="col-start-1 col-end-3 row-start-2 self-start cols2:col-start-2 cols2:col-end-3 cols4:col-start-1 cols4:col-end-2"
         />
 
-        <h3 className="font-title text-md">SKILLS</h3>
-        <ul className="list-disc pl-6 text-sm">
-          {project.skills.map((skill) => (
-            <SkillListItem
-              key={typeof skill === "string" ? skill : skill.label}
-              skill={skill}
-            />
-          ))}
-        </ul>
+        {project.subtitle && (
+          <p
+            className={`col-main min-rows-1 text-sm cols2:col-start-1 cols2:col-end-2 cols4:col-start-2 cols4:col-end-4 ${summaryRow}`}
+          >
+            {project.subtitle}
+          </p>
+        )}
 
-        <h3 className="mt-lg font-title text-md">DESCRIPTION</h3>
-        <div className="space-y-3 pb-3 text-sm">{project.description}</div>
+        {/* A repeat of the shot above, so it carries no alt text. */}
+        <ModuleImage
+          image={project.image}
+          alt=""
+          className={`hidden self-start cols2:col-start-1 cols2:col-end-2 cols2:block cols4:col-start-4 cols4:col-end-5 ${secondShotRow}`}
+        />
+
+        <div className={`col-main flex flex-col gap-line ${bodyRow}`}>
+          <h3 className="lines-1 text-h4">Skills</h3>
+
+          <ul className="list-disc pl-line text-sm">
+            {project.skills.map((skill) => (
+              <SkillListItem
+                key={typeof skill === "string" ? skill : skill.label}
+                skill={skill}
+              />
+            ))}
+          </ul>
+
+          <h3 className="lines-1 text-h4">Description</h3>
+
+          <div className="flex flex-col gap-line text-sm">
+            {project.description}
+          </div>
+        </div>
       </div>
     </section>
   );

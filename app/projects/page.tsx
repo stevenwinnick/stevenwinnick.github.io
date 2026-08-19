@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
-      <section className="page-grid gap-y-line">
+      {/* The bottom padding is the gutter between the intro's row and the rule
+       * that opens the first project, which sits in a section of its own. */}
+      <section className="page-grid gap-y-line pb-line">
         <PageHeading>Projects</PageHeading>
 
         <PageIntro>

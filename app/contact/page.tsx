@@ -11,7 +11,7 @@ const LABEL_CLASSES =
 const INPUT_CLASSES =
   "w-full border border-blue bg-white px-half-line text-sm text-blue placeholder:text-blue/50";
 
-const HINT_CLASSES = "flex lines-1 items-end text-xs";
+const HINT_CLASSES = "flex min-h-line items-end text-xs";
 
 export default function ContactPage() {
   return (

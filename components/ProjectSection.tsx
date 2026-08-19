@@ -27,13 +27,24 @@ export default function ProjectSection({ project }: { project: Project }) {
         <h3 className="col-main rows-1">{project.title}</h3>
 
         {project.subtitle && (
-          <p className="col-main min-rows-1 text-sm">{project.subtitle}</p>
+          <p className="col-main text-sm">{project.subtitle}</p>
         )}
 
+        {/*
+         * From `cols4` the shot sits in the left outer column and is mirrored
+         * into the right one, so the copy runs between the two. The mirrored
+         * copy is decorative, hence the empty alt.
+         */}
         <ModuleImage
           image={project.image}
           alt={project.title}
-          className="col-span-2 cols2:col-span-1"
+          className="col-span-2 self-start cols2:col-span-1 cols4:col-start-1"
+        />
+
+        <ModuleImage
+          image={project.image}
+          alt=""
+          className="hidden self-start cols4:col-start-4 cols4:block"
         />
 
         <div className="col-main flex flex-col gap-line">

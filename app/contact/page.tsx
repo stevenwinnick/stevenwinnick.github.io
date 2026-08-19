@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
+import PageIntro from "@/components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Contact | Steven Winnick",
@@ -18,7 +19,7 @@ export default function ContactPage() {
     <section className="page-grid gap-y-line pb-2line">
       <PageHeading>Contact</PageHeading>
 
-      <p className="col-main min-rows-1 text-sm">
+      <PageIntro>
         Want to sell me something?
         <br />
         Want me to apply for something?
@@ -26,7 +27,7 @@ export default function ContactPage() {
         Want to show me something funny?
         <br />
         Fill out this form to send me a message!
-      </p>
+      </PageIntro>
 
       <form
         action="https://formspree.io/f/mdojyrgj"

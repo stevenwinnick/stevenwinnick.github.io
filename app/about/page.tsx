@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import FillingLink from "@/components/FillingLink";
 import ModuleImage from "@/components/ModuleImage";
 import PageHeading from "@/components/PageHeading";
+import PageIntro from "@/components/PageIntro";
 
 export const metadata: Metadata = {
   title: "About | Steven Winnick",
@@ -18,7 +19,7 @@ export default function AboutPage() {
     <section className="page-grid gap-y-line pb-2line">
       <PageHeading>About</PageHeading>
 
-      <p className="col-main min-rows-1 text-sm">A bit about me.</p>
+      <PageIntro>A bit about me.</PageIntro>
 
       {/*
        * The photos flank the copy in the outer columns from `cols4`, the left

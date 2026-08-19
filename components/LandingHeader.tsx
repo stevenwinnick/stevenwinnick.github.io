@@ -56,7 +56,10 @@ export default function LandingHeader() {
          * back to the columns, a line clear of the rule on both sides and below.
          */}
         <div className="col-wide -mx-line flex rows-1 items-end justify-between border-b border-blue-new px-line pb-line">
-          <Link href="/" className="text-sm no-underline">
+          <Link
+            href="/"
+            className="font-header-new text-md font-semibold uppercase tracking-header-new no-underline"
+          >
             Steven Winnick
           </Link>
 

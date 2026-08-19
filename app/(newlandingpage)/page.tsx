@@ -90,7 +90,7 @@ export default function HomePage() {
            * there is no frame to meet.
            */}
           <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue-new px-line py-line cols2:border-b">
-            <h2 className="col-main flex rows-1 items-end font-header-new text-lg font-semibold tracking-header-new">
+            <h2 className="col-main flex rows-1 items-end font-header-new text-lg font-semibold uppercase tracking-header-new">
               Projects
             </h2>
 
@@ -112,7 +112,7 @@ export default function HomePage() {
                   href={`/projects#${project.anchor}`}
                   className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline cols2:col-span-1 cols4:row-span-3 cols4:grid cols4:grid-rows-subgrid"
                 >
-                  <p className="flex lines-1 items-end font-header-new text-md font-semibold tracking-header-new">
+                  <p className="flex lines-1 items-end font-header-new text-md font-semibold uppercase tracking-header-new">
                     {project.title}
                   </p>
                   <figure className="module-frame relative isolate m-0">

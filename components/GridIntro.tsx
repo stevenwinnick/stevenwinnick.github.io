@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./GridIntro.module.css";
 
 const HOLD_MS = 150;
-const STAGGER_MS = 55;
+const STAGGER_MS = 100;
 const RETREAT_MS = 420;
 /* How far the columns' retreat reaches back into the tail of the rows'. */
 const PHASE_OVERLAP_MS = 150;
@@ -28,8 +28,9 @@ type Grid = {
  * The columns are measured rather than computed, since their width is fluid
  * below `cols2`, and `wide` only reaches past `main` once the outer columns
  * appear at `cols4`. The rows have no such element to measure: they are the
- * page's vertical rhythm, one gutter down from the top of the screen and one
- * gutter between each pair.
+ * page's vertical rhythm, one gutter down from the top of the *page* and one
+ * gutter between each pair, so that a reload part-way down the page still lands
+ * the lines on the grid the content sits on.
  */
 function measureGrid(probes: {
   gutter: HTMLElement;
@@ -50,11 +51,17 @@ function measureGrid(probes: {
     columnOffsets.push(left, left + columnWidth);
   }
 
+  const period = rowHeight + gutter;
+  const viewportTop = window.scrollY;
+  const viewportBottom = viewportTop + window.innerHeight;
   const rowOffsets: number[] = [];
-  for (let top = gutter; top < window.innerHeight; top += rowHeight + gutter) {
-    rowOffsets.push(top);
-    if (top + rowHeight < window.innerHeight) {
-      rowOffsets.push(top + rowHeight);
+  const firstRow = Math.max(0, Math.floor((viewportTop - gutter) / period));
+  for (let row = firstRow; gutter + row * period < viewportBottom; row += 1) {
+    const top = gutter + row * period;
+    for (const edge of [top, top + rowHeight]) {
+      if (edge >= viewportTop && edge < viewportBottom) {
+        rowOffsets.push(edge - viewportTop);
+      }
     }
   }
 

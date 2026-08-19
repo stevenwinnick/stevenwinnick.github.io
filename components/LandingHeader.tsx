@@ -48,13 +48,15 @@ export default function LandingHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-paper pt-line text-ultramarine">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white pt-line text-blue-new">
       <div className="page-grid">
         {/*
-         * The rule turns up the sides of the row and stops at the outer columns'
-         * outer edges, so the header reads as a tray the page sits under.
+         * The rule turns up the sides of the row and stops a gutter outside the
+         * outer columns, so the header reads as a tray the page sits under. The
+         * negative margin takes it out there and the padding brings the content
+         * back to the columns, a line clear of the rule on both sides and below.
          */}
-        <div className="col-wide flex rows-1 items-end justify-between border-x border-b border-ultramarine px-half-line">
+        <div className="col-wide -mx-line flex rows-1 items-end justify-between border-x border-b border-blue-new px-line pb-line">
           <Link href="/" className="text-sm no-underline">
             Steven Winnick
           </Link>
@@ -72,14 +74,21 @@ export default function LandingHeader() {
         </div>
       </div>
 
+      {/*
+       * Out of flow, so opening the menu does not grow the header's white
+       * background across the width of the screen.
+       */}
       {open && (
-        <div id="landing-menu" className="page-grid">
+        <div
+          id="landing-menu"
+          className="page-grid absolute inset-x-0 top-full"
+        >
           {/*
            * One module, hung off the right end of the header's rule, under the
            * toggle. Any click inside is either a link or a miss; both close it.
            */}
           <nav
-            className="col-wide flex rows-1 w-(--grid-col) max-w-full flex-col items-end justify-self-end border border-t-0 border-ultramarine px-half-line py-half-line"
+            className="col-wide -mr-line flex rows-1 w-(--grid-col) max-w-full flex-col items-end justify-self-end border border-t-0 border-blue-new bg-white px-line py-half-line"
             onClick={() => setOpen(false)}
           >
             {NAV_ITEMS.map((item) => (

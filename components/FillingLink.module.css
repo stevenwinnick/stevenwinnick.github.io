@@ -1,6 +1,6 @@
 /*
- * An underlined link that fills from the bottom up with ultramarine on hover,
- * its text reversing out to paper white.
+ * An underlined link that fills from the bottom up with blue on hover, its text
+ * reversing out to white.
  *
  * It is `inline`, not `inline-block`, so its background does not grow the line
  * box: an inline-block's height would push prose off the baseline grid.
@@ -14,13 +14,16 @@
   text-decoration: underline;
   text-underline-offset: 0.2em;
   text-decoration-thickness: from-font;
+  /* A space of fill on each side of the text, without moving the text itself. */
+  padding-inline: 0.25em;
+  margin-inline: -0.25em;
   /* Half of a background twice the box's height, so the fill can slide up into view. */
   background-image: linear-gradient(
     180deg,
     transparent 0%,
     transparent 50%,
-    var(--color-ultramarine) 50%,
-    var(--color-ultramarine) 100%
+    var(--color-blue-new) 50%,
+    var(--color-blue-new) 100%
   );
   background-size: 100% 200%;
   background-position: 0% 0%;
@@ -31,7 +34,7 @@
 
 .fillingLink:hover,
 .fillingLink:focus-visible {
-  color: var(--color-paper);
+  color: var(--color-white);
   background-position: 0% 100%;
   cursor: pointer;
 }

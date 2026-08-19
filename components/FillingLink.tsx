@@ -9,7 +9,7 @@ type FillingLinkProps = {
   className?: string;
 };
 
-/** An underlined inline link that fills with ultramarine on hover. */
+/** An underlined inline link that fills with blue on hover. */
 export default function FillingLink({
   href,
   children,

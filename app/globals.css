@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Self-hosted display + body + landing page typefaces */
+/* Self-hosted display + body typefaces */
 @font-face {
   font-family: "redacted-title";
   src: url("/fonts/redactedTitle.woff2") format("woff2");
@@ -40,12 +40,12 @@
   --color-purple: #6a4c93;
 
   /* The two-colour palette of the landing page. */
-  --color-paper: #ffffff;
-  --color-ultramarine: #003fbf;
+  --color-white: #ffffff;
+  --color-blue-new: #003fbf;
 
   --font-title: "redacted-title", sans-serif;
   --font-body: "redacted-body", sans-serif;
-  --font-serif: "redacted2", serif;
+  --font-new: "redacted2", serif;
 
   /*
    * Body text: a fixed size and a fixed leading, so that one line is always
@@ -68,15 +68,11 @@
   --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
   /* One row of modules, the vertical counterpart of --grid-col. */
   --grid-row: calc(var(--grid-module-lines) * var(--line));
-  /* Two columns and the gutter between them: a ~65 character measure. */
+  /* Two columns and the gutter between them. */
   --grid-main: calc(2 * var(--grid-col) + var(--grid-gutter));
   /* Two lines, so the grid carries on uninterrupted below the navbar. */
   --nav-height: calc(2 * var(--line));
-  /*
-   * The landing page header: one row of modules, held off the top by a gutter
-   * and closed by a 1px rule, which the offset below it has to account for.
-   */
-  --header-height: calc(var(--grid-gutter) + var(--grid-row) + 1px);
+  --header-height: calc(var(--grid-gutter) + var(--grid-row));
 }
 
 @theme {
@@ -94,9 +90,6 @@
   --text-xs--line-height: var(--leading-grid);
   --text-md: clamp(1.125rem, 2vw, 1.375rem);
   --text-md--line-height: var(--leading-grid);
-  /* Display type for a single grid column: the widest that fits one. */
-  --text-col: 1.375rem;
-  --text-col--line-height: var(--leading-grid);
   --text-lg: clamp(1.625rem, 3.5vw, 2.25rem);
   --text-lg--line-height: var(--leading-grid);
   --text-xl: clamp(2rem, 5vw, 3rem);
@@ -123,6 +116,15 @@
   --spacing-md: 1.5rem;
   --spacing-lg: 2.5rem;
   --spacing-xl: 4rem;
+
+  /*
+   * The widths at which the grid's columns reach their full size, which cannot
+   * be written as calc(var(--grid-col) ...) because a media query resolves no
+   * custom properties. `cols2` is two columns and the three gutters around
+   * them, `cols4` is four columns and their five gutters.
+   */
+  --breakpoint-cols2: 44.5rem;
+  --breakpoint-cols4: 87.5rem;
 }
 
 body {
@@ -132,8 +134,8 @@ body {
 }
 
 /*
- * The page grid: two content columns, growing to four at `lg`, with an empty
- * track on each side that takes up whatever is left over.
+ * The page grid: two content columns, growing to four at `cols4`, with an
+ * empty track on each side that takes up whatever is left over.
  *
  * The bracketed words are grid line names, not columns. Each `-start`/`-end`
  * pair marks where a named span begins and ends, so a child can say
@@ -146,17 +148,15 @@ body {
  *   that should run to the edges of the screen (a full-width image, a band of
  *   background colour) rather than sit inside the margins
  *
- * Below `lg` the left and right columns do not exist, so their names sit on
+ * Below `cols4` the left and right columns do not exist, so their names sit on
  * the same lines as main and a child placed there falls back into the centre.
  *
- * Below `lg` the two columns are fluid and the outer tracks are zero width, so
- * the side margin is one gutter at every width: the content grows with the
- * screen instead of capping at --grid-col and leaving margins that widen until
- * the four-column layout takes over. The two layouts meet almost exactly at
- * `lg` (976px of content at 1023px, 968px at 1024px). Only the four-column
- * layout has fixed columns, and there the outer `1fr` tracks centre the grid.
- * A zero-width outer track still leaves its column gap, so `bleed` reaches the
- * edges of the screen at every width.
+ * There are three widths. Below `cols2` the two columns are fluid and the
+ * outer tracks are zero width, so the side margin is one gutter and the
+ * content grows with the screen. From `cols2` the two columns are full width
+ * and the outer `1fr` tracks centre them, so nothing inside changes size until
+ * `cols4` adds the outer columns. A zero-width outer track still leaves its
+ * column gap, so `bleed` reaches the edges of the screen at every width.
  */
 @utility page-grid {
   display: grid;
@@ -169,9 +169,17 @@ body {
     minmax(0, 1fr) [main-end left-end right-end wide-end]
     0 [bleed-end];
 
-  @variant lg {
+  @variant cols2 {
     grid-template-columns:
       /* Outer track: soaks up whatever the fixed columns leave over. */
+      [bleed-start] minmax(0, 1fr)
+      [wide-start left-start right-start main-start] var(--grid-col)
+      var(--grid-col) [main-end left-end right-end wide-end]
+      minmax(0, 1fr) [bleed-end];
+  }
+
+  @variant cols4 {
+    grid-template-columns:
       [bleed-start] minmax(0, 1fr)
       /* An outer column appears on each side, so left and right split off. */
       [wide-start left-start] minmax(0, var(--grid-col))

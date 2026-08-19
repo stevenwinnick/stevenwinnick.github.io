@@ -36,7 +36,7 @@ const PREVIEW_PROJECTS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-dvh bg-paper font-serif text-ultramarine">
+    <div className="min-h-dvh bg-white font-new text-blue-new">
       <LandingHeader />
 
       {/*
@@ -65,34 +65,36 @@ export default function HomePage() {
 
         <section className="page-grid pb-2line">
           {/* Mobile has no room for the box, so the section keeps a plain rule. */}
-          <hr className="col-wide m-0 border-t border-ultramarine md:hidden" />
+          <hr className="col-wide m-0 border-t border-blue-new cols2:hidden" />
 
           {/*
            * Subgrid so the section keeps the page grid's columns while the box
            * around it is drawn a gutter outside them: the negative margin takes
            * the border out to there and the matching padding brings the columns
-           * back, so they still line up with the rest of the page.
+           * back, so they still line up with the rest of the page. The extra
+           * pixel puts the side borders outside the grid, so they fall off the
+           * screen rather than cutting across it below `cols4`.
            */}
-          <div className="col-wide grid grid-cols-subgrid gap-y-line pt-line md:-mx-line md:border md:border-ultramarine md:p-line">
-            <div className="col-main flex min-rows-1 flex-col gap-line">
-              <h2 className="text-md">Projects</h2>
-              <p className="text-sm">
-                Here are a few of the projects I&apos;ve worked on recently:
-              </p>
-            </div>
+          <div className="col-wide grid grid-cols-subgrid gap-y-line pt-line cols2:-mx-[calc(var(--spacing-line)+1px)] cols2:border cols2:border-blue-new cols2:px-[calc(var(--spacing-line)+1px)] cols2:py-line">
+            <h2 className="col-main flex rows-1 items-end text-md">Projects</h2>
+
+            <p className="col-main min-rows-1 text-sm">
+              Here are a few of the projects I&apos;ve worked on recently:
+            </p>
 
             {/*
              * Nested subgrid so the previews share rows across all four
              * columns: their titles, images, and blurbs each line up. One per
-             * column at `lg`, 2x2 once the columns reach full width, stacked two
-             * columns wide below that.
+             * column at `cols4`, 2x2 from `cols2` (where a column is already
+             * full width, so the images stop changing size), stacked two columns
+             * wide below that.
              */}
-            <div className="col-wide grid grid-cols-subgrid gap-y-2line lg:grid-rows-[auto_auto_auto] lg:gap-y-line">
+            <div className="col-wide grid grid-cols-subgrid gap-y-2line cols4:grid-rows-[auto_auto_auto] cols4:gap-y-line">
               {PREVIEW_PROJECTS.map((project) => (
                 <Link
                   key={project.anchor}
                   href={`/projects#${project.anchor}`}
-                  className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline md:col-span-1 lg:row-span-3 lg:grid lg:grid-rows-subgrid"
+                  className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline cols2:col-span-1 cols4:row-span-3 cols4:grid cols4:grid-rows-subgrid"
                 >
                   <p className="flex lines-1 items-end text-sm">
                     {project.title}
@@ -111,10 +113,10 @@ export default function HomePage() {
                      */}
                     <span
                       aria-hidden="true"
-                      className="absolute inset-0 bg-ultramarine mix-blend-color"
+                      className="absolute inset-0 bg-blue-new mix-blend-color"
                     />
                   </figure>
-                  <p className="text-sm">{project.blurb}</p>
+                  <p className="min-rows-1 text-sm">{project.blurb}</p>
                 </Link>
               ))}
             </div>
@@ -127,7 +129,7 @@ export default function HomePage() {
         </section>
 
         <footer className="page-grid">
-          <p className="col-wide flex lines-2 items-center border-t border-ultramarine text-xs">
+          <p className="col-wide flex lines-2 items-center border-t border-blue-new text-xs">
             &copy; 2026 Steven Winnick
           </p>
         </footer>

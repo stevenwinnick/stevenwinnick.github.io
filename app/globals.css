@@ -1,18 +1,6 @@
 @import "tailwindcss";
 
-/* Self-hosted display + body typefaces */
-@font-face {
-  font-family: "redacted-title";
-  src: url("/fonts/redactedTitle.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "redacted-body";
-  src: url("/fonts/redactedBody.woff2") format("woff2");
-  font-display: swap;
-}
-
+/* Self-hosted body typeface */
 @font-face {
   font-family: "redacted2";
   src: url("/fonts/redacted2.woff2") format("woff2");
@@ -22,7 +10,7 @@
 /*
  * Design tokens. Tailwind v4 exposes each of these as utilities:
  *   --color-... becomes bg-, text-, and border- utilities (e.g. text-blue)
- *   --font-...  becomes font- utilities (e.g. font-title)
+ *   --font-...  becomes font- utilities (e.g. font-header)
  *   --text-...  becomes text- font-size utilities (e.g. text-lg)
  *   --leading-... becomes leading- line-height utilities (e.g. leading-body)
  *   --spacing-... becomes p-, m-, and gap- utilities (e.g. gap-md)
@@ -31,25 +19,15 @@
  * derived from.
  */
 @theme {
-  --color-cream: #fffde9;
-  --color-ink: #181818;
-  --color-yellow: #ffd252;
-  --color-red: #ff595e;
-  --color-green: #8ac926;
-  --color-blue: #1982c4;
-  --color-purple: #6a4c93;
-
-  /* The two-colour palette of the landing page. */
+  /* The site's two-colour palette. */
   --color-white: #ffffff;
-  --color-blue-new: #003fbf;
+  --color-blue: #003fbf;
 
-  --font-title: "redacted-title", sans-serif;
-  --font-body: "redacted-body", sans-serif;
-  --font-body-new: "redacted2", serif;
+  --font-body: "redacted2", serif;
   /* Loaded by `next/font` in `app/fonts.ts`. */
-  --font-header-new: var(--font-ibm-plex-serif), serif;
+  --font-header: var(--font-ibm-plex-serif), serif;
 
-  --tracking-header-new: 0.02em;
+  --tracking-header: 0.02em;
 
   /*
    * Body text: a fixed size and a fixed leading, so that one line is always
@@ -74,9 +52,8 @@
   --grid-row: calc(var(--grid-module-lines) * var(--line));
   /* Two columns and the gutter between them. */
   --grid-main: calc(2 * var(--grid-col) + var(--grid-gutter));
-  /* Two lines, so the grid carries on uninterrupted below the navbar. */
-  --nav-height: calc(2 * var(--line));
   --header-height: calc(var(--grid-gutter) + var(--grid-row));
+  --footer-height: calc(2 * var(--line));
 }
 
 @theme {
@@ -112,17 +89,6 @@
   --spacing-6line: calc(6 * var(--line));
 
   /*
-   * Off-grid spacing scale, kept for the pages that have not moved onto the
-   * grid yet. These names shadow the `max-w-{sm,md,lg,xl}` container sizes, so
-   * use a numeric or arbitrary value for max-width instead.
-   */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2.5rem;
-  --spacing-xl: 4rem;
-
-  /*
    * The widths at which the grid's columns reach their full size, which cannot
    * be written as calc(var(--grid-col) ...) because a media query resolves no
    * custom properties. `cols2` is two columns and the three gutters around
@@ -144,34 +110,9 @@
   }
 }
 
-/*
- * The type scale the pages that have not been redesigned yet were built for,
- * pinned here so the landing page's smaller scale does not shrink them. Delete
- * this block once those pages move onto the new scale.
- *
- * Every token another token derives from has to be repeated: a custom property
- * is substituted where it is *declared*, not where it is used, so redeclaring
- * `--line` alone would leave the line heights and `--nav-height` computed from
- * the root's value.
- */
-.legacy-type {
-  --text-xs: 1rem;
-  --text-sm: 1.25rem;
-  --text-md: clamp(1.9rem, 5vw, 2.9rem);
-  --text-lg: clamp(2.75rem, 8vw, 5rem);
-  --text-xl: clamp(3.25rem, 10vw, 7.5rem);
-  --line: calc(var(--text-sm) * var(--leading-body));
-  --leading-grid: round(up, 1em, var(--line));
-  --text-xs--line-height: var(--leading-grid);
-  --text-md--line-height: var(--leading-grid);
-  --text-lg--line-height: var(--leading-grid);
-  --text-xl--line-height: var(--leading-grid);
-  --nav-height: calc(2 * var(--line));
-}
-
 body {
-  background-color: var(--color-ink);
-  color: var(--color-cream);
+  background-color: var(--color-white);
+  color: var(--color-blue);
   font-family: var(--font-body);
 }
 
@@ -290,7 +231,8 @@ body {
  * grid allows, while its height stays a whole number of lines so the rhythm
  * survives fluid column widths. Where the columns are fixed this lands on 4:3
  * exactly. Needs a `module-frame` parent to measure against, and falls back to
- * a plain 4:3 crop without round().
+ * a plain 4:3 crop without round(). `module-crop-tall` is the portrait
+ * counterpart, a module turned on its side.
  */
 @utility module-frame {
   container-type: inline-size;
@@ -303,25 +245,49 @@ body {
   object-fit: cover;
 }
 
-/*
- * Fills the viewport below the navbar, rounded down to whole lines so the
- * section boundary stays on the grid. `dvh` so a collapsing mobile URL bar
- * does not leave a gap.
- */
-@utility screen-section {
-  min-block-size: calc(100dvh - var(--nav-height));
-  min-block-size: round(down, calc(100dvh - var(--nav-height)), var(--line));
+@utility module-crop-tall {
+  inline-size: 100%;
+  aspect-ratio: 3 / 4;
+  block-size: round(nearest, calc(4 / 3 * 100cqw), var(--line));
+  object-fit: cover;
 }
 
-@layer components {
-  /* Underlined prose links that turn blue on hover */
-  .prose-link {
-    text-decoration: underline;
-    color: inherit;
-    transition: color 0.2s linear;
-  }
+/*
+ * Fills the viewport between the header and the footer, rounded down to whole
+ * lines so the section boundary stays on the grid. `dvh` so a collapsing mobile
+ * URL bar does not leave a gap.
+ */
+@utility screen-section {
+  --screen-section-height: calc(
+    100dvh - var(--header-height) - var(--footer-height)
+  );
+  min-block-size: var(--screen-section-height);
+  min-block-size: round(down, var(--screen-section-height), var(--line));
+}
 
-  .prose-link:hover {
-    color: var(--color-blue);
+/*
+ * Slides a blue fill up from the bottom of the box on hover, the text reversing
+ * out to white: half of a background twice the box's height, moved into view.
+ * Shared by every link and button on the site.
+ */
+@utility fill-on-hover {
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 50%,
+    var(--color-blue) 50%,
+    var(--color-blue) 100%
+  );
+  background-size: 100% 200%;
+  background-position: 0% 0%;
+  transition:
+    background-position 0.25s cubic-bezier(0.9, 0, 0.5, 1),
+    color 0.2s linear;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-white);
+    background-position: 0% 100%;
+    cursor: pointer;
   }
 }

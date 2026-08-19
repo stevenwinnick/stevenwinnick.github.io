@@ -1,23 +1,17 @@
-import PageHeading from "@/components/PageHeading";
-import ProseLink from "@/components/ProseLink";
-import SiteChrome from "@/components/SiteChrome";
+import FillingLink from "@/components/FillingLink";
+import Heading from "@/components/Heading";
 
-/*
- * Next.js renders this outside the route groups, so it pulls in `SiteChrome`
- * itself: the root layout has no navbar or footer, since anything it renders
- * would land on the landing page too.
- */
 export default function NotFound() {
   return (
-    <SiteChrome>
-      <section className="px-sm">
-        <PageHeading>page not found</PageHeading>
+    <section className="page-grid gap-y-line pt-line pb-2line">
+      <Heading level={1} className="col-main rows-1">
+        Page not found
+      </Heading>
 
-        <p className="pb-xl text-center text-sm">
-          That page does not exist. Head <ProseLink href="/">home</ProseLink>{" "}
-          instead.
-        </p>
-      </section>
-    </SiteChrome>
+      <p className="col-main min-rows-1 text-sm">
+        That page does not exist. Head{" "}
+        <FillingLink href="/">home</FillingLink> instead.
+      </p>
+    </section>
   );
 }

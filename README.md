@@ -26,10 +26,10 @@ npm run serve   # serves the built `out/` directory locally
 
 ## Project structure
 
-- `app/` — routes (App Router); the landing page sits in the `app/(newlandingpage)` group, and every other page has a `layout.tsx` rendering `SiteChrome` (the navbar and footer), which keeps that chrome off the landing page
-- `components/` — shared UI (`Navbar`, `Footer`, `SiteChrome`, `LandingHeader`, `BoxyFillingPill`, `FillingLink`, `ProseLink`, `PageHeading`, `ProjectSection`, `WavesCanvas`)
-- `data/` — the project list (`projects.tsx`) and the site's navigation links (`navigation.ts`)
-- `app/globals.css` — Tailwind import, design tokens (`@theme`: colors, fonts, `xs`–`xl` type and spacing scales), fonts, and component styles
+- `app/` — routes (App Router); `app/layout.tsx` wraps every route in `SiteChrome`, so pages render only their own content
+- `components/` — shared UI (`SiteChrome`, `SiteHeader`, `SiteFooter`, `Heading`, `ModuleImage`, `FillingLink`, `ProjectSection`, `WavesCanvas`)
+- `data/` — the project list (`projects.tsx`, whose optional `preview` field feeds the landing page) and the site's navigation and social links (`navigation.ts`)
+- `app/globals.css` — Tailwind import, design tokens (`@theme`: the blue/white palette, fonts, `xs`–`xl` type scale, and the `--line`/`--grid-col`/`--grid-row` grid units), fonts, and the shared `page-grid`, column, line-height, and `fill-on-hover` utilities
 - `public/` — static assets (images, fonts, `CNAME`, `.nojekyll`)
 
 ## Deployment

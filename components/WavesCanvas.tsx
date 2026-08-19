@@ -42,26 +42,26 @@ export default function WavesCanvas() {
       gainNodes[i].gain.value = 0;
     }
 
-    // Canvas setup
+    // Canvas setup. The canvas cannot use CSS, so it reads the palette and the
+    // display face off the document instead of repeating them.
+    const rootStyle = getComputedStyle(document.documentElement);
+    const token = (name: string) => rootStyle.getPropertyValue(name).trim();
+    const FOREGROUND_COLOR = token("--color-blue");
+    const BACKGROUND_COLOR = token("--color-white");
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
     let mouseDown = false;
     let path: number[][] = [];
     let prevX = 0;
     let prevY = 0;
-    let prevR = 0;
-    let prevG = 0;
-    let prevB = 256;
     const TAIL_LENGTH = 50;
     const DRAW_SPEED = 3;
-    const TEXT_COLOR = "#FFFDE9";
-    const BACKGROUND_COLOR = "#181818";
     const canvasText = "DRAW SOUND WAVES";
-    ctx.font = "8vw redacted-title";
+    ctx.font = `8vw ${token("--font-header")}`;
     const textWidth = ctx.measureText(canvasText).width;
     const centerX = (canvas.width - textWidth) / 2;
     const centerY = canvas.height / 2;
-    ctx.fillStyle = TEXT_COLOR;
+    ctx.fillStyle = FOREGROUND_COLOR;
     ctx.fillText(canvasText, centerX, centerY);
 
     function resetPath() {
@@ -82,44 +82,13 @@ export default function WavesCanvas() {
     function drawLine(startX: number, startY: number, endX: number, endY: number) {
       if (!ctx) return;
       ctx.beginPath();
-      ctx.strokeStyle = nextColor();
+      ctx.strokeStyle = FOREGROUND_COLOR;
       ctx.lineWidth = 8;
       ctx.lineCap = "round";
       ctx.moveTo(startX, startY);
       ctx.lineTo(endX, endY);
       ctx.stroke();
       ctx.closePath();
-    }
-
-    // Cycle through the colors
-    function nextColor() {
-      const CYCLE_SPEED = 3;
-      if (prevR >= 256) {
-        if (prevB > 0) {
-          prevB = prevB - CYCLE_SPEED;
-        } else if (prevG >= 256) {
-          prevR = prevR - CYCLE_SPEED;
-        } else {
-          prevG = prevG + CYCLE_SPEED;
-        }
-      } else if (prevG >= 256) {
-        if (prevR > 0) {
-          prevR = prevR - CYCLE_SPEED;
-        } else if (prevB >= 256) {
-          prevG = prevG - CYCLE_SPEED;
-        } else {
-          prevB = prevB + CYCLE_SPEED;
-        }
-      } else if (prevB >= 256) {
-        if (prevG > 0) {
-          prevG = prevG - CYCLE_SPEED;
-        } else if (prevR >= 256) {
-          prevB = prevB - CYCLE_SPEED;
-        } else {
-          prevR = prevR + CYCLE_SPEED;
-        }
-      }
-      return `rgb(${prevR}, ${prevG}, ${prevB})`;
     }
 
     // Compute the sound wave, start playing it, animate the path, then stop it
@@ -346,8 +315,7 @@ export default function WavesCanvas() {
   return (
     <div
       ref={containerRef}
-      // Fill the space between the fixed navbar (4rem) and the footer (30px).
-      className="h-[calc(100vh-4rem-30px)] w-full overflow-hidden"
+      className="col-wide screen-section w-full overflow-hidden"
     >
       <canvas ref={canvasRef} className="block touch-none">
         Draw on this canvas to hear your sound waves!

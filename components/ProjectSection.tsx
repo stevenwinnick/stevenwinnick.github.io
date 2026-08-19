@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Heading from "@/components/Heading";
+import ModuleImage from "@/components/ModuleImage";
 import type { Project, SkillItem } from "@/data/projects";
 
 function SkillListItem({ skill }: { skill: SkillItem }) {
@@ -9,7 +10,7 @@ function SkillListItem({ skill }: { skill: SkillItem }) {
   return (
     <li>
       {skill.label}
-      <ul className="list-disc pl-6">
+      <ul className="list-disc pl-line">
         {skill.children.map((child) => (
           <li key={child}>{child}</li>
         ))}
@@ -18,49 +19,48 @@ function SkillListItem({ skill }: { skill: SkillItem }) {
   );
 }
 
-/**
- * Renders a single project. Sections alternate between the default (dark) and
- * inverted (cream) color schemes; prose links inherit the section text color.
- */
-export default function ProjectSection({
-  project,
-  inverted,
-}: {
-  project: Project;
-  inverted: boolean;
-}) {
+// The negative margin lets the opening rule run out to the page frame while the
+// subgrid keeps the content on the page grid's columns.
+export default function ProjectSection({ project }: { project: Project }) {
   return (
-    <section
-      id={project.id}
-      // `scroll-mt` keeps anchored jumps clear of the fixed navbar.
-      className={`scroll-mt-20 px-sm py-3 ${inverted ? "bg-cream text-ink" : "bg-ink text-cream"}`}
-    >
-      <div className="mx-auto max-w-5xl">
-        <h2 className={`font-title ${project.smallTitle ? "text-md" : "text-lg"}`}>
+    <section id={project.id} className="page-grid scroll-mt-(--header-height)">
+      <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
+        <Heading level={2} className="col-main rows-1">
           {project.title}
-        </h2>
-        {project.subtitle && <p className="text-sm">{project.subtitle}</p>}
+        </Heading>
 
-        <Image
-          src={project.image.src}
+        {project.subtitle && (
+          <p className="col-main min-rows-1 text-sm">{project.subtitle}</p>
+        )}
+
+        <ModuleImage
+          image={project.image}
           alt={project.title}
-          width={project.image.width}
-          height={project.image.height}
-          className={`my-2 h-auto w-full p-1 ${inverted ? "bg-ink" : "bg-cream"}`}
+          className="col-span-2 cols2:col-span-1"
         />
 
-        <h3 className="font-title text-md">SKILLS</h3>
-        <ul className="list-disc pl-6 text-sm">
-          {project.skills.map((skill) => (
-            <SkillListItem
-              key={typeof skill === "string" ? skill : skill.label}
-              skill={skill}
-            />
-          ))}
-        </ul>
+        <div className="col-main flex flex-col gap-line">
+          <Heading level={3} className="lines-1">
+            Skills
+          </Heading>
 
-        <h3 className="mt-lg font-title text-md">DESCRIPTION</h3>
-        <div className="space-y-3 pb-3 text-sm">{project.description}</div>
+          <ul className="list-disc pl-line text-sm">
+            {project.skills.map((skill) => (
+              <SkillListItem
+                key={typeof skill === "string" ? skill : skill.label}
+                skill={skill}
+              />
+            ))}
+          </ul>
+
+          <Heading level={3} className="lines-1">
+            Description
+          </Heading>
+
+          <div className="flex flex-col gap-line text-sm">
+            {project.description}
+          </div>
+        </div>
       </div>
     </section>
   );

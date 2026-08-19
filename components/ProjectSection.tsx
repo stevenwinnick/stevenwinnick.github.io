@@ -21,13 +21,17 @@ function SkillListItem({ skill }: { skill: SkillItem }) {
 // The negative margin lets the opening rule run out to the page frame while the
 // subgrid keeps the content on the page grid's columns.
 export default function ProjectSection({ project }: { project: Project }) {
+  // The shots start on the skills row, which is the third only when the project
+  // has a subtitle to fill the second.
+  const imageRow = project.subtitle ? "cols4:row-start-3" : "cols4:row-start-2";
+
   return (
     <section id={project.id} className="page-grid scroll-mt-(--header-height)">
       <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
         <h3 className="col-main rows-1">{project.title}</h3>
 
         {project.subtitle && (
-          <p className="col-main text-sm">{project.subtitle}</p>
+          <p className="col-main min-rows-1 text-sm">{project.subtitle}</p>
         )}
 
         {/*
@@ -38,13 +42,13 @@ export default function ProjectSection({ project }: { project: Project }) {
         <ModuleImage
           image={project.image}
           alt={project.title}
-          className="col-span-2 self-start cols2:col-span-1 cols4:col-start-1"
+          className={`col-start-1 col-end-3 self-start cols2:col-end-2 ${imageRow}`}
         />
 
         <ModuleImage
           image={project.image}
           alt=""
-          className="hidden self-start cols4:col-start-4 cols4:block"
+          className={`hidden self-start cols4:col-start-4 cols4:col-end-5 cols4:block ${imageRow}`}
         />
 
         <div className="col-main flex flex-col gap-line">

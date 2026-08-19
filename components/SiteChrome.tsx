@@ -2,10 +2,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 /**
- * The chrome every page but the landing page still uses. The landing page is
- * outside this group while its new header and footer are being designed.
+ * The chrome every page but the landing page still uses. Each of those pages
+ * pulls it in through its own `layout.tsx`, since a root layout would put it on
+ * the landing page too.
  */
-export default function SiteLayout({
+export default function SiteChrome({
   children,
 }: {
   children: React.ReactNode;

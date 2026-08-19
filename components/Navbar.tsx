@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type CSSProperties, type ReactNode } from "react";
+import { RESUME_URL } from "@/data/navigation";
 import styles from "./Navbar.module.css";
 
 type NavLink = {
@@ -28,7 +29,7 @@ const NAV_LINKS: NavLink[] = [
     accent: "var(--color-red)",
   },
   {
-    href: "https://drive.google.com/file/d/17jHs-lGyFanjH1GBPOZNlB5fl1YMSl2K/view",
+    href: RESUME_URL,
     label: "RESUME",
     accent: "var(--color-yellow)",
     external: true,

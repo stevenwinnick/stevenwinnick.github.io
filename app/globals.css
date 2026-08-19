@@ -13,6 +13,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "redacted2";
+  src: url("/fonts/redacted2.woff2") format("woff2");
+  font-display: swap;
+}
+
 /*
  * Design tokens. Tailwind v4 exposes each of these as utilities:
  *   --color-... becomes bg-, text-, and border- utilities (e.g. text-blue)
@@ -33,14 +39,24 @@
   --color-blue: #1982c4;
   --color-purple: #6a4c93;
 
+  /* The two-colour palette of the landing page. */
+  --color-white: #ffffff;
+  --color-blue-new: #003fbf;
+
   --font-title: "redacted-title", sans-serif;
   --font-body: "redacted-body", sans-serif;
+  --font-body-new: "redacted2", serif;
+  /* Loaded by `next/font` in `app/fonts.ts`. */
+  --font-header-new: var(--font-ibm-plex-serif), serif;
+
+  --tracking-header-new: 0.02em;
 
   /*
    * Body text: a fixed size and a fixed leading, so that one line is always
-   * the same height. The grid below is derived from these two numbers.
+   * the same height. The grid below is derived from these two numbers, which
+   * are the browser default size and Tailwind's default leading: a 24px line.
    */
-  --text-sm: 1.25rem;
+  --text-sm: 1rem;
   --leading-body: 1.5;
   --text-sm--line-height: var(--leading-body);
 }
@@ -51,38 +67,37 @@
  */
 :root {
   --line: calc(var(--text-sm) * var(--leading-body));
-  --grid-module-lines: 7;
+  --grid-module-lines: 10;
   --grid-gutter: var(--line);
   --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
   /* One row of modules, the vertical counterpart of --grid-col. */
   --grid-row: calc(var(--grid-module-lines) * var(--line));
-  /* The two centre columns and the gutter between them: a ~61 character measure. */
+  /* Two columns and the gutter between them. */
   --grid-main: calc(2 * var(--grid-col) + var(--grid-gutter));
   /* Two lines, so the grid carries on uninterrupted below the navbar. */
   --nav-height: calc(2 * var(--line));
+  --header-height: calc(var(--grid-gutter) + var(--grid-row));
 }
 
 @theme {
   /*
-   * The rest of the type scale. Only display sizes (`md`–`xl`) are fluid,
-   * since they have no measure to protect.
+   * The rest of the type scale, in two steps: these are the sizes for screens
+   * too narrow for the columns to reach full width, and the media query below
+   * has the sizes for everything above that.
    *
    * `--leading-grid` rounds a size up to a whole number of grid lines, so a
    * block of text is always a whole number of lines tall. `1em` resolves
    * against the element's own font size, so the one expression covers every
-   * step, fluid ones included.
+   * step.
    */
   --leading-grid: round(up, 1em, var(--line));
-  --text-xs: 1rem;
+  --text-xs: 0.8125rem;
   --text-xs--line-height: var(--leading-grid);
-  --text-md: clamp(1.9rem, 5vw, 2.9rem);
+  --text-md: 1.125rem;
   --text-md--line-height: var(--leading-grid);
-  /* Display type for a single grid column: the widest that fits one. */
-  --text-col: 2.125rem;
-  --text-col--line-height: var(--leading-grid);
-  --text-lg: clamp(2.75rem, 8vw, 5rem);
+  --text-lg: 1.5rem;
   --text-lg--line-height: var(--leading-grid);
-  --text-xl: clamp(3.25rem, 10vw, 7.5rem);
+  --text-xl: 2rem;
   --text-xl--line-height: var(--leading-grid);
 
   /*
@@ -106,6 +121,52 @@
   --spacing-md: 1.5rem;
   --spacing-lg: 2.5rem;
   --spacing-xl: 4rem;
+
+  /*
+   * The widths at which the grid's columns reach their full size, which cannot
+   * be written as calc(var(--grid-col) ...) because a media query resolves no
+   * custom properties. `cols2` is two columns and the three gutters around
+   * them, `cols4` is four columns and their five gutters.
+   */
+  --breakpoint-cols2: 44.5rem;
+  --breakpoint-cols4: 87.5rem;
+}
+
+/*
+ * The larger display step, from `cols2` up. The width is spelled out because a
+ * plain media query cannot read `--breakpoint-cols2`.
+ */
+@media (width >= 44.5rem) {
+  :root {
+    --text-md: 1.25rem;
+    --text-lg: 2rem;
+    --text-xl: 3rem;
+  }
+}
+
+/*
+ * The type scale the pages that have not been redesigned yet were built for,
+ * pinned here so the landing page's smaller scale does not shrink them. Delete
+ * this block once those pages move onto the new scale.
+ *
+ * Every token another token derives from has to be repeated: a custom property
+ * is substituted where it is *declared*, not where it is used, so redeclaring
+ * `--line` alone would leave the line heights and `--nav-height` computed from
+ * the root's value.
+ */
+.legacy-type {
+  --text-xs: 1rem;
+  --text-sm: 1.25rem;
+  --text-md: clamp(1.9rem, 5vw, 2.9rem);
+  --text-lg: clamp(2.75rem, 8vw, 5rem);
+  --text-xl: clamp(3.25rem, 10vw, 7.5rem);
+  --line: calc(var(--text-sm) * var(--leading-body));
+  --leading-grid: round(up, 1em, var(--line));
+  --text-xs--line-height: var(--leading-grid);
+  --text-md--line-height: var(--leading-grid);
+  --text-lg--line-height: var(--leading-grid);
+  --text-xl--line-height: var(--leading-grid);
+  --nav-height: calc(2 * var(--line));
 }
 
 body {
@@ -115,8 +176,8 @@ body {
 }
 
 /*
- * The page grid: two content columns, growing to four at `xl`, with an empty
- * track on each side that takes up whatever is left over.
+ * The page grid: two content columns, growing to four at `cols4`, with an
+ * empty track on each side that takes up whatever is left over.
  *
  * The bracketed words are grid line names, not columns. Each `-start`/`-end`
  * pair marks where a named span begins and ends, so a child can say
@@ -129,17 +190,15 @@ body {
  *   that should run to the edges of the screen (a full-width image, a band of
  *   background colour) rather than sit inside the margins
  *
- * Below `xl` the left and right columns do not exist, so their names sit on
+ * Below `cols4` the left and right columns do not exist, so their names sit on
  * the same lines as main and a child placed there falls back into the centre.
  *
- * Below `xl` the two columns are fluid and the outer tracks are zero width, so
- * the side margin is one gutter at every width: the content grows with the
- * screen instead of capping at --grid-col and leaving margins that widen until
- * the four-column layout takes over. The two layouts meet almost exactly at
- * `xl` (1220px of content at 1279px, 1210px at 1280px). Only the four-column
- * layout has fixed columns, and there the outer `1fr` tracks centre the grid.
- * A zero-width outer track still leaves its column gap, so `bleed` reaches the
- * edges of the screen at every width.
+ * There are three widths. Below `cols2` the two columns are fluid and the
+ * outer tracks are zero width, so the side margin is one gutter and the
+ * content grows with the screen. From `cols2` the two columns are full width
+ * and the outer `1fr` tracks centre them, so nothing inside changes size until
+ * `cols4` adds the outer columns. A zero-width outer track still leaves its
+ * column gap, so `bleed` reaches the edges of the screen at every width.
  */
 @utility page-grid {
   display: grid;
@@ -152,9 +211,17 @@ body {
     minmax(0, 1fr) [main-end left-end right-end wide-end]
     0 [bleed-end];
 
-  @variant xl {
+  @variant cols2 {
     grid-template-columns:
       /* Outer track: soaks up whatever the fixed columns leave over. */
+      [bleed-start] minmax(0, 1fr)
+      [wide-start left-start right-start main-start] var(--grid-col)
+      var(--grid-col) [main-end left-end right-end wide-end]
+      minmax(0, 1fr) [bleed-end];
+  }
+
+  @variant cols4 {
+    grid-template-columns:
       [bleed-start] minmax(0, 1fr)
       /* An outer column appears on each side, so left and right split off. */
       [wide-start left-start] minmax(0, var(--grid-col))
@@ -206,13 +273,15 @@ body {
  */
 @utility rows-* {
   block-size: calc(
-    --value(integer) * (var(--grid-row) + var(--grid-gutter)) - var(--grid-gutter)
+    --value(integer) * (var(--grid-row) + var(--grid-gutter)) -
+      var(--grid-gutter)
   );
 }
 
 @utility min-rows-* {
   min-block-size: calc(
-    --value(integer) * (var(--grid-row) + var(--grid-gutter)) - var(--grid-gutter)
+    --value(integer) * (var(--grid-row) + var(--grid-gutter)) -
+      var(--grid-gutter)
   );
 }
 

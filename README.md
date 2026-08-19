@@ -26,9 +26,9 @@ npm run serve   # serves the built `out/` directory locally
 
 ## Project structure
 
-- `app/` — routes (App Router); the navbar and footer live in `app/layout.tsx`
-- `components/` — shared UI (`Navbar`, `Footer`, `Pill`, `ProseLink`, `PageHeading`, `ProjectSection`, `WavesCanvas`)
-- `data/projects.tsx` — the project list rendered on the projects page
+- `app/` — routes (App Router); the landing page sits in the `app/(newlandingpage)` group, and every other page has a `layout.tsx` rendering `SiteChrome` (the navbar and footer), which keeps that chrome off the landing page
+- `components/` — shared UI (`Navbar`, `Footer`, `SiteChrome`, `LandingHeader`, `BoxyFillingPill`, `FillingLink`, `ProseLink`, `PageHeading`, `ProjectSection`, `WavesCanvas`)
+- `data/` — the project list (`projects.tsx`) and the site's navigation links (`navigation.ts`)
 - `app/globals.css` — Tailwind import, design tokens (`@theme`: colors, fonts, `xs`–`xl` type and spacing scales), fonts, and component styles
 - `public/` — static assets (images, fonts, `CNAME`, `.nojekyll`)
 

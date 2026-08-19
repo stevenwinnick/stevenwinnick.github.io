@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { ibmPlexSerif } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,13 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Navbar />
-        {/* Offset content below the fixed navbar. */}
-        <div className="pt-(--nav-height)">{children}</div>
-        <Footer />
-      </body>
+    <html lang="en" className={ibmPlexSerif.variable}>
+      <body>{children}</body>
     </html>
   );
 }

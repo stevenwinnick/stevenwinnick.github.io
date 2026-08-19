@@ -31,15 +31,23 @@ type Grid = {
  * page's vertical rhythm, one gutter down from the top of the *page* and one
  * gutter between each pair, so that a reload part-way down the page still lands
  * the lines on the grid the content sits on.
+ *
+ * Returns null if the probes measure zero, which would mean the stylesheet has
+ * not been applied and there is no grid to draw.
  */
 function measureGrid(probes: {
   gutter: HTMLElement;
   moduleRow: HTMLElement;
   wide: HTMLElement;
   main: HTMLElement;
-}): Grid {
+}): Grid | null {
   const gutter = probes.gutter.getBoundingClientRect().height;
   const rowHeight = probes.moduleRow.getBoundingClientRect().height;
+  const period = rowHeight + gutter;
+  if (period <= 0) {
+    return null;
+  }
+
   const wide = probes.wide.getBoundingClientRect();
   const main = probes.main.getBoundingClientRect();
 
@@ -51,7 +59,6 @@ function measureGrid(probes: {
     columnOffsets.push(left, left + columnWidth);
   }
 
-  const period = rowHeight + gutter;
   const viewportTop = window.scrollY;
   const viewportBottom = viewportTop + window.innerHeight;
   const rowOffsets: number[] = [];
@@ -127,6 +134,11 @@ export default function GridIntro() {
       }
 
       const measured = measureGrid({ gutter, moduleRow, wide, main });
+      if (!measured) {
+        setFinished(true);
+        return;
+      }
+
       setGrid(measured);
       timer = window.setTimeout(() => setFinished(true), measured.durationMs);
     });

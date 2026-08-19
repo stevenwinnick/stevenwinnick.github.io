@@ -1,0 +1,25 @@
+/*
+ * A cropped image that fills its column: as close to the module's 4:3 as the
+ * grid allows, while its height stays a whole number of lines so the rhythm
+ * survives fluid column widths. Where the columns are fixed this lands on 4:3
+ * exactly. The crop measures against `.frame`, and falls back to a plain 4:3
+ * crop without round(). `.cropTall` is the portrait counterpart, a module
+ * turned on its side.
+ */
+.frame {
+  container-type: inline-size;
+}
+
+.crop {
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  block-size: round(nearest, 75cqw, var(--line));
+  object-fit: cover;
+}
+
+.cropTall {
+  inline-size: 100%;
+  aspect-ratio: 3 / 4;
+  block-size: round(nearest, calc(4 / 3 * 100cqw), var(--line));
+  object-fit: cover;
+}

@@ -19,7 +19,7 @@ export default function FillingLink({
   newTab,
   className = "",
 }: FillingLinkProps) {
-  const classNames = `${styles.fillingLink} ${className}`.trim();
+  const classNames = `${styles.fillingLink} fill-on-hover ${className}`.trim();
   const newTabProps = newTab
     ? { target: "_blank", rel: "noopener noreferrer" }
     : {};

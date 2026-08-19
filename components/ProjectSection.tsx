@@ -19,7 +19,8 @@ function SkillListItem({ skill }: { skill: SkillItem }) {
 }
 
 // The negative margin lets the opening rule run out to the page frame while the
-// subgrid keeps the content on the page grid's columns.
+// subgrid keeps the content on the page grid's columns. The bottom padding is a
+// module row, so a project is set off from the rule that opens the next one.
 export default function ProjectSection({ project }: { project: Project }) {
   /*
    * The rows are placed by hand because the composition changes at every step:
@@ -39,7 +40,7 @@ export default function ProjectSection({ project }: { project: Project }) {
 
   return (
     <section id={project.id} className="page-grid scroll-mt-(--header-height)">
-      <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
+      <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line pt-line pb-(--grid-row)">
         <h3 className="col-main row-start-1 rows-1">{project.title}</h3>
 
         <ModuleImage

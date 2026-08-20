@@ -27,11 +27,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     href: "https://linkedin.com/in/stevenwinnick",
     label: "LinkedIn",
-    icon: "/img/linkedin.png",
+    icon: "/img/icons/linkedin.svg",
   },
   {
     href: "https://github.com/stevenwinnick",
     label: "GitHub",
-    icon: "/img/github.png",
+    icon: "/img/icons/github.svg",
   },
 ];

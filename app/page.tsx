@@ -58,11 +58,8 @@ export default function HomePage() {
                 className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline cols2:col-span-1 cols4:row-span-3 cols4:grid cols4:grid-rows-subgrid"
               >
                 <h3 className="lines-1">{project.title}</h3>
-                <ModuleImage
-                  image={project.preview.image}
-                  alt={project.title}
-                />
-                <p className="min-rows-1 text-sm">{project.preview.blurb}</p>
+                <ModuleImage src={project.image} alt={project.title} />
+                <p className="min-rows-1 text-sm">{project.previewBlurb}</p>
               </Link>
             ))}
           </div>

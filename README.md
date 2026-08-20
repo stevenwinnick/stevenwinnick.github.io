@@ -36,8 +36,8 @@ npm run serve   # serves the built `out/` directory locally
 
 The static export runs no image optimization, so every file in `public/img` is served exactly as it is committed and has to be prepared before it lands here:
 
-- **Cropped to its slot on the grid.** `ModuleImage` renders a photograph in one 4:3 module, or with `tall` in a portrait two module rows deep, which the grid makes 40:63. The file is cropped to that ratio and the component derives the dimensions from it, so no image carries its own width and height
-- **Capped at 1600 px on the long edge**, roughly 2.4x the widest a module ever renders. A source smaller than that is left alone rather than upscaled
+- **Cropped to its slot on the grid.** `ModuleImage` renders a photograph in one 4:3 module, or with `tall` in a portrait two module rows deep, which the grid makes 16:25. The file is cropped to that ratio and the component derives the dimensions from it, so no image carries its own width and height
+- **Capped at 1600 px on the long edge**, roughly 2x the widest a module ever renders. A source smaller than that is left alone rather than upscaled
 - **WebP at quality 80**, with metadata stripped. Icons painted as CSS masks are SVG, where only the shape matters
 - **Named for what it belongs to**, in kebab-case, flat in `public/img`. A project's photograph takes the project's own `id` from `data/projects.tsx`
 

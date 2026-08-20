@@ -45,7 +45,7 @@
  */
 :root {
   --line: calc(var(--text-sm) * var(--leading-body));
-  --grid-module-lines: 10;
+  --grid-module-lines: 12;
   --grid-gutter: var(--line);
   --grid-col: calc(4 / 3 * var(--grid-module-lines) * var(--line));
   /* One row of modules, the vertical counterpart of --grid-col. */
@@ -94,15 +94,15 @@
    * custom properties. `cols2` is two columns and the three gutters around
    * them, `cols4` is four columns and their five gutters.
    */
-  --breakpoint-cols2: 44.5rem;
-  --breakpoint-cols4: 87.5rem;
+  --breakpoint-cols2: 52.5rem;
+  --breakpoint-cols4: 103.5rem;
 }
 
 /*
  * The larger display step, from `cols2` up. The width is spelled out because a
  * plain media query cannot read `--breakpoint-cols2`.
  */
-@media (width >= 44.5rem) {
+@media (width >= 52.5rem) {
   :root {
     --text-h3: 1.25rem;
     --text-h2: 2rem;

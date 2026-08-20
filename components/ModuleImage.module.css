@@ -5,8 +5,8 @@
  * exactly. The crop measures against `.frame`, and falls back to the plain
  * ratio without round().
  *
- * `.cropTall` is the portrait counterpart, two module rows tall: 21 lines
- * against a column's 40/3, hence 40:63.
+ * `.cropTall` is the portrait counterpart, two module rows and the gutter
+ * between them tall: 25 lines against a column's 16, hence 16:25.
  */
 .frame {
   container-type: inline-size;
@@ -21,7 +21,7 @@
 
 .cropTall {
   inline-size: 100%;
-  aspect-ratio: 40 / 63;
-  block-size: round(nearest, calc(63 / 40 * 100cqw), var(--line));
+  aspect-ratio: 16 / 25;
+  block-size: round(nearest, calc(25 / 16 * 100cqw), var(--line));
   object-fit: cover;
 }

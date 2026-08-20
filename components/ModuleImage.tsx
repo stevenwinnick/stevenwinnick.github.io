@@ -10,7 +10,7 @@ import styles from "./ModuleImage.module.css";
  * either way.
  */
 const WIDE_SIZE = { width: 1600, height: 1200 };
-const TALL_SIZE = { width: 1000, height: 1575 };
+const TALL_SIZE = { width: 1024, height: 1600 };
 
 type ModuleImageProps = {
   src: string;

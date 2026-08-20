@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "About | Steven Winnick",
 };
 
-const GRADUATION_PHOTO = "/img/about/graduation.webp";
+const GRADUATION_PHOTO = "/img/graduation.webp";
 
 export default function AboutPage() {
   return (

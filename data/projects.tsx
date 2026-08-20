@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
     title: "Pitch Perfect",
     subtitle:
       "A hardware-accelerated real-time phase vocoder for pitch scaling, built on the Intel/Altera Cyclone V DE1-SOC FPGA",
-    image: "/img/projects/pitch.webp",
+    image: "/img/pitch.webp",
     skills: [
       {
         label: "Embedded System Design",
@@ -71,7 +71,7 @@ export const PROJECTS: Project[] = [
     id: "waves",
     title: "Sonic Canvas",
     subtitle: "A creative tool for quickly testing sound wave samples",
-    image: "/img/projects/waves.webp",
+    image: "/img/waves.webp",
     previewBlurb: "A creative tool for quickly testing sound wave samples.",
     skills: [
       {
@@ -102,7 +102,7 @@ export const PROJECTS: Project[] = [
     title: "Spyglass",
     subtitle:
       "An application for monitoring and validating SCTE-35 cues in MPEG-DASH and HLS video streams to ensure proper advertisement placement",
-    image: "/img/projects/spyglass.webp",
+    image: "/img/spyglass.webp",
     skills: [
       {
         label: "Digital video",
@@ -139,7 +139,7 @@ export const PROJECTS: Project[] = [
     title: "SyllableGPT",
     subtitle:
       "A generative large language model based on GPT, modified so that it tends to generate words with matching vowel sounds and rhyming syllables for better performance in writing poetry and song lyrics",
-    image: "/img/projects/syllablegpt.webp",
+    image: "/img/syllablegpt.webp",
     skills: [
       "Large Language Models",
       "HuggingFace Transformers",
@@ -166,7 +166,7 @@ export const PROJECTS: Project[] = [
     title: "Foghorn API",
     subtitle:
       "A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed",
-    image: "/img/projects/foghorn.webp",
+    image: "/img/foghorn.webp",
     previewBlurb:
       "A tool for easily logging messages and recieving Slack notifications when sections of code are executed.",
     skills: [
@@ -187,7 +187,7 @@ export const PROJECTS: Project[] = [
     title: "RhymeNet",
     subtitle:
       "An English language database containing information about both words' phoenetic and written syllable divisions",
-    image: "/img/projects/rhymenet.webp",
+    image: "/img/rhymenet.webp",
     previewBlurb:
       "An English language database containing information about words' phoenetic and written syllable divisions.",
     skills: [
@@ -218,7 +218,7 @@ export const PROJECTS: Project[] = [
         {` and I built a simulator of our favorite card game, Sheepshead, then trained an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning`}
       </>
     ),
-    image: "/img/projects/sheepshead.webp",
+    image: "/img/sheepshead.webp",
     previewBlurb:
       "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning.",
     skills: [
@@ -245,7 +245,7 @@ export const PROJECTS: Project[] = [
     title: "MIDI Interpreter",
     subtitle:
       "A program allowing me to customize the inputs programs interpret from my MIDI keyboard so I can use it for keyboard shortcuts",
-    image: "/img/projects/midi-interpreter.webp",
+    image: "/img/midi-interpreter.webp",
     skills: [
       "Linux Kernel",
       "Operating Systems",
@@ -265,7 +265,7 @@ export const PROJECTS: Project[] = [
     title: "Image Captioner",
     subtitle:
       "For the final project for my Natural Language Processing class, I built an image caption generator",
-    image: "/img/projects/image-captioner.webp",
+    image: "/img/image-captioner.webp",
     skills: [
       "Computer Vision with CNNs",
       "Stacked/Deep Bidirectional Recurrent Neural Networks",
@@ -282,7 +282,7 @@ export const PROJECTS: Project[] = [
     id: "walking-robot",
     title: "Walking Robot",
     subtitle: "A built-from-scratch robot made as part of Columbia's Robotics Studio",
-    image: "/img/projects/walking-robot.webp",
+    image: "/img/walking-robot.webp",
     skills: [
       "Robotic Movement",
       "Solidworks",
@@ -306,7 +306,7 @@ export const PROJECTS: Project[] = [
     title: "Neural Network",
     subtitle:
       "To gain a better understanding of deep learning, I built a neural network from scratch",
-    image: "/img/projects/neural-network.webp",
+    image: "/img/neural-network.webp",
     skills: [
       "Neural networks and deep learning",
       "Numpy and Pandas",
@@ -326,7 +326,7 @@ export const PROJECTS: Project[] = [
     title: "Tech Strategy Internship",
     subtitle:
       "During the summer of 2022, I was an intern at Paramount on the Technology Strategy team",
-    image: "/img/projects/paramount-tech-strategy.webp",
+    image: "/img/paramount-tech-strategy.webp",
     skills: [
       "Innovation strategy",
       "SAFe Agile",
@@ -347,7 +347,7 @@ export const PROJECTS: Project[] = [
     title: "Sonar Internship",
     subtitle:
       "After my first year of college, I was a Product Manager and Software Engineer intern at Sonar, a digital health startup",
-    image: "/img/projects/sonar.webp",
+    image: "/img/sonar.webp",
     skills: [
       "Product Management",
       "Competitive analysis",
@@ -367,7 +367,7 @@ export const PROJECTS: Project[] = [
   {
     id: "this-website",
     title: "This Website",
-    image: "/img/projects/this-website.webp",
+    image: "/img/this-website.webp",
     skills: ["HTML and CSS", "JavaScript", "Bootstrap", "Design with Figma"],
     description: (
       <p>

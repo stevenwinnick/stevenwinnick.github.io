@@ -10,12 +10,12 @@ import styles from "./ModuleImage.module.css";
  * either way.
  */
 const WIDE_SIZE = { width: 1600, height: 1200 };
-const TALL_SIZE = { width: 1200, height: 1600 };
+const TALL_SIZE = { width: 1000, height: 1575 };
 
 type ModuleImageProps = {
   src: string;
   alt: string;
-  /** Crop to a portrait module instead of a landscape one. */
+  /** Crop to a portrait, two module rows tall, instead of a single module. */
   tall?: boolean;
   className?: string;
 };

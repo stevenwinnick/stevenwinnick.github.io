@@ -8,11 +8,7 @@ export const metadata: Metadata = {
   title: "About | Steven Winnick",
 };
 
-const GRADUATION_PHOTO = {
-  src: "/img/graduation.jpg",
-  width: 4160,
-  height: 6240,
-};
+const GRADUATION_PHOTO = "/img/graduation.webp";
 
 export default function AboutPage() {
   return (
@@ -31,14 +27,14 @@ export default function AboutPage() {
        * alt text.
        */}
       <ModuleImage
-        image={GRADUATION_PHOTO}
+        src={GRADUATION_PHOTO}
         alt="Steven Winnick at his Columbia University graduation"
         tall
         className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:row-start-2 cols4:row-end-4"
       />
 
       <ModuleImage
-        image={GRADUATION_PHOTO}
+        src={GRADUATION_PHOTO}
         alt=""
         tall
         className="hidden self-start cols4:col-start-5 cols4:col-end-6 cols4:row-start-3 cols4:row-end-4 cols4:block"

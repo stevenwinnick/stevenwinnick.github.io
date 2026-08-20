@@ -1,12 +1,21 @@
 import Image from "next/image";
 import styles from "./ModuleImage.module.css";
 
-export type ModuleImageSource = { src: string; width: number; height: number };
+/*
+ * Every photograph in `public/img` is cropped to a module's ratio when it is
+ * added, so the dimensions `next/image` asks for follow from the orientation
+ * rather than the file. They describe the ratio and the ceiling, not the file's
+ * own pixels: an image whose source is smaller than the ceiling keeps its own
+ * resolution instead of being upscaled, and the crop below sizes the element
+ * either way.
+ */
+const WIDE_SIZE = { width: 1600, height: 1200 };
+const TALL_SIZE = { width: 1024, height: 1600 };
 
 type ModuleImageProps = {
-  image: ModuleImageSource;
+  src: string;
   alt: string;
-  /** Crop to a portrait module instead of a landscape one. */
+  /** Crop to a portrait, two module rows tall, instead of a single module. */
   tall?: boolean;
   className?: string;
 };
@@ -17,18 +26,20 @@ type ModuleImageProps = {
  * overlay, so every image on the site reads as the same blue.
  */
 export default function ModuleImage({
-  image,
+  src,
   alt,
   tall,
   className = "",
 }: ModuleImageProps) {
+  const { width, height } = tall ? TALL_SIZE : WIDE_SIZE;
+
   return (
     <figure className={`${styles.frame} relative isolate m-0 ${className}`}>
       <Image
-        src={image.src}
+        src={src}
         alt={alt}
-        width={image.width}
-        height={image.height}
+        width={width}
+        height={height}
         className={tall ? styles.cropTall : styles.crop}
       />
       <span

@@ -1,24 +1,21 @@
 import type { ReactNode } from "react";
 import FillingLink from "@/components/FillingLink";
-import type { ModuleImageSource } from "@/components/ModuleImage";
 
 /** A skill bullet, optionally with a nested list of sub-bullets. */
 export type SkillItem = string | { label: string; children: string[] };
-
-/** The square crop and short blurb a project is previewed with on the landing page. */
-export type ProjectPreview = { image: ModuleImageSource; blurb: string };
 
 export type Project = {
   id: string;
   title: string;
   subtitle?: ReactNode;
-  image: ModuleImageSource;
+  image: string;
   skills: SkillItem[];
   description: ReactNode;
-  preview?: ProjectPreview;
+  /** The short line a project is previewed with on the landing page, which only the previewed projects carry. */
+  previewBlurb?: string;
 };
 
-export type PreviewedProject = Project & { preview: ProjectPreview };
+export type PreviewedProject = Project & { previewBlurb: string };
 
 export const PROJECTS: Project[] = [
   {
@@ -26,7 +23,7 @@ export const PROJECTS: Project[] = [
     title: "Pitch Perfect",
     subtitle:
       "A hardware-accelerated real-time phase vocoder for pitch scaling, built on the Intel/Altera Cyclone V DE1-SOC FPGA",
-    image: { src: "/img/greenboard.png", width: 1200, height: 673 },
+    image: "/img/pitch.webp",
     skills: [
       {
         label: "Embedded System Design",
@@ -74,11 +71,8 @@ export const PROJECTS: Project[] = [
     id: "waves",
     title: "Sonic Canvas",
     subtitle: "A creative tool for quickly testing sound wave samples",
-    image: { src: "/img/soundwaves.png", width: 1200, height: 673 },
-    preview: {
-      image: { src: "/img/soundwaves.png", width: 1200, height: 673 },
-      blurb: "A creative tool for quickly testing sound wave samples.",
-    },
+    image: "/img/waves.webp",
+    previewBlurb: "A creative tool for quickly testing sound wave samples.",
     skills: [
       {
         label: "Digital audio",
@@ -108,7 +102,7 @@ export const PROJECTS: Project[] = [
     title: "Spyglass",
     subtitle:
       "An application for monitoring and validating SCTE-35 cues in MPEG-DASH and HLS video streams to ensure proper advertisement placement",
-    image: { src: "/img/spyglass.webp", width: 1200, height: 800 },
+    image: "/img/spyglass.webp",
     skills: [
       {
         label: "Digital video",
@@ -145,7 +139,7 @@ export const PROJECTS: Project[] = [
     title: "SyllableGPT",
     subtitle:
       "A generative large language model based on GPT, modified so that it tends to generate words with matching vowel sounds and rhyming syllables for better performance in writing poetry and song lyrics",
-    image: { src: "/img/syllablegpt.jpg", width: 2000, height: 1000 },
+    image: "/img/syllablegpt.webp",
     skills: [
       "Large Language Models",
       "HuggingFace Transformers",
@@ -172,12 +166,9 @@ export const PROJECTS: Project[] = [
     title: "Foghorn API",
     subtitle:
       "A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed",
-    image: { src: "/img/foghorn.jpg", width: 1024, height: 680 },
-    preview: {
-      image: { src: "/img/foghornSquare.jpg", width: 680, height: 680 },
-      blurb:
-        "A tool for easily logging messages and recieving Slack notifications when sections of code are executed.",
-    },
+    image: "/img/foghorn.webp",
+    previewBlurb:
+      "A tool for easily logging messages and recieving Slack notifications when sections of code are executed.",
     skills: [
       "A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)",
       "Designing and creating a secure access management system",
@@ -196,16 +187,9 @@ export const PROJECTS: Project[] = [
     title: "RhymeNet",
     subtitle:
       "An English language database containing information about both words' phoenetic and written syllable divisions",
-    image: { src: "/img/rhymesHighlighted.jpg", width: 1280, height: 720 },
-    preview: {
-      image: {
-        src: "/img/rhymesHighlightedSquare.jpg",
-        width: 720,
-        height: 720,
-      },
-      blurb:
-        "An English language database containing information about words' phoenetic and written syllable divisions.",
-    },
+    image: "/img/rhymenet.webp",
+    previewBlurb:
+      "An English language database containing information about words' phoenetic and written syllable divisions.",
     skills: [
       "Database design and creation",
       "Linguistic theory (phonemes, syllabization, consonant clustering)",
@@ -234,12 +218,9 @@ export const PROJECTS: Project[] = [
         {` and I built a simulator of our favorite card game, Sheepshead, then trained an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning`}
       </>
     ),
-    image: { src: "/img/royalFlush.jpg", width: 1002, height: 668 },
-    preview: {
-      image: { src: "/img/royalFlushSquare.jpg", width: 668, height: 668 },
-      blurb:
-        "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning.",
-    },
+    image: "/img/sheepshead.webp",
+    previewBlurb:
+      "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning.",
     skills: [
       "AI game playing",
       "Deep Reinforcement Learning",
@@ -264,7 +245,7 @@ export const PROJECTS: Project[] = [
     title: "MIDI Interpreter",
     subtitle:
       "A program allowing me to customize the inputs programs interpret from my MIDI keyboard so I can use it for keyboard shortcuts",
-    image: { src: "/img/midiKeyboard.jpg", width: 2560, height: 1707 },
+    image: "/img/midi-interpreter.webp",
     skills: [
       "Linux Kernel",
       "Operating Systems",
@@ -284,7 +265,7 @@ export const PROJECTS: Project[] = [
     title: "Image Captioner",
     subtitle:
       "For the final project for my Natural Language Processing class, I built an image caption generator",
-    image: { src: "/img/towerOfBabel.jpg", width: 1200, height: 878 },
+    image: "/img/image-captioner.webp",
     skills: [
       "Computer Vision with CNNs",
       "Stacked/Deep Bidirectional Recurrent Neural Networks",
@@ -301,7 +282,7 @@ export const PROJECTS: Project[] = [
     id: "walking-robot",
     title: "Walking Robot",
     subtitle: "A built-from-scratch robot made as part of Columbia's Robotics Studio",
-    image: { src: "/img/walkingRobotRender.jpg", width: 2048, height: 1536 },
+    image: "/img/walking-robot.webp",
     skills: [
       "Robotic Movement",
       "Solidworks",
@@ -325,7 +306,7 @@ export const PROJECTS: Project[] = [
     title: "Neural Network",
     subtitle:
       "To gain a better understanding of deep learning, I built a neural network from scratch",
-    image: { src: "/img/neuralNetwork.jpg", width: 1024, height: 768 },
+    image: "/img/neural-network.webp",
     skills: [
       "Neural networks and deep learning",
       "Numpy and Pandas",
@@ -345,7 +326,7 @@ export const PROJECTS: Project[] = [
     title: "Tech Strategy Internship",
     subtitle:
       "During the summer of 2022, I was an intern at Paramount on the Technology Strategy team",
-    image: { src: "/img/paramountLogo.jpg", width: 1200, height: 627 },
+    image: "/img/paramount-tech-strategy.webp",
     skills: [
       "Innovation strategy",
       "SAFe Agile",
@@ -366,7 +347,7 @@ export const PROJECTS: Project[] = [
     title: "Sonar Internship",
     subtitle:
       "After my first year of college, I was a Product Manager and Software Engineer intern at Sonar, a digital health startup",
-    image: { src: "/img/sonarPhoto.jpg", width: 1920, height: 1600 },
+    image: "/img/sonar.webp",
     skills: [
       "Product Management",
       "Competitive analysis",
@@ -386,7 +367,7 @@ export const PROJECTS: Project[] = [
   {
     id: "this-website",
     title: "This Website",
-    image: { src: "/img/websiteScreenshot.png", width: 2880, height: 1638 },
+    image: "/img/this-website.webp",
     skills: ["HTML and CSS", "JavaScript", "Bootstrap", "Design with Figma"],
     description: (
       <p>
@@ -401,5 +382,5 @@ export const PROJECTS: Project[] = [
 ];
 
 export const PREVIEWED_PROJECTS: PreviewedProject[] = PROJECTS.filter(
-  (project): project is PreviewedProject => project.preview !== undefined,
+  (project): project is PreviewedProject => project.previewBlurb !== undefined,
 );

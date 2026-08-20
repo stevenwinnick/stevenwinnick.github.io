@@ -45,7 +45,7 @@ export default function ProjectSection({ project }: { project: Project }) {
         <h2 className="col-main row-start-1 rows-1 text-h3">{project.title}</h2>
 
         <ModuleImage
-          image={project.image}
+          src={project.image}
           alt={project.title}
           className="col-start-1 col-end-3 row-start-2 self-start cols2:col-start-2 cols2:col-end-3 cols4:col-start-1 cols4:col-end-2"
         />
@@ -60,7 +60,7 @@ export default function ProjectSection({ project }: { project: Project }) {
 
         {/* A repeat of the shot above, so it carries no alt text. */}
         <ModuleImage
-          image={project.image}
+          src={project.image}
           alt=""
           className={`hidden self-start cols2:col-start-1 cols2:col-end-2 cols2:block cols4:col-start-4 cols4:col-end-5 ${secondShotRow}`}
         />

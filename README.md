@@ -32,6 +32,15 @@ npm run serve   # serves the built `out/` directory locally
 - `app/globals.css` — global shared CSS
 - `public/` — static assets (images, fonts, `CNAME`, `.nojekyll`)
 
+## Images
+
+The static export runs no image optimization, so every file in `public/img` is served exactly as it is committed and has to be prepared before it lands here:
+
+- **Cropped to its slot on the grid.** `ModuleImage` renders a photograph in one 4:3 module, or with `tall` in a portrait two module rows deep, which the grid makes 16:25. The file is cropped to that ratio and the component derives the dimensions from it, so no image carries its own width and height
+- **Capped at 1600 px on the long edge**, roughly 2x the widest a module ever renders. A source smaller than that is left alone rather than upscaled
+- **WebP at quality 80**, with metadata stripped. Icons painted as CSS masks are SVG, where only the shape matters
+- **Named for what it belongs to**, in kebab-case, flat in `public/img`. A project's photograph takes the project's own `id` from `data/projects.tsx`
+
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the static export and publishes it to GitHub Pages. The GitHub Pages source must be set to **GitHub Actions** in the repository settings (Settings → Pages → Build and deployment → Source).

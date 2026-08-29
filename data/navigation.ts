@@ -1,5 +1,4 @@
-export const RESUME_URL =
-  "https://drive.google.com/file/d/17jHs-lGyFanjH1GBPOZNlB5fl1YMSl2K/view";
+export const CASCADIUM_URL = "https://www.cascadium.ai";
 
 export type NavItem = {
   href: string;
@@ -13,7 +12,6 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
-  { href: RESUME_URL, label: "Resume", external: true, newTab: true },
   { href: "/contact", label: "Contact" },
 ];
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import FillingLink from "@/components/FillingLink";
 import ModuleImage from "@/components/ModuleImage";
-import { RESUME_URL } from "@/data/navigation";
+import { CASCADIUM_URL } from "@/data/navigation";
 import { PREVIEWED_PROJECTS } from "@/data/projects";
 
 /*
@@ -14,16 +14,29 @@ export default function HomePage() {
       <section className="page-grid gap-y-line pt-line">
         <h1 className="col-main rows-1 normal-case">Hey, I&apos;m Steven.</h1>
 
-        <p className="col-main min-rows-1 text-sm">Welcome to my website!</p>
+        <p className="col-main min-rows-1 text-sm">
+          I&apos;m a founder of{" "}
+          <FillingLink href={CASCADIUM_URL} external newTab>
+            Cascadium
+          </FillingLink>
+          . Welcome to my website!
+        </p>
 
         <p className="col-main min-rows-1 text-sm">
-          If you&apos;re <FillingLink href="/">here</FillingLink> because of my{" "}
-          <FillingLink href={RESUME_URL} external newTab>
-            resume
+          My <FillingLink href="/about">prior work</FillingLink> has focused on
+          ensuring the reliability of some of the world&apos;s most complex
+          software systems. Now my attention is{" "}
+          <FillingLink href={CASCADIUM_URL} external newTab>
+            aimed at
           </FillingLink>{" "}
-          or <FillingLink href="/contact">application</FillingLink>, click to
-          learn more <FillingLink href="/about">about me</FillingLink> or check
-          out <FillingLink href="/projects">my work</FillingLink>.
+          accelerating the impact of scientific innovation on human health.
+        </p>
+
+        <p className="col-main min-rows-1 text-sm">
+          Click around to learn more{" "}
+          <FillingLink href="/about">about me</FillingLink>, read about some of
+          my <FillingLink href="/projects">old projects</FillingLink>, or{" "}
+          <FillingLink href="/contact">get in touch</FillingLink>.
         </p>
       </section>
 

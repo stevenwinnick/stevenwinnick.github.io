@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   title: "About | Steven Winnick",
 };
 
-const GRADUATION_PHOTO = "/img/graduation.webp";
+const OVERLOOK_PHOTO = "/img/overlook.webp";
+const LAKE_PHOTO = "/img/lake.webp";
+const GRADUATION_PHOTO = "/img/graduation-wide.webp";
 
 export default function AboutPage() {
   return (
@@ -19,24 +21,23 @@ export default function AboutPage() {
       <PageIntro>A bit about me.</PageIntro>
 
       {/*
-       * The photos flank the copy in the outer columns from `cols4`, the left
-       * one on the intro's row and the right one a row lower, with the copy, so
-       * the two are offset. Below `cols4` the single photo runs above the copy,
-       * where those columns do not exist. Their columns are explicit
-       * throughout, since auto-placement would otherwise drop them in an outer
-       * track that is zero width until `cols4`. The repeated photo carries no
-       * alt text.
+       * The tall photos flank the copy in the outer columns from `cols4`, the
+       * left one on the intro's row and the right one a row lower, with the
+       * copy, so the two are offset. Below `cols4` only the left one shows, and
+       * it runs above the copy, where those columns do not exist. Every photo's
+       * columns are explicit, since auto-placement would otherwise drop them in
+       * an outer track that is zero width until `cols4`.
        */}
       <ModuleImage
-        src={GRADUATION_PHOTO}
-        alt="Steven Winnick at his Columbia University graduation"
+        src={OVERLOOK_PHOTO}
+        alt="Steven Winnick on a hillside overlook above a city"
         tall
         className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:row-start-2 cols4:row-end-4"
       />
 
       <ModuleImage
-        src={GRADUATION_PHOTO}
-        alt=""
+        src={LAKE_PHOTO}
+        alt="Steven Winnick beside a lake in the mountains"
         tall
         className="hidden self-start cols4:col-start-5 cols4:col-end-6 cols4:row-start-3 cols4:row-end-4 cols4:block"
       />
@@ -88,6 +89,17 @@ export default function AboutPage() {
 
         <p>{`When not working on Cascadium, I enjoy creating elaborate meals, software projects, exercising (currently lifting, biking, and running, in that order), and spending time with my wonderful friends. When in transit, doing simple chores, or winding down for the day, I like to read or listen to audiobooks, and strive to learn new things and develop new perspectives whenever possible.`}</p>
       </div>
+
+      {/*
+       * The wide photo closes the page off below the copy, in the leftmost
+       * column the screen has: an outer column from `cols4`, a content column
+       * from `cols2`, and the full width of the page below that.
+       */}
+      <ModuleImage
+        src={GRADUATION_PHOTO}
+        alt="Steven Winnick at his Columbia University graduation"
+        className="col-start-2 col-end-4 cols2:col-end-3 cols4:row-start-4"
+      />
     </section>
   );
 }

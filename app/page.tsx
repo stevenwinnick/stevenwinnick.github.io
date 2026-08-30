@@ -1,8 +1,9 @@
-import Link from "next/link";
 import FillingLink from "@/components/FillingLink";
 import ModuleImage from "@/components/ModuleImage";
 import { CASCADIUM_URL } from "@/data/navigation";
-import { PREVIEWED_PROJECTS } from "@/data/projects";
+
+const MOUNTAINS_PHOTO = "/img/mountains.webp";
+const GRADUATION_PHOTO = "/img/graduation.webp";
 
 /*
  * Every text block is a module row with its copy on the row's ceiling, so the
@@ -23,8 +24,10 @@ export default function HomePage() {
         </p>
 
         <p className="col-main min-rows-1 text-sm">
+          {/* The apostrophe is an expression, not `&apos;`: an entity in a text
+              node makes the compiler swallow the space after the link. */}
           My <FillingLink href="/about">prior work</FillingLink> has focused on
-          ensuring the reliability of some of the world&apos;s most complex
+          ensuring the reliability of some of the world{"'"}s most complex
           software systems. Now my attention is{" "}
           <FillingLink href={CASCADIUM_URL} external newTab>
             aimed at
@@ -41,47 +44,27 @@ export default function HomePage() {
         </p>
       </section>
 
-      <section className="page-grid">
+      {/* A blank module row holds the photographs off the copy and the footer. */}
+      <section className="page-grid py-(--grid-row)">
         {/*
-         * Subgrid so the section keeps the page grid's columns while its rules
-         * run a gutter outside them, out to the frame: the negative margin
-         * takes them there and the matching padding brings the columns back,
-         * so they still line up with the rest of the page. Only the frame
-         * draws the sides, and the footer's rule closes the section off at the
-         * bottom.
+         * Subgrid on rows of a module each, so the right photograph can start a
+         * row below the left one: two module rows and the gutter between them
+         * is exactly a tall photograph's height.
          */}
-        <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
-          <h2 className="col-main rows-1">Projects</h2>
+        <div className="col-main grid auto-rows-(--grid-row) grid-cols-subgrid gap-y-line">
+          <ModuleImage
+            src={MOUNTAINS_PHOTO}
+            alt="Steven Winnick in front of a snow-capped mountain range"
+            tall
+            className="row-span-2 self-start"
+          />
 
-          <p className="col-main min-rows-1 text-sm">
-            Here are a few of the projects I&apos;ve worked on:
-          </p>
-
-          {/*
-           * Nested subgrid so the previews share rows across all four
-           * columns: their titles, images, and blurbs each line up. One per
-           * column at `cols4`, 2x2 from `cols2` (where a column is already
-           * full width, so the images stop changing size), stacked two columns
-           * wide below that.
-           */}
-          <div className="col-wide grid grid-cols-subgrid gap-y-2line cols4:grid-rows-[auto_auto_auto] cols4:gap-y-line">
-            {PREVIEWED_PROJECTS.map((project) => (
-              <Link
-                key={project.id}
-                href={`/projects#${project.id}`}
-                className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline cols2:col-span-1 cols4:row-span-3 cols4:grid cols4:grid-rows-subgrid"
-              >
-                <h3 className="lines-1">{project.title}</h3>
-                <ModuleImage src={project.image} alt={project.title} />
-                <p className="min-rows-1 text-sm">{project.previewBlurb}</p>
-              </Link>
-            ))}
-          </div>
-
-          <p className="col-main min-rows-1 text-sm">
-            To see more about these projects and others I&apos;ve worked on,
-            click <FillingLink href="/projects">here</FillingLink>.
-          </p>
+          <ModuleImage
+            src={GRADUATION_PHOTO}
+            alt="Steven Winnick at his Columbia University graduation"
+            tall
+            className="col-start-2 row-span-2 row-start-2 self-start"
+          />
         </div>
       </section>
     </>

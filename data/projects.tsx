@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import FillingLink from "@/components/FillingLink";
+import type { ModuleImageLift } from "@/components/ModuleImage";
 
 /** A skill bullet, optionally with a nested list of sub-bullets. */
 export type SkillItem = string | { label: string; children: string[] };
@@ -9,6 +10,7 @@ export type Project = {
   title: string;
   subtitle?: ReactNode;
   image: string;
+  imageLift?: ModuleImageLift;
   skills: SkillItem[];
   description: ReactNode;
 };
@@ -92,6 +94,7 @@ export const PROJECTS: Project[] = [
     title: "Sonic Canvas",
     subtitle: "A creative tool for quickly testing sound wave samples",
     image: "/img/waves.webp",
+    imageLift: "full",
     skills: [
       {
         label: "Digital audio",
@@ -122,6 +125,7 @@ export const PROJECTS: Project[] = [
     subtitle:
       "An application for monitoring and validating SCTE-35 cues in MPEG-DASH and HLS video streams to ensure proper advertisement placement",
     image: "/img/spyglass.webp",
+    imageLift: "soft",
     skills: [
       {
         label: "Digital video",
@@ -337,6 +341,7 @@ export const PROJECTS: Project[] = [
     subtitle:
       "For the final project for my Natural Language Processing class, I built an image caption generator",
     image: "/img/image-captioner.webp",
+    imageLift: "soft",
     skills: [
       "Computer Vision with CNNs",
       "Stacked/Deep Bidirectional Recurrent Neural Networks",
@@ -417,6 +422,7 @@ export const PROJECTS: Project[] = [
     subtitle:
       "During the summer of 2022, I was an intern at Paramount on the Technology Strategy team",
     image: "/img/paramount-tech-strategy.webp",
+    imageLift: "full",
     skills: [
       "Innovation strategy",
       "SAFe Agile",
@@ -462,6 +468,7 @@ export const PROJECTS: Project[] = [
     id: "this-website",
     title: "This Website",
     image: "/img/this-website.webp",
+    imageLift: "full",
     skills: ["HTML and CSS", "JavaScript", "Bootstrap", "Design with Figma"],
     description: (
       <p>

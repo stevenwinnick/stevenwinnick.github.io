@@ -12,8 +12,7 @@
   container-type: inline-size;
 }
 
-/* The blue wash keeps only luminosity, which leaves faces darker than the rest
- * of a frame, so the photograph is lifted before it is blended. */
+/* Optionally lift dark photographs before washing them blue. */
 .lift {
   filter: brightness(1.5) contrast(0.8);
 }

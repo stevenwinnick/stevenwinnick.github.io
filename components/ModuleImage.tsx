@@ -14,13 +14,15 @@ const TALL_SIZE = { width: 1024, height: 1600 };
 
 const LIFTS = { full: styles.lift, soft: styles.liftSoft } as const;
 
+export type ModuleImageLift = keyof typeof LIFTS;
+
 type ModuleImageProps = {
   src: string;
   alt: string;
   /** Crop to a portrait, two module rows tall, instead of a single module. */
   tall?: boolean;
-  /** Lighten before the blue wash so skin does not read as flat blue: `soft` for a frame `full` would blow out. */
-  lift?: keyof typeof LIFTS;
+  /** Lighten before the blue wash. Helps avoid skin reading as blue. */
+  lift?: ModuleImageLift;
   className?: string;
 };
 

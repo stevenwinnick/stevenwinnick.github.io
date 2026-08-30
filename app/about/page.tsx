@@ -21,28 +21,29 @@ export default function AboutPage() {
       <PageIntro>A bit about me.</PageIntro>
 
       {/*
-       * The tall photos flank the copy in the outer columns from `cols4`, the
-       * left one on the intro's row and the right one a row lower, with the
-       * copy, so the two are offset. Below `cols4` only the left one shows, and
-       * it runs above the copy, where those columns do not exist. Every photo's
-       * columns are explicit, since auto-placement would otherwise drop them in
-       * an outer track that is zero width until `cols4`.
+       * An empty module row between the intro and the copy, only where the copy
+       * sits beside the photos.
+       */}
+      <div
+        aria-hidden="true"
+        className="col-main hidden h-(--grid-row) cols4:block"
+      />
+
+      {/*
+       * The photos are placed column by column and row by row at each width:
+       * stacked around the copy on one column, the two tall ones flanking it
+       * from `cols4`, where the lake photo starts a row above the copy. Every
+       * photo's columns are explicit, since auto-placement would otherwise drop
+       * them in an outer track that is zero width until `cols4`.
        */}
       <ModuleImage
         src={OVERLOOK_PHOTO}
         alt="Steven Winnick on a hillside overlook above a city"
         tall
-        className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:row-start-2 cols4:row-end-4"
+        className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:col-start-3 cols4:col-end-4 cols4:row-start-4 cols4:row-end-6"
       />
 
-      <ModuleImage
-        src={LAKE_PHOTO}
-        alt="Steven Winnick beside a lake in the mountains"
-        tall
-        className="hidden self-start cols4:col-start-5 cols4:col-end-6 cols4:row-start-3 cols4:row-end-4 cols4:block"
-      />
-
-      <div className="col-main flex flex-col gap-line text-sm">
+      <div className="col-main flex flex-col gap-line text-sm cols4:col-start-4 cols4:col-end-5 cols4:row-start-4 cols4:row-end-6">
         <p>
           {`I'm a founder of `}
           <FillingLink href={CASCADIUM_URL} external newTab>
@@ -90,15 +91,23 @@ export default function AboutPage() {
         <p>{`When not working on Cascadium, I enjoy creating elaborate meals, software projects, exercising (currently lifting, biking, and running, in that order), and spending time with my wonderful friends. When in transit, doing simple chores, or winding down for the day, I like to read or listen to audiobooks, and strive to learn new things and develop new perspectives whenever possible.`}</p>
       </div>
 
+      <ModuleImage
+        src={LAKE_PHOTO}
+        alt="Steven Winnick beside a lake in the mountains"
+        tall
+        className="col-start-2 col-end-4 self-start cols2:col-start-3 cols2:row-start-5 cols2:row-end-6 cols4:col-start-5 cols4:col-end-6 cols4:row-start-3 cols4:row-end-5"
+      />
+
       {/*
        * The wide photo closes the page off below the copy, in the leftmost
        * column the screen has: an outer column from `cols4`, a content column
-       * from `cols2`, and the full width of the page below that.
+       * from `cols2`, and the full width of the page below that. From `cols2` it
+       * shares its row with the lake photo, sitting on the row's floor.
        */}
       <ModuleImage
         src={GRADUATION_PHOTO}
         alt="Steven Winnick at his Columbia University graduation"
-        className="col-start-2 col-end-4 cols2:col-end-3 cols4:row-start-4"
+        className="col-start-2 col-end-4 cols2:col-end-3 cols2:self-end cols2:row-start-5 cols2:row-end-6 cols4:col-start-2 cols4:col-end-3 cols4:row-start-6 cols4:row-end-7"
       />
     </section>
   );

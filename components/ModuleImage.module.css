@@ -12,6 +12,12 @@
   container-type: inline-size;
 }
 
+/* The blue wash keeps only luminosity, which leaves faces darker than the rest
+ * of a frame, so the photograph is lifted before it is blended. */
+.brighten {
+  filter: brightness(1.5);
+}
+
 .crop {
   inline-size: 100%;
   aspect-ratio: 4 / 3;

@@ -24,8 +24,6 @@ export default function HomePage() {
         </p>
 
         <p className="col-main min-rows-1 text-sm">
-          {/* The apostrophe is an expression, not `&apos;`: an entity in a text
-              node makes the compiler swallow the space after the link. */}
           My <FillingLink href="/about">prior work</FillingLink> has focused on
           ensuring the reliability of some of the world{"'"}s most complex
           software systems. Now my attention is{" "}

@@ -25,7 +25,7 @@ export default function AboutPage() {
         src={OVERLOOK_PHOTO}
         alt="Steven Winnick on a hillside overlook above a city"
         tall
-        bright
+        lift="soft"
         className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:col-start-3 cols4:col-end-4 cols4:row-start-3 cols4:row-end-5"
       />
 
@@ -80,13 +80,14 @@ export default function AboutPage() {
       <ModuleImage
         src={GRADUATION_PHOTO}
         alt="Steven Winnick at his Columbia University graduation"
-        bright
+        lift="soft"
         className="col-start-2 col-end-4 self-start cols2:col-start-3 cols2:row-start-5 cols2:row-end-6 cols4:col-start-5 cols4:col-end-6 cols4:row-start-5 cols4:row-end-6"
       />
 
       <ModuleImage
         src={MOUNTAINS_JACKET_PHOTO}
         alt="Steven Winnick in front of a snow-capped mountain range"
+        lift="full"
         className="col-start-2 col-end-4 cols2:col-end-3 cols2:row-start-6 cols2:row-end-7 cols4:col-start-2 cols4:col-end-3 cols4:row-start-6 cols4:row-end-7"
       />
     </section>

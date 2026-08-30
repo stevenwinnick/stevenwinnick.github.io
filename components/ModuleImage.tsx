@@ -12,13 +12,19 @@ import styles from "./ModuleImage.module.css";
 const WIDE_SIZE = { width: 1600, height: 1200 };
 const TALL_SIZE = { width: 1024, height: 1600 };
 
+const LIFTS = { full: styles.lift, soft: styles.liftSoft } as const;
+
 type ModuleImageProps = {
   src: string;
   alt: string;
   /** Crop to a portrait, two module rows tall, instead of a single module. */
   tall?: boolean;
-  /** Lift a photograph that is already bright less, so it does not blow out. */
-  bright?: boolean;
+  /**
+   * Lighten the image before the blue wash, which a photograph of a person
+   * needs to keep skin from reading as flat blue. `soft` suits a frame that is
+   * already bright, which `full` would blow out.
+   */
+  lift?: keyof typeof LIFTS;
   className?: string;
 };
 
@@ -31,7 +37,7 @@ export default function ModuleImage({
   src,
   alt,
   tall,
-  bright,
+  lift,
   className = "",
 }: ModuleImageProps) {
   const { width, height } = tall ? TALL_SIZE : WIDE_SIZE;
@@ -43,7 +49,7 @@ export default function ModuleImage({
         alt={alt}
         width={width}
         height={height}
-        className={`${bright ? styles.liftBright : styles.lift} ${
+        className={`${lift ? LIFTS[lift] : ""} ${
           tall ? styles.cropTall : styles.crop
         }`}
       />

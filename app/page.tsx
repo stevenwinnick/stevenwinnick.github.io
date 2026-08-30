@@ -65,7 +65,7 @@ export default function HomePage() {
                 src={GRADUATION_PHOTO}
                 alt="Steven Winnick at his Columbia University graduation"
                 tall
-                bright
+                lift="soft"
                 className="row-span-2 self-start"
               />
 
@@ -73,6 +73,7 @@ export default function HomePage() {
                 src={LAKE_PHOTO}
                 alt="Steven Winnick beside a lake in the mountains"
                 tall
+                lift="full"
                 className="col-start-2 row-span-2 row-start-2 self-start"
               />
             </div>

@@ -21,9 +21,10 @@ type ModuleImageProps = {
 };
 
 /**
- * A photograph cropped to a module and washed to a single blue: `color`
- * blending keeps the photograph's luminosity and takes its hue from the
- * overlay, so every image on the site reads as the same blue.
+ * A photograph cropped to a module and washed towards a single blue: `color`
+ * blending keeps the photograph's luminosity and pulls its hue towards the
+ * overlay, so every image on the site reads as the same blue. The overlay stops
+ * short of opaque, since a full wash turns skin the same flat blue as the sky.
  */
 export default function ModuleImage({
   src,
@@ -44,7 +45,7 @@ export default function ModuleImage({
       />
       <span
         aria-hidden="true"
-        className="absolute inset-0 bg-blue mix-blend-color"
+        className="absolute inset-0 bg-blue/65 mix-blend-color"
       />
     </figure>
   );

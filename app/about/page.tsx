@@ -21,8 +21,8 @@ export default function AboutPage() {
       <PageIntro>A bit about me.</PageIntro>
 
       {/*
-       * An empty module row between the intro and the copy, only where the copy
-       * sits beside the photos.
+       * An empty module row between the intro and the photos, only where the
+       * photos sit above the copy.
        */}
       <div
         aria-hidden="true"
@@ -31,10 +31,10 @@ export default function AboutPage() {
 
       {/*
        * The photos are placed column by column and row by row at each width:
-       * stacked around the copy on one column, the two tall ones flanking it
-       * from `cols4`, where the lake photo starts a row above the copy. Every
-       * photo's columns are explicit, since auto-placement would otherwise drop
-       * them in an outer track that is zero width until `cols4`.
+       * stacked around the copy on one column, and from `cols4` above it, with
+       * the lake photo hanging into the copy's first row. Every photo's columns
+       * are explicit, since auto-placement would otherwise drop them in an
+       * outer track that is zero width until `cols4`.
        */}
       <ModuleImage
         src={OVERLOOK_PHOTO}
@@ -43,7 +43,7 @@ export default function AboutPage() {
         className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:col-start-3 cols4:col-end-4 cols4:row-start-4 cols4:row-end-6"
       />
 
-      <div className="col-main flex flex-col gap-line text-sm cols4:col-start-4 cols4:col-end-5 cols4:row-start-4 cols4:row-end-6">
+      <div className="col-main flex flex-col gap-line text-sm cols4:row-start-6 cols4:row-end-7">
         <p>
           {`I'm a founder of `}
           <FillingLink href={CASCADIUM_URL} external newTab>
@@ -95,7 +95,7 @@ export default function AboutPage() {
         src={LAKE_PHOTO}
         alt="Steven Winnick beside a lake in the mountains"
         tall
-        className="col-start-2 col-end-4 self-start cols2:col-start-3 cols2:row-start-5 cols2:row-end-6 cols4:col-start-5 cols4:col-end-6 cols4:row-start-3 cols4:row-end-5"
+        className="col-start-2 col-end-4 self-start cols2:col-start-3 cols2:row-start-5 cols2:row-end-6 cols4:col-start-5 cols4:col-end-6 cols4:row-start-5 cols4:row-end-7"
       />
 
       {/*
@@ -107,7 +107,7 @@ export default function AboutPage() {
       <ModuleImage
         src={GRADUATION_PHOTO}
         alt="Steven Winnick at his Columbia University graduation"
-        className="col-start-2 col-end-4 cols2:col-end-3 cols2:self-end cols2:row-start-5 cols2:row-end-6 cols4:col-start-2 cols4:col-end-3 cols4:row-start-6 cols4:row-end-7"
+        className="col-start-2 col-end-4 cols2:col-end-3 cols2:self-end cols2:row-start-5 cols2:row-end-6 cols4:col-start-2 cols4:col-end-3 cols4:row-start-7 cols4:row-end-8"
       />
     </section>
   );

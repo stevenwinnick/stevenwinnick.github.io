@@ -2,8 +2,8 @@ import FillingLink from "@/components/FillingLink";
 import ModuleImage from "@/components/ModuleImage";
 import { CASCADIUM_URL } from "@/data/navigation";
 
-const MOUNTAINS_PHOTO = "/img/mountains.webp";
 const GRADUATION_PHOTO = "/img/graduation.webp";
+const LAKE_PHOTO = "/img/lake.webp";
 
 /*
  * Every text block is a module row with its copy on the row's ceiling, so the
@@ -64,15 +64,15 @@ export default function HomePage() {
           <div className="@container col-main">
             <div className="grid auto-rows-[round(nearest,calc(0.375*(100cqw_-_var(--grid-gutter))),var(--line))] grid-cols-2 gap-line">
               <ModuleImage
-                src={MOUNTAINS_PHOTO}
-                alt="Steven Winnick in front of a snow-capped mountain range"
+                src={GRADUATION_PHOTO}
+                alt="Steven Winnick at his Columbia University graduation"
                 tall
                 className="row-span-2 self-start"
               />
 
               <ModuleImage
-                src={GRADUATION_PHOTO}
-                alt="Steven Winnick at his Columbia University graduation"
+                src={LAKE_PHOTO}
+                alt="Steven Winnick beside a lake in the mountains"
                 tall
                 className="col-start-2 row-span-2 row-start-2 self-start"
               />

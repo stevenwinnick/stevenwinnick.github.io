@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 };
 
 const OVERLOOK_PHOTO = "/img/overlook.webp";
-const LAKE_PHOTO = "/img/lake.webp";
 const GRADUATION_PHOTO = "/img/graduation-wide.webp";
+const MOUNTAINS_PHOTO = "/img/mountains-wide.webp";
 
 export default function AboutPage() {
   return (
@@ -31,10 +31,10 @@ export default function AboutPage() {
 
       {/*
        * The photos are placed column by column and row by row at each width:
-       * stacked around the copy on one column, and from `cols4` above it, with
-       * the lake photo hanging into the copy's first row. Every photo's columns
-       * are explicit, since auto-placement would otherwise drop them in an
-       * outer track that is zero width until `cols4`.
+       * stacked around the copy on one column, and from `cols2` split between
+       * the columns beside and below it. Every photo's columns are explicit,
+       * since auto-placement would otherwise drop them in an outer track that
+       * is zero width until `cols4`.
        */}
       <ModuleImage
         src={OVERLOOK_PHOTO}
@@ -91,23 +91,26 @@ export default function AboutPage() {
         <p>{`When not working on Cascadium, I enjoy creating elaborate meals, software projects, exercising (currently lifting, biking, and running, in that order), and spending time with my wonderful friends. When in transit, doing simple chores, or winding down for the day, I like to read or listen to audiobooks, and strive to learn new things and develop new perspectives whenever possible.`}</p>
       </div>
 
-      <ModuleImage
-        src={LAKE_PHOTO}
-        alt="Steven Winnick beside a lake in the mountains"
-        tall
-        className="col-start-2 col-end-4 self-start cols2:col-start-3 cols2:row-start-5 cols2:row-end-6 cols4:col-start-5 cols4:col-end-6 cols4:row-start-5 cols4:row-end-7"
-      />
-
       {/*
-       * The wide photo closes the page off below the copy, in the leftmost
-       * column the screen has: an outer column from `cols4`, a content column
-       * from `cols2`, and the full width of the page below that. From `cols2` it
-       * shares its row with the lake photo, sitting on the row's floor.
+       * The graduation photo sits to the right of the copy, on the copy's own
+       * ceiling from `cols4` where the two share a row.
        */}
       <ModuleImage
         src={GRADUATION_PHOTO}
         alt="Steven Winnick at his Columbia University graduation"
-        className="col-start-2 col-end-4 cols2:col-end-3 cols2:self-end cols2:row-start-5 cols2:row-end-6 cols4:col-start-2 cols4:col-end-3 cols4:row-start-7 cols4:row-end-8"
+        className="col-start-2 col-end-4 self-start cols2:col-start-3 cols2:row-start-5 cols2:row-end-6 cols4:col-start-5 cols4:col-end-6 cols4:row-start-6 cols4:row-end-7"
+      />
+
+      {/*
+       * The mountains photo closes the page off below the copy, in the leftmost
+       * column the screen has: an outer column from `cols4`, a content column
+       * from `cols2`, and the full width of the page below that. From `cols2` it
+       * takes the row under the graduation photo, a gutter below it.
+       */}
+      <ModuleImage
+        src={MOUNTAINS_PHOTO}
+        alt="Steven Winnick in front of a snow-capped mountain range"
+        className="col-start-2 col-end-4 cols2:col-end-3 cols2:row-start-6 cols2:row-end-7 cols4:col-start-2 cols4:col-end-3 cols4:row-start-7 cols4:row-end-8"
       />
     </section>
   );

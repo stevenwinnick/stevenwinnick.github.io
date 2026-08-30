@@ -19,11 +19,7 @@ type ModuleImageProps = {
   alt: string;
   /** Crop to a portrait, two module rows tall, instead of a single module. */
   tall?: boolean;
-  /**
-   * Lighten the image before the blue wash, which a photograph of a person
-   * needs to keep skin from reading as flat blue. `soft` suits a frame that is
-   * already bright, which `full` would blow out.
-   */
+  /** Lighten before the blue wash so skin does not read as flat blue: `soft` for a frame `full` would blow out. */
   lift?: keyof typeof LIFTS;
   className?: string;
 };

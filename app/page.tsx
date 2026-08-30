@@ -29,7 +29,8 @@ export default function HomePage() {
           <FillingLink href={CASCADIUM_URL} external newTab>
             aimed at
           </FillingLink>{" "}
-          accelerating the impact of scientific innovation on human health.
+          accelerating the effects of scientific and technological innovation in
+          health and medicine.
         </p>
 
         <p className="col-main min-rows-1 text-sm">
@@ -53,7 +54,7 @@ export default function HomePage() {
           <h2 className="col-main rows-1">Projects</h2>
 
           <p className="col-main min-rows-1 text-sm">
-            Here are a few of the projects I&apos;ve worked on recently:
+            Here are a few of the projects I&apos;ve worked on:
           </p>
 
           {/*

@@ -17,6 +17,8 @@ type ModuleImageProps = {
   alt: string;
   /** Crop to a portrait, two module rows tall, instead of a single module. */
   tall?: boolean;
+  /** Lift a photograph that is already bright less, so it does not blow out. */
+  bright?: boolean;
   className?: string;
 };
 
@@ -29,6 +31,7 @@ export default function ModuleImage({
   src,
   alt,
   tall,
+  bright,
   className = "",
 }: ModuleImageProps) {
   const { width, height } = tall ? TALL_SIZE : WIDE_SIZE;
@@ -40,7 +43,9 @@ export default function ModuleImage({
         alt={alt}
         width={width}
         height={height}
-        className={`${styles.brighten} ${tall ? styles.cropTall : styles.crop}`}
+        className={`${bright ? styles.liftBright : styles.lift} ${
+          tall ? styles.cropTall : styles.crop
+        }`}
       />
       <span
         aria-hidden="true"

@@ -43,22 +43,7 @@ export default function HomePage() {
       </section>
 
       <section className="page-grid">
-        {/*
-         * A rule out to the frame separates the photographs from the copy, as
-         * the projects section's did: the negative margin takes it a gutter
-         * outside the columns and the matching padding brings them back, so they
-         * still line up with the rest of the page. A module row of padding holds
-         * the photographs off the rule, and the copy above it ends a row up.
-         */}
         <div className="col-wide -mx-line grid grid-cols-subgrid border-t border-blue px-line py-(--grid-row)">
-          {/*
-           * The columns are the page's own two, written out rather than
-           * subgridded because the container query below needs a containment
-           * context, which a subgrid cannot be. A module row is 3/4 of a
-           * column, so rows measured against the container stay one row deep
-           * once the columns turn fluid below `cols2`, and the right
-           * photograph keeps starting a row below the left one.
-           */}
           <div className="@container col-main">
             <div className="grid auto-rows-[round(nearest,calc(0.375*(100cqw_-_var(--grid-gutter))),var(--line))] grid-cols-2 gap-line">
               <ModuleImage

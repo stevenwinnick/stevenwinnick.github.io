@@ -3,12 +3,15 @@ import FillingLink from "@/components/FillingLink";
 import ModuleImage from "@/components/ModuleImage";
 import PageHeading from "@/components/PageHeading";
 import PageIntro from "@/components/PageIntro";
+import { CASCADIUM_URL } from "@/data/navigation";
 
 export const metadata: Metadata = {
   title: "About | Steven Winnick",
 };
 
-const GRADUATION_PHOTO = "/img/graduation.webp";
+const OVERLOOK_PHOTO = "/img/overlook.webp";
+const GRADUATION_PHOTO = "/img/graduation-wide.webp";
+const MOUNTAINS_JACKET_PHOTO = "/img/mountains-jacket.webp";
 
 export default function AboutPage() {
   return (
@@ -17,48 +20,42 @@ export default function AboutPage() {
 
       <PageIntro>A bit about me.</PageIntro>
 
-      {/*
-       * The photos flank the copy in the outer columns from `cols4`, the left
-       * one on the intro's row and the right one a row lower, with the copy, so
-       * the two are offset. Below `cols4` the single photo runs above the copy,
-       * where those columns do not exist. Their columns are explicit
-       * throughout, since auto-placement would otherwise drop them in an outer
-       * track that is zero width until `cols4`. The repeated photo carries no
-       * alt text.
-       */}
+      {/* The photos are placed in particular rows and columns at each width. */}
       <ModuleImage
-        src={GRADUATION_PHOTO}
-        alt="Steven Winnick at his Columbia University graduation"
+        src={OVERLOOK_PHOTO}
+        alt="Steven Winnick on a hillside overlook above a city"
         tall
-        className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:row-start-2 cols4:row-end-4"
+        lift="soft"
+        className="col-start-2 col-end-4 self-start cols2:col-end-3 cols4:col-start-3 cols4:col-end-4 cols4:row-start-3 cols4:row-end-5"
       />
 
-      <ModuleImage
-        src={GRADUATION_PHOTO}
-        alt=""
-        tall
-        className="hidden self-start cols4:col-start-5 cols4:col-end-6 cols4:row-start-3 cols4:row-end-4 cols4:block"
-      />
-
-      <div className="col-main flex flex-col gap-line text-sm">
+      <div className="col-main flex flex-col gap-line text-sm cols4:row-start-5 cols4:row-end-6">
         <p>
-          {`I'm an innovator and engineer passionate about music and tech and excited about building the next generation of tech products. This fall, I'll be starting my first job after college as a Software Engineer at Datadog. Last summer, I was a Software Engineer Intern at Paramount, where I worked on CBS digital video streaming infrastructure. I also interned at Paramount the prior summer, helping define the Paramount+/PlutoTV innovation strategy to compete in the escalating "Streaming Wars" as a Technology Strategy Intern. The summer before, I was a Software Engineer and Product Manager intern at `}
-          <FillingLink href="https://www.sonarhealth.co" external newTab>
-            Sonar Health
+          {`I'm a founder of `}
+          <FillingLink href={CASCADIUM_URL} external newTab>
+            Cascadium
           </FillingLink>
-          {`, where I designed and built core features of a platform to bring users information about their health from a wide range of sources with industry-leading precision.`}
-        </p>
-
-        <p>
-          {`I recently graduated from Columbia University, where I was a `}
+          {`, where I'm working on shortening the time it takes scientific and technological innovation to benefit human health and well-being. Before this, I worked on ensuring the reliability and security of some of the world's most complex software systems. I now bring that same focus and rigor to developing technology in which accuracy and precision are absolute requirements. At `}
+          <FillingLink href="https://www.datadoghq.com/" external newTab>
+            Datadog
+          </FillingLink>
+          {`, I created core cloud infrastructure management platforms used to maintain the reliability of all 10 of the top 10 AI companies. The software I built allowed engineers to manage cloud compute infrastructure safely, securely, and simply, by providing opinionated interfaces which abstracted away unnecessary areas of complexity. At `}
+          <FillingLink href="https://www.paramount.com/" external newTab>
+            Paramount
+          </FillingLink>
+          {`, I created a novel application to increase the reliability of advertisement placement in live video streams for CBS Sports and Paramount Plus, which would host the `}
           <FillingLink
-            href="https://www.college.columbia.edu/alumni/jj-scholars-program"
+            href="https://www.paramountpressexpress.com/cbs-sports/releases/?view=109259-cbs-sports-presentation-of-super-bowl-lviii-is-most-watched-telecast-in-history-with-1234-million-viewers-across-platforms"
             external
             newTab
           >
-            John Jay Scholar
+            2024 Super Bowl
           </FillingLink>
-          {` and `}
+          {`. I also took second place at the company hackathon, reported directly to the SVP of Strategic Tech Initiatives, and presented to the CTO multiple times.`}
+        </p>
+
+        <p>
+          {`I studied Computer Science at Columbia University with a specialization in Artificial Intelligence and Machine Learning Systems. At Columbia, I was a `}
           <FillingLink
             href="https://en.wikipedia.org/wiki/National_Merit_Scholarship_Program"
             external
@@ -66,11 +63,33 @@ export default function AboutPage() {
           >
             National Merit Scholar
           </FillingLink>
-          {`. I majored in Computer Science with an "Intelligent Systems" specialization, which allowed me to pursue my interests in AI and Machine Learning with graduate-level coursework exploring both the theoretical and applied sides of these fields. I'm especially interested in the application of Machine Learning to the world of music, and am currently working on projects applying Natural Language Processing techniques to song lyric analysis, and Signal Processing techniques to music emotion recognition. During my time in college, I was a member of the debate team, the formula racing team, and worked on a Computer Vision research project for self-driving cars. I'm a curious person who loves to learn, and especially to be able to build a knowledge of complex things by learning deeply about each of their component parts, so I also enjoyed taking all the Computer Science department's hardest systems classes my senior year.`}
+          {` and `}
+          <FillingLink
+            href="https://www.college.columbia.edu/alumni/jj-scholars-program"
+            external
+            newTab
+          >
+            John Jay Scholar
+          </FillingLink>
+          {`, a member of the school's Debate Team, graduated with a 4.0 GPA, and contributed to Computer Vision research for self-driving cars. Through the courses I chose for my major, I built a deep understanding of the design of large, distributed AI and machine learning systems and the infrastructure enabling them. I also made the most of my access to Columbia to fuel my curiosity through courses in art history, music theory, anthropology, American history, physics, and upper-level electives in philosophy, mathematics, economics, electrical engineering, and English literature. These courses provided me with new ways to interpret the world which I continue to appreciate and expand.`}
         </p>
 
-        <p>{`When not working on my more academic interests or programming projects, I can probably be found making music with my MIDI keyboard or exploring New York City with my friends. I also love to cook elaborate meals, and I ski most days when I'm home in the winter.`}</p>
+        <p>{`When not working on Cascadium, I enjoy creating elaborate meals, software projects, exercising (currently lifting, biking, and running, in that order), and spending time with my wonderful friends. When in transit, doing simple chores, or winding down for the day, I like to read or listen to audiobooks, and strive to learn new things and develop new perspectives whenever possible.`}</p>
       </div>
+
+      <ModuleImage
+        src={GRADUATION_PHOTO}
+        alt="Steven Winnick at his Columbia University graduation"
+        lift="soft"
+        className="col-start-2 col-end-4 self-start cols2:col-start-3 cols2:row-start-5 cols2:row-end-6 cols4:col-start-5 cols4:col-end-6 cols4:row-start-5 cols4:row-end-6"
+      />
+
+      <ModuleImage
+        src={MOUNTAINS_JACKET_PHOTO}
+        alt="Steven Winnick in front of a snow-capped mountain range"
+        lift="full"
+        className="col-start-2 col-end-4 cols2:col-end-3 cols2:row-start-6 cols2:row-end-7 cols4:col-start-2 cols4:col-end-3 cols4:row-start-6 cols4:row-end-7"
+      />
     </section>
   );
 }

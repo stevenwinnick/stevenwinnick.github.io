@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import FillingLink from "@/components/FillingLink";
+import type { ModuleImageLift } from "@/components/ModuleImage";
 
 /** A skill bullet, optionally with a nested list of sub-bullets. */
 export type SkillItem = string | { label: string; children: string[] };
@@ -9,13 +10,10 @@ export type Project = {
   title: string;
   subtitle?: ReactNode;
   image: string;
+  imageLift?: ModuleImageLift;
   skills: SkillItem[];
   description: ReactNode;
-  /** The short line a project is previewed with on the landing page, which only the previewed projects carry. */
-  previewBlurb?: string;
 };
-
-export type PreviewedProject = Project & { previewBlurb: string };
 
 export const PROJECTS: Project[] = [
   {
@@ -52,16 +50,40 @@ export const PROJECTS: Project[] = [
       <>
         <p>
           {`In my last semester of college, I decided to take an Electrical Engineering capstone class, `}
-          <FillingLink href="http://www.cs.columbia.edu/~sedwards/classes/2024/4840-spring/index.html" external newTab>Embedded Systems</FillingLink>
+          <FillingLink
+            href="http://www.cs.columbia.edu/~sedwards/classes/2024/4840-spring/index.html"
+            external
+            newTab
+          >
+            Embedded Systems
+          </FillingLink>
           {`, despite not actually being an Electrical Engineering major. I had really enjoyed an EE class that I'd taken in which we'd built up a working CPU able to execute assembled machine code from basic logic gates, and I was curious about how other hardware systems worked. I had also taken Operating Systems the semester before and was curious about the physical connections between hardware peripherals and software. I hadn't taken the recommended prerequisite classes for Embedded Systems, but I was curious enough about its content that I figured I'd be able to catch up where I needed. The class ended up being a great experience. I learned all about the most important components of modern embedded systems (memory, networking, USB, video, etc.), including their histories and how they're commonly implemented now.`}
         </p>
         <p>
           {`The course also included a semester-long group project in which we got to work closely with our professor to design and then implement a project with both hardware and software components on an FPGA. My group of 3 decided to build a pitch shifter/scaler that would take in audio from our FPGA's 3.5mm audio input line and scale it's pitch entirely in hardware using a custom circuit we designed, then play back the audio to the board's output line, with the level of pitch scaling being controlled via software. To do so, we first started by researching different pitch scaling algorithms and implementing them in Python to gain a thorough understanding of the workings of each and decide which sounded the best for our use case. We landed on a version of the `}
-          <FillingLink href="https://en.wikipedia.org/wiki/Phase_vocoder" external newTab>Phase Vocoder</FillingLink>
+          <FillingLink
+            href="https://en.wikipedia.org/wiki/Phase_vocoder"
+            external
+            newTab
+          >
+            Phase Vocoder
+          </FillingLink>
           {` algorithm with transient detection for improved vertical coherence. We then implemented the algorithm in C, simulating intended hardware implementation by using fixed-size memory buffers, polar coordinate conversion of transformed frequency-domain signals to remove the need for trigonometric hardware calculations, and a real-time streaming interface, among others features. Once we were satisfied with the sound of our C implementation, we got to work designing circuits for our board, which was able to reconfigure itself to test our specified circuitry. You can find the code for Pitch Perfect `}
-          <FillingLink href="https://github.com/sanjayrajasekharan/pitch-perfect" external newTab>here</FillingLink>
+          <FillingLink
+            href="https://github.com/sanjayrajasekharan/pitch-perfect"
+            external
+            newTab
+          >
+            here
+          </FillingLink>
           {` and our final presentation slides `}
-          <FillingLink href="http://www.cs.columbia.edu/~sedwards/classes/2024/4840-spring/reports/Harmony-Hand-presentation.pdf" external newTab>here</FillingLink>
+          <FillingLink
+            href="http://www.cs.columbia.edu/~sedwards/classes/2024/4840-spring/reports/Harmony-Hand-presentation.pdf"
+            external
+            newTab
+          >
+            here
+          </FillingLink>
           {`.`}
         </p>
       </>
@@ -72,7 +94,7 @@ export const PROJECTS: Project[] = [
     title: "Sonic Canvas",
     subtitle: "A creative tool for quickly testing sound wave samples",
     image: "/img/waves.webp",
-    previewBlurb: "A creative tool for quickly testing sound wave samples.",
+    imageLift: "full",
     skills: [
       {
         label: "Digital audio",
@@ -103,6 +125,7 @@ export const PROJECTS: Project[] = [
     subtitle:
       "An application for monitoring and validating SCTE-35 cues in MPEG-DASH and HLS video streams to ensure proper advertisement placement",
     image: "/img/spyglass.webp",
+    imageLift: "soft",
     skills: [
       {
         label: "Digital video",
@@ -125,7 +148,13 @@ export const PROJECTS: Project[] = [
       <>
         <p>
           {`For my second big project as a Software Engineer Intern at Paramount, I was tasked with creating an application for ensuring that SCTE-35 cue messages are properly inserted into HLS and MPEG-DASH video streams. All of my team's apps have a nautical-themed title, so we decided to call this Spyglass, since that's what a pirate uses to look ahead see what's approaching before they reach it. The application started as a stripped-down version of another app that my team had built with a similar architecture, containing only the bare essentials to deploy with Docker and our CI/CD framework. I began by creating a Python/Flask backend to take in and parse encoded SCTE messages. To determine which sections of cue messages were necessary to consider given the project's goal of improving advertisement placement, I read (skimmed) through the 100+ page `}
-          <FillingLink href="https://www.scte.org/standards/library/catalog/scte-35-digital-program-insertion-cueing-message/" external newTab>SCTE-35 standard</FillingLink>
+          <FillingLink
+            href="https://www.scte.org/standards/library/catalog/scte-35-digital-program-insertion-cueing-message/"
+            external
+            newTab
+          >
+            SCTE-35 standard
+          </FillingLink>
           {`. I then wrote code to verify and log the validity of incoming cues in an AWS DynamoDB, which required some thinking about how to design the data structure containing this information to allow for efficient lookup, and unit tests to make the application easier for my team to maintain after my internship ends. Because I was able to finish this project a couple weeks before my internship ended, I had the opportunity to integrate it with my team's main frontend monitoring system, a Next.js app using GraphQL. To do so, I created GraphQL queries to retrieve networks' logged cues, then displayed them in a React table, and added the ability for users to filter by date, time, and substring match.`}
         </p>
         <p>
@@ -155,7 +184,13 @@ export const PROJECTS: Project[] = [
           {`I then decided to try adding logic to the decoder that further boosts the number of internal rhymes generated by rescoring words during generation to boost the score of words that rhyme with what has already been generated. When a GPT model does language modeling to generate text, it generates new words one at a time by (essentially) assigning each word a probability that it gets generated next. SyllableGPT adds to the pre-probability scores of the most likely words for each of the internal rhymes and matching syllables they share with what has already been generated. To do this, it uses `}
           <FillingLink href="/projects#rhymenet">RhymeNet</FillingLink>
           {`, a previous project of mine. It also generates a "likely vocabulary" of what it expects to be generated in the future based on what it has already, and rescores words to a lower degree based on matches with the likely future vocabulary. In the future, I'd like to try implementing similar logic on a larger and more advanced language model in the hope of achieving more coherent results. I'd also like to figure out a way to work similar rhyme-generating functionality directly into the decoder logic in a way that can be trained directly with backpropagation. You can find the code for this project and try out SyllableGPT for yourself `}
-          <FillingLink href="https://github.com/stevenwinnick/SyllableGPT" external newTab>here</FillingLink>
+          <FillingLink
+            href="https://github.com/stevenwinnick/SyllableGPT"
+            external
+            newTab
+          >
+            here
+          </FillingLink>
           {`.`}
         </p>
       </>
@@ -167,8 +202,6 @@ export const PROJECTS: Project[] = [
     subtitle:
       "A tool for Software Engineers at Paramount to easily log messages to a unified location and recieve Slack alerts when sections of code are executed",
     image: "/img/foghorn.webp",
-    previewBlurb:
-      "A tool for easily logging messages and recieving Slack notifications when sections of code are executed.",
     skills: [
       "A variety of AWS Cloud Services (Lambda, API Gateway, IAM, CloudWatch, CloudFormation)",
       "Designing and creating a secure access management system",
@@ -188,8 +221,6 @@ export const PROJECTS: Project[] = [
     subtitle:
       "An English language database containing information about both words' phoenetic and written syllable divisions",
     image: "/img/rhymenet.webp",
-    previewBlurb:
-      "An English language database containing information about words' phoenetic and written syllable divisions.",
     skills: [
       "Database design and creation",
       "Linguistic theory (phonemes, syllabization, consonant clustering)",
@@ -199,11 +230,27 @@ export const PROJECTS: Project[] = [
     description: (
       <p>
         {`As part of my music analysis work, I had the idea to analyze song lyrics through the lens of word sounds, as opposed to something like lyrical content. When starting this project, I realized that no dataset existed parsing lyrics by sound and decided to create one for myself. I also thought that a network connecting words by their shared sounds would be useful both for this project and potentially other related ones, which ended up becoming RhymeNet. To create this database, I started with the `}
-        <FillingLink href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" external newTab>CMU Pronouncing Dictionary</FillingLink>
+        <FillingLink
+          href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict"
+          external
+          newTab
+        >
+          CMU Pronouncing Dictionary
+        </FillingLink>
         {`, which contains the sounds/phonemes used to pronounce over 134,000 words. Because syllable divisions are so important in song lyrics, I created an algorithm to automatically parse these phoenetic pronunciations of words into syllables based on the linguistic theory of `}
-        <FillingLink href="https://www.tandfonline.com/doi/abs/10.1080/00437956.1978.11435661" external newTab>{`"greedy onset clustering"`}</FillingLink>
+        <FillingLink
+          href="https://www.tandfonline.com/doi/abs/10.1080/00437956.1978.11435661"
+          external
+          newTab
+        >{`"greedy onset clustering"`}</FillingLink>
         {` and added sections of the network connecting words by their shared syllables, vowel sounds, and rhyming endings. You can download RhymeNet `}
-        <FillingLink href="https://github.com/stevenwinnick/RhymeNet" external newTab>here</FillingLink>
+        <FillingLink
+          href="https://github.com/stevenwinnick/RhymeNet"
+          external
+          newTab
+        >
+          here
+        </FillingLink>
         {`.`}
       </p>
     ),
@@ -214,13 +261,17 @@ export const PROJECTS: Project[] = [
     subtitle: (
       <>
         {`During our Spring Break, my friend `}
-        <FillingLink href="https://www.linkedin.com/in/adam-strupp-51b82319a/" external newTab>Adam</FillingLink>
+        <FillingLink
+          href="https://www.linkedin.com/in/adam-strupp-51b82319a/"
+          external
+          newTab
+        >
+          Adam
+        </FillingLink>
         {` and I built a simulator of our favorite card game, Sheepshead, then trained an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning`}
       </>
     ),
     image: "/img/sheepshead.webp",
-    previewBlurb:
-      "A simulator of my favorite card game, Sheepshead, and an AI to play it using Monte Carlo Simulation and Deep Reinforcement Learning.",
     skills: [
       "AI game playing",
       "Deep Reinforcement Learning",
@@ -231,11 +282,29 @@ export const PROJECTS: Project[] = [
     description: (
       <p>
         {`Whenever I'm home from college, my friends and I get together to play `}
-        <FillingLink href="https://en.wikipedia.org/wiki/Sheepshead_(card_game)" external newTab>Sheepshead,</FillingLink>
+        <FillingLink
+          href="https://en.wikipedia.org/wiki/Sheepshead_(card_game)"
+          external
+          newTab
+        >
+          Sheepshead,
+        </FillingLink>
         {` a strategy- and memory-based card game. On one of these nights, someone brought up the idea of building a website where we would be able to play together while living at colleges over 1,000 miles apart, which spawned the idea of trying to build a bot that could beat us. During Spring Break 2023, my friend `}
-        <FillingLink href="https://www.linkedin.com/in/adam-strupp-51b82319a/" external newTab>Adam</FillingLink>
+        <FillingLink
+          href="https://www.linkedin.com/in/adam-strupp-51b82319a/"
+          external
+          newTab
+        >
+          Adam
+        </FillingLink>
         {` and I decided to tackle the challenge. We started by mapping out on paper how we would model the game, then built that model in Python. The model included a player class, who would be able to take their turn by selecting from a list of allowed plays. Then, we were able to train the AI to play by simulating millions of games with other bot players. It works by evalutating all allowed moves and deciding after which one it has the highest chance of winning, based on it's training data. Using deep reinforcement learning, it is even able to generalize and make predictions in situations that it hasn't seen before. After a certain number of training episodes, we update the other bots the AI is simulated against to match the AI's current decision-making, increasing the strength of it's competition and forcing the bot to make smarter plays. You can find our code `}
-        <FillingLink href="https://github.com/stevenwinnick/Sheepshead" external newTab>here</FillingLink>
+        <FillingLink
+          href="https://github.com/stevenwinnick/Sheepshead"
+          external
+          newTab
+        >
+          here
+        </FillingLink>
         {`.`}
       </p>
     ),
@@ -255,7 +324,13 @@ export const PROJECTS: Project[] = [
     description: (
       <p>
         {`In my free time, I love to make music with my MIDI keyboard. I always found it strange, though, that my keyboard had buttons that weren't used by the music creation software it came bundled with, and that the same software had QWERTY keyboard shortcuts that weren't playable with my MIDI one. To rectify this, I found software that would let me see the exact inputs my laptop was registering when I pressed different buttons on my keyboard, then created scripts so that my computer would reinterpret those buttons as QWERTY keys before they were registered by the music software. The code will work for anyone with the same keyboard, and can be found `}
-        <FillingLink href="https://github.com/stevenwinnick/SessionViewMIDI" external newTab>here</FillingLink>
+        <FillingLink
+          href="https://github.com/stevenwinnick/SessionViewMIDI"
+          external
+          newTab
+        >
+          here
+        </FillingLink>
         {` along with instructions for using it.`}
       </p>
     ),
@@ -266,6 +341,7 @@ export const PROJECTS: Project[] = [
     subtitle:
       "For the final project for my Natural Language Processing class, I built an image caption generator",
     image: "/img/image-captioner.webp",
+    imageLift: "soft",
     skills: [
       "Computer Vision with CNNs",
       "Stacked/Deep Bidirectional Recurrent Neural Networks",
@@ -281,7 +357,8 @@ export const PROJECTS: Project[] = [
   {
     id: "walking-robot",
     title: "Walking Robot",
-    subtitle: "A built-from-scratch robot made as part of Columbia's Robotics Studio",
+    subtitle:
+      "A built-from-scratch robot made as part of Columbia's Robotics Studio",
     image: "/img/walking-robot.webp",
     skills: [
       "Robotic Movement",
@@ -294,9 +371,21 @@ export const PROJECTS: Project[] = [
     description: (
       <p>
         {`As part of Columbia's Robotics Studio, I built a walking robot. Nicknamed the "Trice-Robot," this triceratops-fossil-shaped robot started as a hand-sketched design, which `}
-        <FillingLink href="https://www.linkedin.com/in/yuting-li-3a0244220" external newTab>Rex Li</FillingLink>
+        <FillingLink
+          href="https://www.linkedin.com/in/yuting-li-3a0244220"
+          external
+          newTab
+        >
+          Rex Li
+        </FillingLink>
         {` and I then modeled in its entirety in SolidWorks, down to every last screw and insert. After 3D-printing and assembling the robot, we cut up and soldered cables to wire the electronics and installed an onboard computer. We used Bash scripts to configure the computer to send us an email with it's IP Address upon startup, allowing us to control our robot remotely with an SSH connection. I did some `}
-        <FillingLink href="https://en.wikipedia.org/wiki/Inverse_kinematics#Numerical_solutions_to_IK_problems" external newTab>math</FillingLink>
+        <FillingLink
+          href="https://en.wikipedia.org/wiki/Inverse_kinematics#Numerical_solutions_to_IK_problems"
+          external
+          newTab
+        >
+          math
+        </FillingLink>
         {` to figure out how to rotate the servo motors to give us a smooth walking path, then wrote some error-handling code to control all 8 servos simultaneously and let our robot walk.`}
       </p>
     ),
@@ -316,7 +405,13 @@ export const PROJECTS: Project[] = [
     description: (
       <p>
         {`After my tech strategy internship ended, I wanted to get a deeper understanding of deep learning, specifically neural networks and how they work, so I built one from scratch using Python. My neural net uses a sigmoid activation function for an added computational challenge and manually calculates and applies partial derivatives for backpropagation. It can also scale to contain any number of hidden layers, each of any size, that it is initialized with, and accepts both batches and individual inputs. You can find the code for this project `}
-        <FillingLink href="https://github.com/stevenwinnick/DeepLearningNeuralNetworkFromScratch" external newTab>here</FillingLink>
+        <FillingLink
+          href="https://github.com/stevenwinnick/DeepLearningNeuralNetworkFromScratch"
+          external
+          newTab
+        >
+          here
+        </FillingLink>
         {`.`}
       </p>
     ),
@@ -327,6 +422,7 @@ export const PROJECTS: Project[] = [
     subtitle:
       "During the summer of 2022, I was an intern at Paramount on the Technology Strategy team",
     image: "/img/paramount-tech-strategy.webp",
+    imageLift: "full",
     skills: [
       "Innovation strategy",
       "SAFe Agile",
@@ -337,7 +433,9 @@ export const PROJECTS: Project[] = [
     description: (
       <p>
         {`Over the summer, I had the very cool opportunity to intern at `}
-        <FillingLink href="https://www.paramount.com" external newTab>Paramount</FillingLink>
+        <FillingLink href="https://www.paramount.com" external newTab>
+          Paramount
+        </FillingLink>
         {` as part of the Tech Strategy team. As the team's Innovation Intern, my work primarily revolved around defining the innovation strategy for the Paramount+ and PlutoTV streaming apps. Using thorough research, I was able to assist with evaluating potential R&D initiatives and craft recommendations for tech innovation schemes. Later in the summer, I got to see some of my proposals through by joining a cross-functional team that worked to streamline the process for receiving executive buy-in for experimental projects. I was even asked to present some of my recommendations to the Paramount Streaming CTO, which was a great experience. After my internship ended, work continued on this project by my team at Paramount continuing to build processes based on information we had researched together. I was super excited to hear about the company hackathon that happened when I was back in school, which had over 400 participants, and especially that several of the ideas from the hackathon had continued to receive support and be built out into new Paramount streaming features.`}
       </p>
     ),
@@ -359,7 +457,9 @@ export const PROJECTS: Project[] = [
     description: (
       <p>
         {`As a Product Manager intern at `}
-        <FillingLink href="https://www.sonarhealth.co" external newTab>Sonar</FillingLink>
+        <FillingLink href="https://www.sonarhealth.co" external newTab>
+          Sonar
+        </FillingLink>
         {`, I worked under the guidance of a team of medical experts from Columbia's Medical School to create specifications for some of the app's core features, which provide users with detailed information about specific aspects of their health. I then worked cross-functionally to guide design and engineering teams in building out these features and others. As a backend software engineer, I was able to build out some of the features I defined while learning about the software development process. Since Sonar's launch on the app store, it's been great to see that features of the app I helped build are now adding value to people's lives, especially as a user of the app myself. `}
       </p>
     ),
@@ -368,11 +468,18 @@ export const PROJECTS: Project[] = [
     id: "this-website",
     title: "This Website",
     image: "/img/this-website.webp",
+    imageLift: "full",
     skills: ["HTML and CSS", "JavaScript", "Bootstrap", "Design with Figma"],
     description: (
       <p>
         {`Rather than using a template to build my website, I decided to learn how to do it myself and use it as an opportunity to showcase my design ability. This site is built with `}
-        <FillingLink href="https://getbootstrap.com/docs/5.2/getting-started/introduction/" external newTab>Bootstrap 5</FillingLink>
+        <FillingLink
+          href="https://getbootstrap.com/docs/5.2/getting-started/introduction/"
+          external
+          newTab
+        >
+          Bootstrap 5
+        </FillingLink>
         {` and fully responsive, so it should display nicely on all screen sizes and types (but if something is broken, I'd really appreciate it if you could let me know via the `}
         <FillingLink href="/contact">contact</FillingLink>
         {` page). I think it turned out pretty well, don't you? :)`}
@@ -380,7 +487,3 @@ export const PROJECTS: Project[] = [
     ),
   },
 ];
-
-export const PREVIEWED_PROJECTS: PreviewedProject[] = PROJECTS.filter(
-  (project): project is PreviewedProject => project.previewBlurb !== undefined,
-);

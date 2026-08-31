@@ -12,11 +12,17 @@ import styles from "./ModuleImage.module.css";
 const WIDE_SIZE = { width: 1600, height: 1200 };
 const TALL_SIZE = { width: 1024, height: 1600 };
 
+const LIFTS = { full: styles.lift, soft: styles.liftSoft } as const;
+
+export type ModuleImageLift = keyof typeof LIFTS;
+
 type ModuleImageProps = {
   src: string;
   alt: string;
   /** Crop to a portrait, two module rows tall, instead of a single module. */
   tall?: boolean;
+  /** Lighten before the blue wash. Helps avoid skin reading as blue. */
+  lift?: ModuleImageLift;
   className?: string;
 };
 
@@ -29,6 +35,7 @@ export default function ModuleImage({
   src,
   alt,
   tall,
+  lift,
   className = "",
 }: ModuleImageProps) {
   const { width, height } = tall ? TALL_SIZE : WIDE_SIZE;
@@ -40,7 +47,9 @@ export default function ModuleImage({
         alt={alt}
         width={width}
         height={height}
-        className={tall ? styles.cropTall : styles.crop}
+        className={`${lift ? LIFTS[lift] : ""} ${
+          tall ? styles.cropTall : styles.crop
+        }`}
       />
       <span
         aria-hidden="true"

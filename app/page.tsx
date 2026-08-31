@@ -1,8 +1,9 @@
-import Link from "next/link";
 import FillingLink from "@/components/FillingLink";
 import ModuleImage from "@/components/ModuleImage";
-import { RESUME_URL } from "@/data/navigation";
-import { PREVIEWED_PROJECTS } from "@/data/projects";
+import { CASCADIUM_URL } from "@/data/navigation";
+
+const GRADUATION_PHOTO = "/img/graduation.webp";
+const LAKE_PHOTO = "/img/lake.webp";
 
 /*
  * Every text block is a module row with its copy on the row's ceiling, so the
@@ -14,60 +15,54 @@ export default function HomePage() {
       <section className="page-grid gap-y-line pt-line">
         <h1 className="col-main rows-1 normal-case">Hey, I&apos;m Steven.</h1>
 
-        <p className="col-main min-rows-1 text-sm">Welcome to my website!</p>
+        <p className="col-main min-rows-1 text-sm">
+          I&apos;m a founder of{" "}
+          <FillingLink href={CASCADIUM_URL} external newTab>
+            Cascadium
+          </FillingLink>
+          . Welcome to my website!
+        </p>
 
         <p className="col-main min-rows-1 text-sm">
-          If you&apos;re <FillingLink href="/">here</FillingLink> because of my{" "}
-          <FillingLink href={RESUME_URL} external newTab>
-            resume
+          My <FillingLink href="/about">prior work</FillingLink> has focused on
+          ensuring the reliability of some of the world{"'"}s most complex
+          software systems. Now my attention is{" "}
+          <FillingLink href={CASCADIUM_URL} external newTab>
+            aimed at
           </FillingLink>{" "}
-          or <FillingLink href="/contact">application</FillingLink>, click to
-          learn more <FillingLink href="/about">about me</FillingLink> or check
-          out <FillingLink href="/projects">my work</FillingLink>.
+          accelerating the effects of scientific and technological innovation in
+          health and medicine.
+        </p>
+
+        <p className="col-main min-rows-1 text-sm">
+          Click around to learn more{" "}
+          <FillingLink href="/about">about me</FillingLink>, read about some of
+          my <FillingLink href="/projects">old projects</FillingLink>, or{" "}
+          <FillingLink href="/contact">get in touch</FillingLink>.
         </p>
       </section>
 
       <section className="page-grid">
-        {/*
-         * Subgrid so the section keeps the page grid's columns while its rules
-         * run a gutter outside them, out to the frame: the negative margin
-         * takes them there and the matching padding brings the columns back,
-         * so they still line up with the rest of the page. Only the frame
-         * draws the sides, and the footer's rule closes the section off at the
-         * bottom.
-         */}
-        <div className="col-wide -mx-line grid grid-cols-subgrid gap-y-line border-t border-blue px-line py-line">
-          <h2 className="col-main rows-1">Projects</h2>
+        <div className="col-wide -mx-line grid grid-cols-subgrid border-t border-blue px-line py-(--grid-row)">
+          <div className="@container col-main">
+            <div className="grid auto-rows-[round(nearest,calc(0.375*(100cqw_-_var(--grid-gutter))),var(--line))] grid-cols-2 gap-line">
+              <ModuleImage
+                src={GRADUATION_PHOTO}
+                alt="Steven Winnick at his Columbia University graduation"
+                tall
+                lift="soft"
+                className="row-span-2 self-start"
+              />
 
-          <p className="col-main min-rows-1 text-sm">
-            Here are a few of the projects I&apos;ve worked on recently:
-          </p>
-
-          {/*
-           * Nested subgrid so the previews share rows across all four
-           * columns: their titles, images, and blurbs each line up. One per
-           * column at `cols4`, 2x2 from `cols2` (where a column is already
-           * full width, so the images stop changing size), stacked two columns
-           * wide below that.
-           */}
-          <div className="col-wide grid grid-cols-subgrid gap-y-2line cols4:grid-rows-[auto_auto_auto] cols4:gap-y-line">
-            {PREVIEWED_PROJECTS.map((project) => (
-              <Link
-                key={project.id}
-                href={`/projects#${project.id}`}
-                className="col-span-2 flex min-w-0 flex-col gap-line text-inherit no-underline cols2:col-span-1 cols4:row-span-3 cols4:grid cols4:grid-rows-subgrid"
-              >
-                <h3 className="lines-1">{project.title}</h3>
-                <ModuleImage src={project.image} alt={project.title} />
-                <p className="min-rows-1 text-sm">{project.previewBlurb}</p>
-              </Link>
-            ))}
+              <ModuleImage
+                src={LAKE_PHOTO}
+                alt="Steven Winnick beside a lake in the mountains"
+                tall
+                lift="full"
+                className="col-start-2 row-span-2 row-start-2 self-start"
+              />
+            </div>
           </div>
-
-          <p className="col-main min-rows-1 text-sm">
-            To see more about these projects and others I&apos;ve worked on,
-            click <FillingLink href="/projects">here</FillingLink>.
-          </p>
         </div>
       </section>
     </>
